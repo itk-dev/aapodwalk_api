@@ -1,4 +1,6 @@
 {
+    "name": "itkdev/aapodwalk-api",
+    "description": "Aapodwalk api for creating podwalks",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
