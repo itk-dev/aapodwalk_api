@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.7.7@e028ba46ba0d7f9a78bc3201c251e137383e145f">
+  <file src="src/Controller/Admin/UserCrudController.php">
+    <InvalidArgument>
+      <code><![CDATA[$this->getUser()]]></code>
+    </InvalidArgument>
+  </file>
+  <file src="src/Entity/User.php">
+    <InvalidNullableReturnType>
+      <code>string</code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement>
+      <code><![CDATA[$this->password]]></code>
+    </NullableReturnStatement>
+  </file>
+</files>

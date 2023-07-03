@@ -18,6 +18,9 @@ framework:
     php_errors:
         log: true
 
+    # We run the site behind ssl-offloading. So this will ensure https urls are generated.
+    trusted_proxies: '127.0.0.1,REMOTE_ADDR'
+
 when@test:
     framework:
         test: true
