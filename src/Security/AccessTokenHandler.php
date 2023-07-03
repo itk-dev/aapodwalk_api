@@ -15,9 +15,6 @@ class AccessTokenHandler implements AccessTokenHandlerInterface
     ) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getUserBadgeFrom(string $accessToken): UserBadge
     {
         /** @var ApiUser $accessToken */
