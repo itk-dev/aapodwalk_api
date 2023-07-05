@@ -9,8 +9,8 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsCommand(
     name: 'app:user:add',
@@ -40,14 +40,15 @@ class AddUserCreateCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         $email = $input->getArgument('email');
-        
+
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $io->error('Email not valid');
+
             return Command::FAILURE;
         } else {
             $user->setEmail($email);
         }
-        
+
         $plainPassword = $input->getArgument('password');
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($hashedPassword);

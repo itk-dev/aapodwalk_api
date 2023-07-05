@@ -22,16 +22,16 @@ class PointOfInterestController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name')
+            TextField::new('name')->setRequired(true)
                 ->setHelp('Name this'),
-            TextField::new('latitude')
+            TextField::new('latitude')->setRequired(true)
                 ->setHelp('The latitude of the interest point'),
-            TextField::new('longitude')
+            TextField::new('longitude')->setRequired(true)
                 ->setHelp('The longitude of the interest point'),
-            TextField::new('subtitles')
+            TextField::new('subtitles')->setRequired(true)
                 ->setHelp('A text version of the podcast, for people with hearing disabilities.'),
-            ImageField::new('image')->setUploadDir('/public/points-of-interest'),
-            TextField::new('podcast')->setFormType(FileUploadType::class)->addJsFiles(Asset::fromEasyAdminAssetPackage('field-file-upload.js')),
+            ImageField::new('image')->setRequired(true)->setUploadDir('/public/points-of-interest')->hideWhenUpdating(),
+            TextField::new('podcast')->setRequired(true)->setFormType(FileUploadType::class)->addJsFiles(Asset::fromEasyAdminAssetPackage('field-file-upload.js'))->hideWhenUpdating(),
             IdField::new('id')->hideOnForm(),
             DateField::new('createdAt')->hideOnForm(),
             DateField::new('updatedAt')->hideOnForm(),
