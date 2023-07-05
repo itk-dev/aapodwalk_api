@@ -22,22 +22,22 @@ class PointOfInterest
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 3000)]
+    #[ORM\Column(length: 3000, nullable: false)]
     private ?string $subtitles = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?string $podcast = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?string $latitude = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?string $longitude = null;
 
     public function getId(): ?int
@@ -107,7 +107,7 @@ class PointOfInterest
 
     public function getLongitude(): ?string
     {
-        return $this->Longitude;
+        return $this->longitude;
     }
 
     public function setLongitude(string $longitude): static
