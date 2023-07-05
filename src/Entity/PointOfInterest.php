@@ -38,7 +38,7 @@ class PointOfInterest
     private ?string $latitude = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Longitude = null;
+    private ?string $longitude = null;
 
     public function getId(): ?int
     {
@@ -110,9 +110,9 @@ class PointOfInterest
         return $this->Longitude;
     }
 
-    public function setLongitude(string $Longitude): static
+    public function setLongitude(string $longitude): static
     {
-        $this->Longitude = $Longitude;
+        $this->longitude = $longitude;
 
         return $this;
     }

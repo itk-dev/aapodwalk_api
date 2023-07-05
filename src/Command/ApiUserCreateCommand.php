@@ -35,7 +35,6 @@ class ApiUserCreateCommand extends Command
     {
         $user = new ApiUser();
         $user->setToken($input->getArgument('token'));
-        $user->setRemoteApiKey($input->getArgument('remote'));
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
