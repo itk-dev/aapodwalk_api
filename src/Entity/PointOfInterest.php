@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use App\Repository\PointOfInterestRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -13,6 +15,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
     operations: [
         new Get(),
     ],
+    security: "is_granted('ROLE_API_USER')"
 )]
 class PointOfInterest
 {
@@ -22,7 +25,7 @@ class PointOfInterest
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 3000, nullable: false)]
+    #[ORM\Column(length: 10000, nullable: false)]
     private ?string $subtitles = null;
 
     #[ORM\Column(length: 255, nullable: false)]
@@ -39,6 +42,20 @@ class PointOfInterest
 
     #[ORM\Column(length: 255, nullable: false)]
     private ?string $longitude = null;
+
+    #[ORM\ManyToMany(targetEntity: Route::class, mappedBy: 'pointsOfInterest')]
+    private Collection $routes;
+
+
+    public function __construct()
+    {
+        $this->routes = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->name ?? '';
+    }
 
     public function getId(): ?int
     {
@@ -116,4 +133,32 @@ class PointOfInterest
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Route>
+     */
+    public function getRoutes(): Collection
+    {
+        return $this->routes;
+    }
+
+    public function addRoute(Route $route): static
+    {
+        if (!$this->routes->contains($route)) {
+            $this->routes->add($route);
+            $route->addPointsOfInterest($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRoute(Route $route): static
+    {
+        if ($this->routes->removeElement($route)) {
+            $route->removePointsOfInterest($this);
+        }
+
+        return $this;
+    }
+
 }

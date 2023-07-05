@@ -26,8 +26,3 @@ services:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@App\OpenApi\OpenApiFactory.inner' ]
         autoconfigure: false
-
-    App\Doctrine\AcceptedTileExtension:
-        tags:
-            - { name: api_platform.doctrine.orm.query_extension.collection }
-            - { name: api_platform.doctrine.orm.query_extension.item }
