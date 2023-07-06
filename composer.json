@@ -15,7 +15,6 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.15",
         "easycorp/easyadmin-bundle": "^4.6",
-        "hautelook/alice-bundle": "^2.12",
         "itk-dev/metrics-bundle": "^1.0",
         "nelmio/cors-bundle": "^2.3",
         "phpdocumentor/reflection-docblock": "^5.3",
@@ -107,6 +106,7 @@
         }
     },
     "require-dev": {
+        "hautelook/alice-bundle": "^2.12",
         "friendsofphp/php-cs-fixer": "^3.20",
         "symfony/maker-bundle": "*",
         "weirdan/doctrine-psalm-plugin": "^2.8",
