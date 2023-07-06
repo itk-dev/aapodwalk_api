@@ -4,8 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\ApiUser;
 use App\Entity\PointOfInterest;
-use App\Entity\Tags;
 use App\Entity\Route as RouteWithPOI;
+use App\Entity\Tags;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;

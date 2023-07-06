@@ -3,13 +3,12 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use App\Repository\TagsRepository;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use App\Repository\TagsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Controller\Admin\TagsController;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: TagsRepository::class)]
@@ -20,7 +19,6 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
     ],
     security: "is_granted('ROLE_API_USER')"
 )]
-
 class Tags
 {
     use TimestampableEntity;
@@ -28,7 +26,7 @@ class Tags
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-    
+
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -44,7 +42,6 @@ class Tags
     {
         return $this->name ?? '';
     }
-
 
     public function getId(): ?int
     {
@@ -86,6 +83,4 @@ class Tags
 
         return $this;
     }
-
-
 }

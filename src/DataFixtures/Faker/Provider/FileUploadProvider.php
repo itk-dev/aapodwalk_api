@@ -4,7 +4,6 @@ namespace App\DataFixtures\Faker\Provider;
 
 use Faker\Generator;
 use Faker\Provider\Base;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Vich\UploaderBundle\Mapping\PropertyMappingFactory;
 
@@ -18,9 +17,9 @@ class FileUploadProvider extends Base
     /**
      * Simulate file upload using VichUploader.
      *
-     * @param string $path      the file path relative to the fixtures directory
-     * @param string $property  the object property
-     * @param string $className the object class name
+     * @param string $path       the file path relative to the fixtures directory
+     * @param string $targetPath the target of the uploaded file
+     * @param string $fileName   the file name
      *
      * @return string the file path relative to the configured upload destination
      */
@@ -36,6 +35,4 @@ class FileUploadProvider extends Base
 
         return $fileName;
     }
-
-
 }

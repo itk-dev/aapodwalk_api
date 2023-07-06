@@ -46,7 +46,6 @@ class PointOfInterest
     #[ORM\ManyToMany(targetEntity: Route::class, mappedBy: 'pointsOfInterest')]
     private Collection $routes;
 
-
     public function __construct()
     {
         $this->routes = new ArrayCollection();
@@ -160,5 +159,4 @@ class PointOfInterest
 
         return $this;
     }
-
 }
