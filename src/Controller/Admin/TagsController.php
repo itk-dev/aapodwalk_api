@@ -30,8 +30,4 @@ class TagsController extends AbstractCrudController
         ];
     }
 
-    public function __invoke(Request $request)
-    {
-        return $this->tagsRepository->getCollection();
-    }
 }
