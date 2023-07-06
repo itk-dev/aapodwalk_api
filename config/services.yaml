@@ -31,4 +31,3 @@ services:
         arguments:  
             $config: 
                 project_dir: '%kernel.project_dir%'
-        
