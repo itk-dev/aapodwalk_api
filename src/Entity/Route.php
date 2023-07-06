@@ -42,14 +42,13 @@ class Route
     #[ORM\ManyToMany(targetEntity: PointOfInterest::class, inversedBy: 'routes')]
     private Collection $pointsOfInterest;
 
-    #[ORM\ManyToMany(targetEntity: Tags::class, mappedBy: 'routes')]
+    #[ORM\ManyToMany(targetEntity: Tags::class, inversedBy: 'routes')]
     private Collection $tags;
 
     public function __toString(): string
     {
         return $this->name ?? '';
     }
-
 
     public function __construct()
     {
@@ -100,7 +99,7 @@ class Route
 
     public function getImage(): ?string
     {
-        return '/routes/'.$this->image;
+        return '/uploads/images/'.$this->image;
     }
 
     public function setImage(string $image): static

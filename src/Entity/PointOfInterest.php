@@ -88,7 +88,7 @@ class PointOfInterest
 
     public function getImage(): ?string
     {
-        return '/points-of-interest/'.$this->image;
+        return '/uploads/images/'.$this->image;
     }
 
     public function setImage(string $image): self

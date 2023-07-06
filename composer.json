@@ -15,6 +15,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.15",
         "easycorp/easyadmin-bundle": "^4.6",
+        "hautelook/alice-bundle": "^2.12",
         "itk-dev/metrics-bundle": "^1.0",
         "nelmio/cors-bundle": "^2.3",
         "phpdocumentor/reflection-docblock": "^5.3",
@@ -38,7 +39,8 @@
         "symfony/validator": "6.3.*",
         "symfony/yaml": "6.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "vich/uploader-bundle": "^2.1"
     },
     "config": {
         "allow-plugins": {
@@ -86,6 +88,9 @@
         ],        
         "psalm": [
             "./vendor/bin/psalm --no-cache"
+        ],
+        "fixtures-load": [
+            "bin/console hautelook:fixtures:load --no-interaction"
         ],
         "update-api-spec": [
             "bin/console api:openapi:export --output=public/api-spec-v1.yaml --yaml --no-interaction",

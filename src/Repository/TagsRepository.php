@@ -39,19 +39,6 @@ class TagsRepository extends ServiceEntityRepository
         }
     }
 
-    
-
-   /**
-    * @return Tags[] Returns an array of Tags objects
-    */
-   public function getCollection(): array
-   {
-       return $this->createQueryBuilder('t')
-           ->setMaxResults(30)
-           ->getQuery()
-           ->getResult()
-       ;
-   }
 //    /**
 //     * @return Tags[] Returns an array of Tags objects
 //     */

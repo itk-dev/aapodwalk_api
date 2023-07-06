@@ -32,10 +32,8 @@ class Tags
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Route::class, inversedBy: 'tags')]
+    #[ORM\ManyToMany(targetEntity: Route::class, mappedBy: 'tags', cascade: ['persist'])]
     private Collection $routes;
-
-    
 
     public function __construct()
     {

@@ -1,0 +1,10 @@
+---
+App\Entity\Tags:
+  mad:
+    name: 'Her kan man spise'
+  pizza:
+    name: 'Pizza'
+  arkitektur:
+    name: 'Arkitektur'
+  tag_4:
+    name: 'Tomt tag'

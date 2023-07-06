@@ -26,3 +26,9 @@ services:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@App\OpenApi\OpenApiFactory.inner' ]
         autoconfigure: false
+
+    App\DataFixtures\Faker\Provider\FileUploadProvider:
+        arguments:  
+            $config: 
+                project_dir: '%kernel.project_dir%'
+        

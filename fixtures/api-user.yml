@@ -1,0 +1,5 @@
+---
+App\Entity\ApiUser:
+  api_user_1:
+    name: 'api user'
+    token: '123'
