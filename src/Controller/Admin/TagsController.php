@@ -7,7 +7,6 @@ use App\Repository\TagsRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Symfony\Component\HttpFoundation\Request;
 
 class TagsController extends AbstractCrudController
 {
@@ -29,5 +28,4 @@ class TagsController extends AbstractCrudController
                 ->setHelp('Name this'),
         ];
     }
-
 }
