@@ -12,3 +12,5 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 ## [Unreleased]
 
 - Basic setup (api_platform and easyadminbundle)
+- Add basic user login
+- Add Point of interest

@@ -24,9 +24,6 @@ class ApiUser implements UserInterface
     private string $token;
 
     #[ORM\Column(length: 255)]
-    private string $remoteApiKey;
-
-    #[ORM\Column(length: 255)]
     private ?string $name = null;
 
     public function __construct()
@@ -87,18 +84,6 @@ class ApiUser implements UserInterface
     public function setToken(string $token): self
     {
         $this->token = $token;
-
-        return $this;
-    }
-
-    public function getRemoteApiKey(): string
-    {
-        return $this->remoteApiKey;
-    }
-
-    public function setRemoteApiKey(string $remoteApiKey): self
-    {
-        $this->remoteApiKey = $remoteApiKey;
 
         return $this;
     }
