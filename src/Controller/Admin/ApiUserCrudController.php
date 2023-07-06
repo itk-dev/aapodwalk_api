@@ -20,7 +20,7 @@ class ApiUserCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('name')->setRequired(true),
-            TextField::new('token')->setRequired(true)
+            TextField::new('token')->setRequired(true)->setFormTypeOption('disabled', 'disabled')
                 ->setHelp('Access token used by the frontend for access to the api'),
             DateField::new('createdAt')->hideOnForm()->hideOnIndex(),
             DateField::new('updatedAt')->hideOnForm(),
