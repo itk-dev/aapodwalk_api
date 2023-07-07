@@ -7,6 +7,7 @@ use App\Repository\TagsRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Translation\TranslatableMessage;
 
 class TagsController extends AbstractCrudController
 {
@@ -25,7 +26,7 @@ class TagsController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('name')
-                ->setHelp('Name this'),
+            ->setHelp(new TranslatableMessage('The name of the tag', [], 'admin')),
         ];
     }
 }

@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Translation\TranslatableMessage;
 
 class ApiUserCrudController extends AbstractCrudController
 {
@@ -21,7 +22,7 @@ class ApiUserCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('name')->setRequired(true),
             TextField::new('token')->setRequired(true)->setFormTypeOption('disabled', 'disabled')
-                ->setHelp('Access token used by the frontend for access to the api'),
+            ->setHelp(new TranslatableMessage('Access token used by the frontend for access to the api', [], 'admin')),
             DateField::new('createdAt')->hideOnForm()->hideOnIndex(),
             DateField::new('updatedAt')->hideOnForm(),
         ];
