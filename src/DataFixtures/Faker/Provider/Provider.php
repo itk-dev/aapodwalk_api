@@ -5,12 +5,16 @@ namespace App\DataFixtures\Faker\Provider;
 use Faker\Generator;
 use Faker\Provider\Base;
 use Symfony\Component\Filesystem\Filesystem;
-use Vich\UploaderBundle\Mapping\PropertyMappingFactory;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class FileUploadProvider extends Base
+class Provider extends Base
 {
-    public function __construct(Generator $generator, private PropertyMappingFactory $propertyMappingFactory, private Filesystem $filesystem, private array $config)
-    {
+    public function __construct(Generator $generator,
+        readonly private Filesystem $filesystem,
+        readonly private UserPasswordHasherInterface $passwordHasher,
+        readonly private array $config
+    ) {
         parent::__construct($generator);
     }
 
@@ -34,5 +38,25 @@ class FileUploadProvider extends Base
         $this->filesystem->copy($sourcePath, $targetPath);
 
         return $fileName;
+    }
+
+  /**
+   * Generate user password.
+   *
+   * Usage:
+   *   App\Entity\User:
+   *     password: '<password(@self, "apassword")>'
+   *
+   * @param UserInterface $user
+   * @param string $plaintextPassword
+   *
+   * @return string
+   */
+    public function password(UserInterface $user, string $plaintextPassword)
+    {
+        return $this->passwordHasher->hashPassword(
+            $user,
+            $plaintextPassword
+        );
     }
 }
