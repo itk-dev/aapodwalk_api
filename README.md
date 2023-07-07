@@ -18,8 +18,7 @@ docker compose exec phpfpm bin/console doctrine:migrations:migrate
 Load fixtures:
 
 ```shell
-#todo create fixtures
-docker compose exec phpfpm bin/console doctrine:fixtures:load
+docker compose exec phpfpm composer fixtures-load
 ```
 
 Create an admin user:

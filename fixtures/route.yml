@@ -1,0 +1,17 @@
+---
+App\Entity\Route:
+  route_pizza:
+    name: 'Pizzaruten'
+    description: 'Denne rute er overordentligt fokuseret på pizza'
+    distance: '3 meter'
+    image: <uploadFile(files/pizza-1.jpg, public/uploads/images/pizza-1.jpg, pizza-1.jpg)>
+    pointsOfInterest: ['@pizza_1', '@pizza_2', '@pizza_3']
+    tags: ['@pizza','@mad']
+  route_havnen:
+    name: 'Havneruten'
+    description: 'Denne rute er overordentligt fokuseret på havnen'
+    distance: '103 meter'
+    image: <uploadFile(files/pizza-1.jpg, public/uploads/images/pizza-1.jpg, pizza-1.jpg)>
+    pointsOfInterest: ['@dokk1', '@pizza_2','@navitas_parkeringskælder', '@domen']
+    tags: ['@mad', '@arkitektur']
+

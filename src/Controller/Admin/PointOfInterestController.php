@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
+use Symfony\Component\Translation\TranslatableMessage;
 
 class PointOfInterestController extends AbstractCrudController
 {
@@ -23,13 +24,13 @@ class PointOfInterestController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('name')->setRequired(true)
-                ->setHelp('Name this'),
+                ->setHelp(new TranslatableMessage('The name of the point of interest', [], 'admin')),
             TextField::new('latitude')->setRequired(true)
-                ->setHelp('The latitude of the interest point'),
+                ->setHelp(new TranslatableMessage('The latitude of the interest point', [], 'admin')),
             TextField::new('longitude')->setRequired(true)
-                ->setHelp('The longitude of the interest point'),
+            ->setHelp(new TranslatableMessage('The longitude of the interest point', [], 'admin')),
             TextField::new('subtitles')->setRequired(true)
-                ->setHelp('A text version of the podcast, for people with hearing disabilities.'),
+            ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin')),
             ImageField::new('image')->setRequired(true)->setUploadDir('/public/points-of-interest')->hideWhenUpdating(),
             TextField::new('podcast')->setRequired(true)->setFormType(FileUploadType::class)->addJsFiles(Asset::fromEasyAdminAssetPackage('field-file-upload.js'))->hideWhenUpdating(),
             IdField::new('id')->hideOnForm(),
