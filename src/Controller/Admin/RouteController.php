@@ -26,11 +26,12 @@ class RouteController extends AbstractCrudController
             TextField::new('description'),
             TextField::new('distance')
                 ->setHelp('The distance should be how far the route is with all points of interests included'),
-            TextField::new('image')
-                ->onlyOnIndex(),
+
+            VichImageField::new('image')
+                ->hideOnForm(),
             VichImageField::new('imageFile')
-                ->setFormTypeOption('allow_delete', false)
-                ->onlyOnForms(),
+                ->onlyOnForms()
+                ->setFormTypeOption('allow_delete', false),
 
             IdField::new('id')->hideOnForm(),
             AssociationField::new('tags')->hideOnIndex()->setRequired(true)->setFormTypeOption('by_reference', false)

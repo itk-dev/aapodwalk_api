@@ -42,6 +42,9 @@ class PointOfInterest
     #[Vich\UploadableField(mapping: 'uploads', fileNameProperty: 'image')]
     private ?File $imageFile = null;
 
+    // Set by serializer (cf. FileNormalizer).
+    public ?string $imageUrl = null;
+
     #[ORM\Column(length: 255, nullable: false)]
     #[Assert\NotNull]
     private ?string $podcast = null;

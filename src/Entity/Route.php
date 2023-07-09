@@ -11,10 +11,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: RouteRepository::class)]
 #[ApiResource(
+    normalizationContext: ['groups' => ['read']],
     operations: [
         new Get(),
         new GetCollection(),
@@ -31,12 +33,15 @@ class Route
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read', 'write'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read', 'write'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['route:read'])]
     private ?string $distance = null;
 
     #[ORM\Column(length: 255)]
@@ -44,6 +49,10 @@ class Route
 
     #[Vich\UploadableField(mapping: 'uploads', fileNameProperty: 'image')]
     private ?File $imageFile = null;
+
+    // Set by serializer (cf. FileNormalizer).
+    #[Groups('read')]
+    public ?string $imageUrl = null;
 
     #[ORM\ManyToMany(targetEntity: PointOfInterest::class, inversedBy: 'routes')]
     private Collection $pointsOfInterest;

@@ -17,6 +17,8 @@ final class VichFileField implements FieldInterface
         return (new self())
             ->setProperty($propertyName)
             ->setLabel($label)
+            // this template is used in 'index' and 'detail' pages
+            ->setTemplatePath('admin/field/vich_file.html.twig')
             // this is used in 'edit' and 'new' pages to edit the field contents
             // you can use your own form types too
             ->setFormType(VichFileType::class)

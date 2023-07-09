@@ -1,0 +1,10 @@
+{# https://stackoverflow.com/a/65313973 #}
+{% if field.value %}
+    <a href="{{ vich_uploader_asset(entity.instance, field.property ~ 'File', entity.fqcn) }}">
+        {{ field.value }}
+    </a>
+{% else %}
+    <span class="badge badge-secondary">
+        Empty
+    </span>
+{% endif %}
