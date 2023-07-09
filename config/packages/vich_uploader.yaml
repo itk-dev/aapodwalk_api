@@ -1,8 +1,16 @@
 vich_uploader:
     db_driver: orm
 
-    #mappings:
-    #    products:
-    #        uri_prefix: /images/products
-    #        upload_destination: '%kernel.project_dir%/public/images/products'
-    #        namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+    metadata:
+      type: attribute
+
+    mappings:
+        uploads:
+            uri_prefix: /uploads
+            upload_destination: '%kernel.project_dir%/public/uploads'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+            # https://github.com/dustin10/VichUploaderBundle/blob/master/docs/usage.md#step-3-configure-the-lifecycle-events-optional-step
+            # inject_on_load: true
+            # delete_on_update: true
+            # delete_on_remove: true

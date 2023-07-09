@@ -3,11 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Route;
+use App\Field\VichImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class RouteController extends AbstractCrudController
@@ -26,7 +26,12 @@ class RouteController extends AbstractCrudController
             TextField::new('description'),
             TextField::new('distance')
                 ->setHelp('The distance should be how far the route is with all points of interests included'),
-            ImageField::new('image')->setUploadDir('/public/routes')->hideWhenUpdating(),
+            TextField::new('image')
+                ->onlyOnIndex(),
+            VichImageField::new('imageFile')
+                ->setFormTypeOption('allow_delete', false)
+                ->onlyOnForms(),
+
             IdField::new('id')->hideOnForm(),
             AssociationField::new('tags')->hideOnIndex()->setRequired(true)->setFormTypeOption('by_reference', false)
                 ->setHelp('Tags are used in the frontend to organize the routes.'),

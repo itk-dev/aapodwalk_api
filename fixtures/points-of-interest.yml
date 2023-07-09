@@ -2,43 +2,43 @@
 App\Entity\PointOfInterest:
   pizza_1:
     name: 'Pizza 1'
-    image: <uploadFile(files/pizza-1.jpg, public/uploads/images/pizza-1.jpg, pizza-1.jpg)>
-    podcast: <uploadFile(files/audio.mp3, public/uploads/files/audio.mp3, audio.mp3)>
+    imageFile: <uploadFile(files/pizza-1.jpg)>
+    podcastFile: <uploadFile(files/audio.mp3)>
     subtitles: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     latitude: 56.1692189111948
     longitude: 10.21696426741526
   pizza_2:
     name: 'Pizza 2'
-    image: <uploadFile(files/pizza-2.jpg, public/uploads/images/pizza-2.jpg, pizza-2.jpg)>
-    podcast: <uploadFile(files/audio.mp3, public/uploads/files/audio.mp3, audio.mp3)>
+    imageFile: <uploadFile(files/pizza-2.jpg)>
+    podcastFile: <uploadFile(files/audio.mp3)>
     subtitles: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     latitude: 56.15820599988522
     longitude: 10.212120454729606
   pizza_3:
     name: 'Pizza 3'
-    image: <uploadFile(files/pizza-2.jpg, public/uploads/images/pizza-2.jpg, pizza-2.jpg)>
-    podcast: <uploadFile(files/audio.mp3, public/uploads/files/audio.mp3, audio.mp3)>
+    imageFile: <uploadFile(files/pizza-2.jpg)>
+    podcastFile: <uploadFile(files/audio.mp3)>
     subtitles: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     latitude: 56.1646496903666
     longitude: 10.222745588704443
   dokk1:
     name: 'Dokk1'
-    image: <uploadFile(files/pizza-1.jpg, public/uploads/images/pizza-1.jpg, pizza-1.jpg)>
-    podcast: <uploadFile(files/audio.mp3, public/uploads/files/audio.mp3, audio.mp3)>
+    imageFile: <uploadFile(files/pizza-1.jpg)>
+    podcastFile: <uploadFile(files/audio.mp3)>
     subtitles: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     latitude: 56.15374103214133
     longitude: 10.214433061656008
   navitas_parkeringskælder:
     name: 'Navitas parkeringskælder'
-    image: <uploadFile(files/pizza-1.jpg, public/uploads/images/pizza-1.jpg, pizza-1.jpg)>
-    podcast: <uploadFile(files/audio.mp3, public/uploads/files/audio.mp3, audio.mp3)>
+    imageFile: <uploadFile(files/pizza-1.jpg)>
+    podcastFile: <uploadFile(files/audio.mp3)>
     subtitles: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     latitude: 56.159568048896006
     longitude: 10.21654905528191
   domen:
     name: 'Domen'
-    image: <uploadFile(files/pizza-1.jpg, public/uploads/images/pizza-1.jpg, pizza-1.jpg)>
-    podcast: <uploadFile(files/audio.mp3, public/uploads/files/audio.mp3, audio.mp3)>
+    imageFile: <uploadFile(files/pizza-1.jpg)>
+    podcastFile: <uploadFile(files/audio.mp3)>
     subtitles: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     latitude: 56.15826675157271
     longitude: 10.21855490960478
