@@ -3,13 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\PointOfInterest;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
+use App\Validator\Constraints\EasyAdminFile;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType;
 use Symfony\Component\Translation\TranslatableMessage;
 
 class PointOfInterestController extends AbstractCrudController
@@ -31,8 +30,33 @@ class PointOfInterestController extends AbstractCrudController
             ->setHelp(new TranslatableMessage('The longitude of the interest point', [], 'admin')),
             TextField::new('subtitles')->setRequired(true)
             ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin')),
-            ImageField::new('image')->setRequired(true)->setUploadDir('/public/points-of-interest')->hideWhenUpdating(),
-            TextField::new('podcast')->setRequired(true)->setFormType(FileUploadType::class)->addJsFiles(Asset::fromEasyAdminAssetPackage('field-file-upload.js'))->hideWhenUpdating(),
+            ImageField::new('image')
+             ->setUploadDir('public/')
+             ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
+            ->setFormTypeOption(
+                'constraints',
+                [
+                    new EasyAdminFile([
+                        'mimeTypes' => [ // We want to let upload only jpeg or png
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                    ]),
+                ]
+            ),
+            ImageField::new('podcast')
+            ->setUploadDir('public/')
+            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
+           ->setFormTypeOption(
+               'constraints',
+               [
+                   new EasyAdminFile([
+                       'mimeTypes' => [
+                           'audio/mpeg',
+                       ],
+                   ]),
+               ]
+           ),
             IdField::new('id')->hideOnForm(),
             DateField::new('createdAt')->hideOnForm(),
             DateField::new('updatedAt')->hideOnForm(),

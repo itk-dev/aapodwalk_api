@@ -99,7 +99,7 @@ class Route
 
     public function getImage(): ?string
     {
-        return '/uploads/images/'.$this->image;
+        return $this->image;
     }
 
     public function setImage(string $image): static
