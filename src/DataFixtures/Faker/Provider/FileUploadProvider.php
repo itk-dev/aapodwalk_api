@@ -15,7 +15,7 @@ class FileUploadProvider extends Base
     }
 
     /**
-     * Simulate file upload using VichUploader.
+     * Simulate file upload.
      *
      * @param string $path       the file path relative to the fixtures directory
      * @param string $targetPath the target of the uploaded file
