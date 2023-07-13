@@ -32,11 +32,13 @@ class EasyAdminFileValidator extends FileValidator
             throw new UnexpectedTypeException($constraint, EasyAdminFile::class);
         }
 
+        $object = $this->context->getObject();
         if (null !== $value
-            && $this->context->getObject() instanceof Form
-            && $this->context->getObject()->getConfig() instanceof FormBuilder
+            && null !== $object
+            && $object instanceof Form
+            && $object->getConfig() instanceof FormBuilder
         ) {
-            $config = $this->context->getObject()->getConfig();
+            $config = $object->getConfig();
 
             /** @var FileUploadState $state */
             $state = $config->getAttribute('state');
