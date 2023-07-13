@@ -5,11 +5,10 @@ namespace App\DataFixtures\Faker\Provider;
 use Faker\Generator;
 use Faker\Provider\Base;
 use Symfony\Component\Filesystem\Filesystem;
-use Vich\UploaderBundle\Mapping\PropertyMappingFactory;
 
 class FileUploadProvider extends Base
 {
-    public function __construct(Generator $generator, private PropertyMappingFactory $propertyMappingFactory, private Filesystem $filesystem, private array $config)
+    public function __construct(Generator $generator, private Filesystem $filesystem, private array $config)
     {
         parent::__construct($generator);
     }
