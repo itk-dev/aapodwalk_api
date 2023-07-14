@@ -29,7 +29,7 @@ class RouteController extends AbstractCrudController
             ->setHelp(new TranslatableMessage('The distance should be how far the route is with all points of interests included, e.g. "840m"', [], 'admin'));
 
         $context = $this->getContext();
-        if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && $context !== null) {
+        if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && null !== $context) {
             $entity = $context->getEntity()->getInstance();
             assert($entity instanceof Route);
             $attr = EasyAdminHelper::getFileInputAttributes($entity, 'imageFile');

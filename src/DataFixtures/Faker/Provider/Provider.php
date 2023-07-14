@@ -26,7 +26,6 @@ class Provider extends Base
      * Simulate file upload using VichUploader.
      *
      * @param string $path the file path relative to the fixtures directory
-     *
      */
     public function uploadFile(string $path)
     {

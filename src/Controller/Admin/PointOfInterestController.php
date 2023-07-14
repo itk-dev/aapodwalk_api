@@ -32,7 +32,7 @@ class PointOfInterestController extends AbstractCrudController
         ->setHelp(new TranslatableMessage('The longitude of the interest point.', [], 'admin'));
 
         $context = $this->getContext();
-        if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && $context !== null) {
+        if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && null !== $context) {
             $entity = $context->getEntity()->getInstance();
             assert($entity instanceof PointOfInterest);
 
