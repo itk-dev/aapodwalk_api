@@ -36,20 +36,31 @@ class PointOfInterest
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: false)]
-    #[Assert\NotNull]
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'uploads', fileNameProperty: 'image')]
+    #[Assert\File(
+        mimeTypes: [
+            'image/jpeg',
+            'image/png',
+        ],
+        maxSize: '1m'
+    )]
     private ?File $imageFile = null;
 
     // Set by serializer (cf. FileNormalizer).
     public ?string $imageUrl = null;
 
     #[ORM\Column(length: 255, nullable: false)]
-    #[Assert\NotNull]
     private ?string $podcast = null;
 
     #[Vich\UploadableField(mapping: 'uploads', fileNameProperty: 'podcast')]
+    #[Assert\File(
+        mimeTypes: [
+            'audio/mpeg'
+        ],
+        maxSize: '1m'
+    )]
     private ?File $podcastFile = null;
 
     #[ORM\Column(length: 255, nullable: false)]

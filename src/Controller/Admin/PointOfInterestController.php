@@ -9,6 +9,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use Symfony\Component\Validator\Constraints\File;
 
 class PointOfInterestController extends AbstractCrudController
 {
@@ -19,32 +21,59 @@ class PointOfInterestController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('name')->setRequired(true)
-                ->setHelp('Name this'),
-            TextField::new('latitude')->setRequired(true)
-                ->setHelp('The latitude of the interest point'),
-            TextField::new('longitude')->setRequired(true)
-                ->setHelp('The longitude of the interest point'),
-            TextField::new('subtitles')->setRequired(true)
-                ->setHelp('A text version of the podcast, for people with hearing disabilities.'),
+        yield IdField::new('id')->hideOnForm();
+        yield TextField::new('name')
+            ->setHelp('Name this');
+        yield TextField::new('subtitles')->setRequired(true)
+            ->setHelp('A text version of the podcast, for people with hearing disabilities.');
+        yield TextField::new('latitude')->setRequired(true)
+            ->setHelp('The latitude of the interest point');
+        yield TextField::new('longitude')->setRequired(true)
+            ->setHelp('The longitude of the interest point');
 
-            // @see https://stackoverflow.com/a/65313973
-            VichImageField::new('image')
-                ->hideOnForm(),
-            VichImageField::new('imageFile')
+        if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true)) {
+            $entity = $this->getContext()->getEntity()->getInstance();
+            assert($entity instanceof PointOfInterest);
+            $imageFileRefl = new \ReflectionProperty($entity, 'imageFile');
+            $imageAttr = [];
+            foreach ($imageFileRefl->getAttributes() as $attribute) {
+                if (File::class === $attribute->getName()) {
+                    foreach ($attribute->getArguments() as $name => $value) {
+                        if ('mimeTypes' === $name) {
+                            $imageAttr['accept'] = implode(',', $value);
+                        }
+                    }
+                }
+            }
+
+            yield VichImageField::new('imageFile')
                 ->onlyOnForms()
-                ->setFormTypeOption('allow_delete', false),
+                ->setFormTypeOption('allow_delete', false)
+                ->setFormTypeOption('attr', $imageAttr);
 
-            VichFileField::new('podcast')
-                ->hideOnForm(),
-            VichFileField::new('podcastFile')
+            $podcastFileRefl = new \ReflectionProperty($entity, 'podcastFile');
+            $podcastAttr = [];
+            foreach ($podcastFileRefl->getAttributes() as $attribute) {
+                if (File::class === $attribute->getName()) {
+                    foreach ($attribute->getArguments() as $name => $value) {
+                        if ('mimeTypes' === $name) {
+                            $podcastAttr['accept'] = implode(',', $value);
+                        }
+                    }
+                }
+            }
+
+            yield VichFileField::new('podcastFile')
                 ->onlyOnForms()
-                ->setFormTypeOption('allow_delete', false),
+                ->setFormTypeOption('allow_delete', false)
+                ->setFormTypeOption('attr', $podcastAttr);
 
-            DateField::new('createdAt')->hideOnForm(),
-            DateField::new('updatedAt')->hideOnForm(),
-        ];
+        } else {
+            yield VichImageField::new('image');
+            yield VichFileField::new('podcast');
+        }
+
+        yield DateField::new('createdAt')->hideOnForm();
+        yield DateField::new('updatedAt')->hideOnForm();
     }
 }
