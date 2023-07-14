@@ -28,7 +28,7 @@ class RouteController extends AbstractCrudController
         yield TextField::new('distance')
             ->setHelp('The distance should be how far the route is with all points of interests included');
 
-        if (Crud::PAGE_EDIT === $pageName) {
+        if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true)) {
             $entity = $this->getContext()->getEntity()->getInstance();
             assert($entity instanceof Route);
             $refl = new \ReflectionProperty($entity, 'imageFile');
