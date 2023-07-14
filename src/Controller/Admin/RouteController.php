@@ -4,14 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Route;
 use App\Field\VichImageField;
+use App\Service\EasyAdminHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Symfony\Component\Validator\Constraints\File;
-use App\Service\EasyAdminHelper;
 
 class RouteController extends AbstractCrudController
 {

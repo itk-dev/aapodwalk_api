@@ -57,7 +57,7 @@ class PointOfInterest
     #[Vich\UploadableField(mapping: 'uploads', fileNameProperty: 'podcast')]
     #[Assert\File(
         mimeTypes: [
-            'audio/mpeg'
+            'audio/mpeg',
         ],
         maxSize: '1m'
     )]

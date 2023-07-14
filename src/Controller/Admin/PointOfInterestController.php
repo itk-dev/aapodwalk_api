@@ -6,12 +6,11 @@ use App\Entity\PointOfInterest;
 use App\Field\VichFileField;
 use App\Field\VichImageField;
 use App\Service\EasyAdminHelper;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use Symfony\Component\Validator\Constraints\File;
 
 class PointOfInterestController extends AbstractCrudController
 {
@@ -57,5 +56,4 @@ class PointOfInterestController extends AbstractCrudController
         yield DateField::new('createdAt')->hideOnForm();
         yield DateField::new('updatedAt')->hideOnForm();
     }
-
 }
