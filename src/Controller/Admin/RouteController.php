@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Validator\Constraints\File;
+use App\Service\EasyAdminHelper;
 
 class RouteController extends AbstractCrudController
 {
@@ -32,16 +33,7 @@ class RouteController extends AbstractCrudController
             $entity = $this->getContext()->getEntity()->getInstance();
             assert($entity instanceof Route);
             $refl = new \ReflectionProperty($entity, 'imageFile');
-            $attr = [];
-            foreach ($refl->getAttributes() as $attribute) {
-                if (File::class === $attribute->getName()) {
-                    foreach ($attribute->getArguments() as $name => $value) {
-                        if ('mimeTypes' === $name) {
-                            $attr['accept'] = implode(',', $value);
-                        }
-                    }
-                }
-            }
+            $attr = EasyAdminHelper::getFileInputAttributes($refl);
 
             yield VichImageField::new('imageFile')
                 ->onlyOnForms()

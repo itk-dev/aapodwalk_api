@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\PointOfInterest;
 use App\Field\VichFileField;
 use App\Field\VichImageField;
+use App\Service\EasyAdminHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -36,14 +37,14 @@ class PointOfInterestController extends AbstractCrudController
             assert($entity instanceof PointOfInterest);
 
             $imageFileRefl = new \ReflectionProperty($entity, 'imageFile');
-            $imageAttr = $this->getMimeTypes($imageFileRefl);
+            $imageAttr = EasyAdminHelper::getFileInputAttributes($imageFileRefl);
             yield VichImageField::new('imageFile')
                 ->onlyOnForms()
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $imageAttr);
 
             $podcastFileRefl = new \ReflectionProperty($entity, 'podcastFile');
-            $podcastAttr = $this->getMimeTypes($podcastFileRefl);
+            $podcastAttr = EasyAdminHelper::getFileInputAttributes($podcastFileRefl);
             yield VichFileField::new('podcastFile')
                 ->onlyOnForms()
                 ->setFormTypeOption('allow_delete', false)
@@ -57,17 +58,4 @@ class PointOfInterestController extends AbstractCrudController
         yield DateField::new('updatedAt')->hideOnForm();
     }
 
-    private function getMimeTypes(\ReflectionProperty $fileRefl){
-        $attr = [];
-        foreach ($fileRefl->getAttributes() as $attribute) {
-            if (File::class === $attribute->getName()) {
-                foreach ($attribute->getArguments() as $name => $value) {
-                    if ('mimeTypes' === $name) {
-                        $attr['accept'] = implode(',', $value);
-                    }
-                }
-            }
-        }
-        return $attr;
-    }
 }
