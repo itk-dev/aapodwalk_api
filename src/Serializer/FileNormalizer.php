@@ -23,7 +23,7 @@ final class FileNormalizer implements NormalizerInterface
     ) {
     }
 
-    public function normalize($object, string $format = null, array $context = []): array
+    public function normalize($object, string $format = null, array $context = [])
     {
         if (is_object($object)) {
             // TODO: Find these field names using reflection or some such magic …

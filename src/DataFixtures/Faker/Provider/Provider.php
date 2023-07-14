@@ -8,7 +8,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Mime\MimeTypeGuesserInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 class Provider extends Base
 {
@@ -27,7 +27,6 @@ class Provider extends Base
      *
      * @param string $path the file path relative to the fixtures directory
      *
-     * @return string the file path relative to the configured upload destination
      */
     public function uploadFile(string $path)
     {
@@ -58,7 +57,7 @@ class Provider extends Base
      *
      * @return string
      */
-    public function password(UserInterface $user, string $plaintextPassword)
+    public function password(PasswordAuthenticatedUserInterface $user, string $plaintextPassword)
     {
         return $this->passwordHasher->hashPassword(
             $user,

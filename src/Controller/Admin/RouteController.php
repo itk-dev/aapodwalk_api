@@ -27,8 +27,10 @@ class RouteController extends AbstractCrudController
         yield TextField::new('description');
         yield TextField::new('distance')
             ->setHelp(new TranslatableMessage('The distance should be how far the route is with all points of interests included, e.g. "840m"', [], 'admin'));
-        if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true)) {
-            $entity = $this->getContext()->getEntity()->getInstance();
+
+        $context = $this->getContext();
+        if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && $context !== null) {
+            $entity = $context->getEntity()->getInstance();
             assert($entity instanceof Route);
             $attr = EasyAdminHelper::getFileInputAttributes($entity, 'imageFile');
 

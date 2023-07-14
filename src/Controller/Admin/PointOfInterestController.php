@@ -31,8 +31,9 @@ class PointOfInterestController extends AbstractCrudController
         yield TextField::new('longitude')->setRequired(true)
         ->setHelp(new TranslatableMessage('The longitude of the interest point.', [], 'admin'));
 
-        if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true)) {
-            $entity = $this->getContext()->getEntity()->getInstance();
+        $context = $this->getContext();
+        if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && $context !== null) {
+            $entity = $context->getEntity()->getInstance();
             assert($entity instanceof PointOfInterest);
 
             $imageAttr = EasyAdminHelper::getFileInputAttributes($entity, 'imageFile');
