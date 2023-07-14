@@ -49,3 +49,9 @@ Or perhaps:
 ```shell
 docker compose exec phpfpm composer coding-standards-check
 ```
+
+## Update api spec
+
+```shell
+docker compose exec phpfpm composer update-api-spec
+```

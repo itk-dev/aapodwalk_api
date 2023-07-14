@@ -58,7 +58,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Route.jsonld' } }
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Route.jsonld-read' } }
                   'hydra:totalItems': { type: integer, minimum: 0 }
                   'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:previous': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } }, example: { '@id': string, type: string, 'hydra:first': string, 'hydra:last': string, 'hydra:previous': string, 'hydra:next': string } }
                   'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
@@ -68,12 +68,12 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Route'
+                  $ref: '#/components/schemas/Route-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Route'
+                  $ref: '#/components/schemas/Route-read'
       summary: 'Retrieves the collection of Route resources.'
       description: 'Retrieves the collection of Route resources.'
       parameters:
@@ -117,13 +117,13 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Route.jsonld'
+                $ref: '#/components/schemas/Route.jsonld-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Route'
+                $ref: '#/components/schemas/Route-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Route'
+                $ref: '#/components/schemas/Route-read'
         404:
           description: 'Resource not found'
       summary: 'Retrieves a Route resource.'
@@ -257,8 +257,35 @@ components:
           type: string
         image:
           type: string
+        imageFile:
+          description: |-
+            If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+            of 'UploadedFile' is injected into this setter to trigger the update. If this
+            bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+            must be able to accept an instance of 'File' as the bundle will inject one here
+            during Doctrine hydration.
+          externalDocs:
+            url: 'https://schema.org/MediaObject'
+          type: string
+          format: binary
+          nullable: true
+        imageUrl:
+          type: string
+          nullable: true
         podcast:
           type: string
+        podcastFile:
+          description: |-
+            If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+            of 'UploadedFile' is injected into this setter to trigger the update. If this
+            bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+            must be able to accept an instance of 'File' as the bundle will inject one here
+            during Doctrine hydration.
+          externalDocs:
+            url: 'https://schema.org/MediaObject'
+          type: string
+          format: binary
+          nullable: true
         latitude:
           type: string
         longitude:
@@ -311,8 +338,35 @@ components:
           type: string
         image:
           type: string
+        imageFile:
+          description: |-
+            If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+            of 'UploadedFile' is injected into this setter to trigger the update. If this
+            bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+            must be able to accept an instance of 'File' as the bundle will inject one here
+            during Doctrine hydration.
+          externalDocs:
+            url: 'https://schema.org/MediaObject'
+          type: string
+          format: binary
+          nullable: true
+        imageUrl:
+          type: string
+          nullable: true
         podcast:
           type: string
+        podcastFile:
+          description: |-
+            If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+            of 'UploadedFile' is injected into this setter to trigger the update. If this
+            bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+            must be able to accept an instance of 'File' as the bundle will inject one here
+            during Doctrine hydration.
+          externalDocs:
+            url: 'https://schema.org/MediaObject'
+          type: string
+          format: binary
+          nullable: true
         latitude:
           type: string
         longitude:
@@ -328,14 +382,11 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Route:
+    Route-read:
       type: object
       description: ''
       deprecated: false
       properties:
-        id:
-          readOnly: true
-          type: integer
         name:
           type: string
         description:
@@ -344,23 +395,8 @@ components:
           type: string
         image:
           type: string
-        pointsOfInterest:
-          type: array
-          items:
-            type: string
-            format: iri-reference
-        tags:
-          type: array
-          items:
-            type: string
-            format: iri-reference
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    Route.jsonld:
+          nullable: true
+    Route.jsonld-read:
       type: object
       description: ''
       deprecated: false
@@ -388,9 +424,6 @@ components:
                 - '@vocab'
                 - hydra
               additionalProperties: true
-        id:
-          readOnly: true
-          type: integer
         name:
           type: string
         description:
@@ -399,22 +432,7 @@ components:
           type: string
         image:
           type: string
-        pointsOfInterest:
-          type: array
-          items:
-            type: string
-            format: iri-reference
-        tags:
-          type: array
-          items:
-            type: string
-            format: iri-reference
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
+          nullable: true
     Tags:
       type: object
       description: ''
