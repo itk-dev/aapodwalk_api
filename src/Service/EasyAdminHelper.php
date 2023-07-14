@@ -6,10 +6,11 @@ use Symfony\Component\Validator\Constraints\File;
 
 class EasyAdminHelper
 {
-    public static function getFileInputAttributes(\ReflectionProperty $fileRefl)
+    public static function getFileInputAttributes(object $entity, string $key)
     {
+        $refl = new \ReflectionProperty($entity, $key);
         $attr = [];
-        foreach ($fileRefl->getAttributes() as $attribute) {
+        foreach ($refl->getAttributes() as $attribute) {
             if (File::class === $attribute->getName()) {
                 foreach ($attribute->getArguments() as $name => $value) {
                     if ('mimeTypes' === $name) {

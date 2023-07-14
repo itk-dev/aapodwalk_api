@@ -30,8 +30,7 @@ class RouteController extends AbstractCrudController
         if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true)) {
             $entity = $this->getContext()->getEntity()->getInstance();
             assert($entity instanceof Route);
-            $refl = new \ReflectionProperty($entity, 'imageFile');
-            $attr = EasyAdminHelper::getFileInputAttributes($refl);
+            $attr = EasyAdminHelper::getFileInputAttributes($entity, 'imageFile');
 
             yield VichImageField::new('imageFile')
                 ->onlyOnForms()

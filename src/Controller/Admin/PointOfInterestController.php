@@ -35,15 +35,13 @@ class PointOfInterestController extends AbstractCrudController
             $entity = $this->getContext()->getEntity()->getInstance();
             assert($entity instanceof PointOfInterest);
 
-            $imageFileRefl = new \ReflectionProperty($entity, 'imageFile');
-            $imageAttr = EasyAdminHelper::getFileInputAttributes($imageFileRefl);
+            $imageAttr = EasyAdminHelper::getFileInputAttributes($entity, 'imageFile');
             yield VichImageField::new('imageFile')
                 ->onlyOnForms()
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $imageAttr);
 
-            $podcastFileRefl = new \ReflectionProperty($entity, 'podcastFile');
-            $podcastAttr = EasyAdminHelper::getFileInputAttributes($podcastFileRefl);
+            $podcastAttr = EasyAdminHelper::getFileInputAttributes($entity, 'podcastFile');
             yield VichFileField::new('podcastFile')
                 ->onlyOnForms()
                 ->setFormTypeOption('allow_delete', false)
