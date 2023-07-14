@@ -34,40 +34,20 @@ class PointOfInterestController extends AbstractCrudController
         if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true)) {
             $entity = $this->getContext()->getEntity()->getInstance();
             assert($entity instanceof PointOfInterest);
-            $imageFileRefl = new \ReflectionProperty($entity, 'imageFile');
-            $imageAttr = [];
-            foreach ($imageFileRefl->getAttributes() as $attribute) {
-                if (File::class === $attribute->getName()) {
-                    foreach ($attribute->getArguments() as $name => $value) {
-                        if ('mimeTypes' === $name) {
-                            $imageAttr['accept'] = implode(',', $value);
-                        }
-                    }
-                }
-            }
 
+            $imageFileRefl = new \ReflectionProperty($entity, 'imageFile');
+            $imageAttr = $this->getMimeTypes($imageFileRefl);
             yield VichImageField::new('imageFile')
                 ->onlyOnForms()
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $imageAttr);
 
             $podcastFileRefl = new \ReflectionProperty($entity, 'podcastFile');
-            $podcastAttr = [];
-            foreach ($podcastFileRefl->getAttributes() as $attribute) {
-                if (File::class === $attribute->getName()) {
-                    foreach ($attribute->getArguments() as $name => $value) {
-                        if ('mimeTypes' === $name) {
-                            $podcastAttr['accept'] = implode(',', $value);
-                        }
-                    }
-                }
-            }
-
+            $podcastAttr = $this->getMimeTypes($podcastFileRefl);
             yield VichFileField::new('podcastFile')
                 ->onlyOnForms()
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $podcastAttr);
-
         } else {
             yield VichImageField::new('image');
             yield VichFileField::new('podcast');
@@ -75,5 +55,19 @@ class PointOfInterestController extends AbstractCrudController
 
         yield DateField::new('createdAt')->hideOnForm();
         yield DateField::new('updatedAt')->hideOnForm();
+    }
+
+    private function getMimeTypes(\ReflectionProperty $fileRefl){
+        $attr = [];
+        foreach ($fileRefl->getAttributes() as $attribute) {
+            if (File::class === $attribute->getName()) {
+                foreach ($attribute->getArguments() as $name => $value) {
+                    if ('mimeTypes' === $name) {
+                        $attr['accept'] = implode(',', $value);
+                    }
+                }
+            }
+        }
+        return $attr;
     }
 }
