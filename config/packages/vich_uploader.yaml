@@ -11,6 +11,7 @@ vich_uploader:
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
             # https://github.com/dustin10/VichUploaderBundle/blob/master/docs/usage.md#step-3-configure-the-lifecycle-events-optional-step
-            # inject_on_load: true
+            # These are the default settings:
+            # inject_on_load: false
             # delete_on_update: true
             # delete_on_remove: true

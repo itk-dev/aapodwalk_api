@@ -4,11 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Route;
 use App\Field\VichImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Validator\Constraints\File;
 
 class RouteController extends AbstractCrudController
 {
@@ -19,27 +21,42 @@ class RouteController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('name')
-                ->setHelp('Name this'),
-            TextField::new('description'),
-            TextField::new('distance')
-                ->setHelp('The distance should be how far the route is with all points of interests included'),
+        yield IdField::new('id')->hideOnForm();
+        yield TextField::new('name')
+            ->setHelp('Name this');
+        yield TextField::new('description');
+        yield TextField::new('distance')
+            ->setHelp('The distance should be how far the route is with all points of interests included');
 
-            VichImageField::new('image')
-                ->hideOnForm(),
-            VichImageField::new('imageFile')
+        if (Crud::PAGE_EDIT === $pageName) {
+            $entity = $this->getContext()->getEntity()->getInstance();
+            assert($entity instanceof Route);
+            $refl = new \ReflectionProperty($entity, 'imageFile');
+            $attr = [];
+            foreach ($refl->getAttributes() as $attribute) {
+                if ($attribute->getName() === File::class) {
+                    foreach ($attribute->getArguments() as $name => $value) {
+                        if ('mimeTypes' === $name) {
+                            $attr['accept'] = implode(',', $value);
+                        }
+                    }
+                }
+            }
+
+            yield VichImageField::new('imageFile')
                 ->onlyOnForms()
-                ->setFormTypeOption('allow_delete', false),
+                ->setFormTypeOption('allow_delete', false)
+                ->setFormTypeOption('attr', $attr);
+        } else {
+            yield VichImageField::new('image');
+        }
 
-            IdField::new('id')->hideOnForm(),
-            AssociationField::new('tags')->hideOnIndex()->setRequired(true)->setFormTypeOption('by_reference', false)
-                ->setHelp('Tags are used in the frontend to organize the routes.'),
-            AssociationField::new('pointsOfInterest')->hideOnIndex()->setRequired(true)
-                ->setHelp('Connect points of interest to this podwalk'),
-            DateField::new('createdAt')->hideOnForm(),
-            DateField::new('updatedAt')->hideOnForm(),
-        ];
+        yield IdField::new('id')->hideOnForm();
+        yield AssociationField::new('tags')->hideOnIndex()->setRequired(true)->setFormTypeOption('by_reference', false)
+            ->setHelp('Tags are used in the frontend to organize the routes.');
+        yield AssociationField::new('pointsOfInterest')->hideOnIndex()->setRequired(true)
+            ->setHelp('Connect points of interest to this podwalk');
+        yield DateField::new('createdAt')->hideOnForm();
+        yield DateField::new('updatedAt')->hideOnForm();
     }
 }
