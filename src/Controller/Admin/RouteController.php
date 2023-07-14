@@ -34,7 +34,7 @@ class RouteController extends AbstractCrudController
             $refl = new \ReflectionProperty($entity, 'imageFile');
             $attr = [];
             foreach ($refl->getAttributes() as $attribute) {
-                if ($attribute->getName() === File::class) {
+                if (File::class === $attribute->getName()) {
                     foreach ($attribute->getArguments() as $name => $value) {
                         if ('mimeTypes' === $name) {
                             $attr['accept'] = implode(',', $value);

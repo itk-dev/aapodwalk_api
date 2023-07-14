@@ -11,6 +11,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -20,8 +22,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     operations: [
         new Get(),
         new GetCollection(),
-    ],
-    security: "is_granted('ROLE_API_USER')"
+    ]
 )]
 #[Vich\Uploadable]
 class Route
@@ -34,12 +35,15 @@ class Route
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('read')]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('read')]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('read')]
     private ?string $distance = null;
 
     #[ORM\Column(length: 255)]
@@ -55,7 +59,8 @@ class Route
     )]
     private ?File $imageFile = null;
 
-    // Set by serializer (cf. FileNormalizer).
+    #[Groups('read')]
+    #[SerializedName('image')]
     public ?string $imageUrl = null;
 
     #[ORM\ManyToMany(targetEntity: PointOfInterest::class, inversedBy: 'routes')]
