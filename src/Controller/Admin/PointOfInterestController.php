@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Translation\TranslatableMessage;
 
 class PointOfInterestController extends AbstractCrudController
 {
@@ -22,14 +23,13 @@ class PointOfInterestController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id')->hideOnForm();
-        yield TextField::new('name')
-            ->setHelp('Name this');
+        yield TextField::new('name');
         yield TextField::new('subtitles')->setRequired(true)
-            ->setHelp('A text version of the podcast, for people with hearing disabilities.');
+        ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin'));
         yield TextField::new('latitude')->setRequired(true)
-            ->setHelp('The latitude of the interest point');
+        ->setHelp(new TranslatableMessage('The latitude of the interest point.', [], 'admin'));
         yield TextField::new('longitude')->setRequired(true)
-            ->setHelp('The longitude of the interest point');
+        ->setHelp(new TranslatableMessage('The longitude of the interest point.', [], 'admin'));
 
         if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true)) {
             $entity = $this->getContext()->getEntity()->getInstance();

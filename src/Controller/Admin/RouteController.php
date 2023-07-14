@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Translation\TranslatableMessage;
 
 class RouteController extends AbstractCrudController
 {
@@ -22,12 +23,10 @@ class RouteController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id')->hideOnForm();
-        yield TextField::new('name')
-            ->setHelp('Name this');
+        yield TextField::new('name');
         yield TextField::new('description');
         yield TextField::new('distance')
-            ->setHelp('The distance should be how far the route is with all points of interests included');
-
+            ->setHelp(new TranslatableMessage('The distance should be how far the route is with all points of interests included, e.g. "840m"', [], 'admin'));
         if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true)) {
             $entity = $this->getContext()->getEntity()->getInstance();
             assert($entity instanceof Route);
@@ -44,9 +43,9 @@ class RouteController extends AbstractCrudController
 
         yield IdField::new('id')->hideOnForm();
         yield AssociationField::new('tags')->hideOnIndex()->setRequired(true)->setFormTypeOption('by_reference', false)
-            ->setHelp('Tags are used in the frontend to organize the routes.');
+        ->setHelp(new TranslatableMessage('Tags are used in the frontend to organize the routes.', [], 'admin'));
         yield AssociationField::new('pointsOfInterest')->hideOnIndex()->setRequired(true)
-            ->setHelp('Connect points of interest to this podwalk');
+            ->setHelp(new TranslatableMessage('Connect points of interest to this podwalk.', [], 'admin'));
         yield DateField::new('createdAt')->hideOnForm();
         yield DateField::new('updatedAt')->hideOnForm();
     }
