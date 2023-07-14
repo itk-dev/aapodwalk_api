@@ -82,7 +82,7 @@
                                         "hydra:member": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/Route.jsonld"
+                                                "$ref": "#/components/schemas/Route.jsonld-read"
                                             }
                                         },
                                         "hydra:totalItems": {
@@ -170,7 +170,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Route"
+                                        "$ref": "#/components/schemas/Route-read"
                                     }
                                 }
                             },
@@ -178,7 +178,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Route"
+                                        "$ref": "#/components/schemas/Route-read"
                                     }
                                 }
                             }
@@ -236,17 +236,17 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Route.jsonld"
+                                    "$ref": "#/components/schemas/Route.jsonld-read"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Route"
+                                    "$ref": "#/components/schemas/Route-read"
                                 }
                             },
                             "text/html": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Route"
+                                    "$ref": "#/components/schemas/Route-read"
                                 }
                             }
                         }
@@ -510,8 +510,30 @@
                     "image": {
                         "type": "string"
                     },
+                    "imageFile": {
+                        "description": "If manually uploading a file (i.e. not using Symfony Form) ensure an instance\nof 'UploadedFile' is injected into this setter to trigger the update. If this\nbundle's configuration parameter 'inject_on_load' is set to 'true' this setter\nmust be able to accept an instance of 'File' as the bundle will inject one here\nduring Doctrine hydration.",
+                        "externalDocs": {
+                            "url": "https://schema.org/MediaObject"
+                        },
+                        "type": "string",
+                        "format": "binary",
+                        "nullable": true
+                    },
+                    "imageUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
                     "podcast": {
                         "type": "string"
+                    },
+                    "podcastFile": {
+                        "description": "If manually uploading a file (i.e. not using Symfony Form) ensure an instance\nof 'UploadedFile' is injected into this setter to trigger the update. If this\nbundle's configuration parameter 'inject_on_load' is set to 'true' this setter\nmust be able to accept an instance of 'File' as the bundle will inject one here\nduring Doctrine hydration.",
+                        "externalDocs": {
+                            "url": "https://schema.org/MediaObject"
+                        },
+                        "type": "string",
+                        "format": "binary",
+                        "nullable": true
                     },
                     "latitude": {
                         "type": "string"
@@ -589,8 +611,30 @@
                     "image": {
                         "type": "string"
                     },
+                    "imageFile": {
+                        "description": "If manually uploading a file (i.e. not using Symfony Form) ensure an instance\nof 'UploadedFile' is injected into this setter to trigger the update. If this\nbundle's configuration parameter 'inject_on_load' is set to 'true' this setter\nmust be able to accept an instance of 'File' as the bundle will inject one here\nduring Doctrine hydration.",
+                        "externalDocs": {
+                            "url": "https://schema.org/MediaObject"
+                        },
+                        "type": "string",
+                        "format": "binary",
+                        "nullable": true
+                    },
+                    "imageUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
                     "podcast": {
                         "type": "string"
+                    },
+                    "podcastFile": {
+                        "description": "If manually uploading a file (i.e. not using Symfony Form) ensure an instance\nof 'UploadedFile' is injected into this setter to trigger the update. If this\nbundle's configuration parameter 'inject_on_load' is set to 'true' this setter\nmust be able to accept an instance of 'File' as the bundle will inject one here\nduring Doctrine hydration.",
+                        "externalDocs": {
+                            "url": "https://schema.org/MediaObject"
+                        },
+                        "type": "string",
+                        "format": "binary",
+                        "nullable": true
                     },
                     "latitude": {
                         "type": "string"
@@ -615,15 +659,11 @@
                     }
                 }
             },
-            "Route": {
+            "Route-read": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,
                 "properties": {
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
                     "name": {
                         "type": "string"
                     },
@@ -634,33 +674,12 @@
                         "type": "string"
                     },
                     "image": {
-                        "type": "string"
-                    },
-                    "pointsOfInterest": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "iri-reference"
-                        }
-                    },
-                    "tags": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "iri-reference"
-                        }
-                    },
-                    "createdAt": {
                         "type": "string",
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "format": "date-time"
+                        "nullable": true
                     }
                 }
             },
-            "Route.jsonld": {
+            "Route.jsonld-read": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,
@@ -700,10 +719,6 @@
                             }
                         ]
                     },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
                     "name": {
                         "type": "string"
                     },
@@ -714,29 +729,8 @@
                         "type": "string"
                     },
                     "image": {
-                        "type": "string"
-                    },
-                    "pointsOfInterest": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "iri-reference"
-                        }
-                    },
-                    "tags": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "iri-reference"
-                        }
-                    },
-                    "createdAt": {
                         "type": "string",
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "format": "date-time"
+                        "nullable": true
                     }
                 }
             },
