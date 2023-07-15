@@ -18,3 +18,4 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 - Add Tags
 - Add fixtures
 - Image upload improved
+- Add custom file url serialization
