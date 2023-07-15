@@ -257,6 +257,7 @@ components:
           type: string
         image:
           type: string
+          nullable: true
         imageFile:
           description: |-
             If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -269,11 +270,9 @@ components:
           type: string
           format: binary
           nullable: true
-        imageUrl:
-          type: string
-          nullable: true
         podcast:
           type: string
+          nullable: true
         podcastFile:
           description: |-
             If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -338,6 +337,7 @@ components:
           type: string
         image:
           type: string
+          nullable: true
         imageFile:
           description: |-
             If manually uploading a file (i.e. not using Symfony Form) ensure an instance
@@ -350,11 +350,9 @@ components:
           type: string
           format: binary
           nullable: true
-        imageUrl:
-          type: string
-          nullable: true
         podcast:
           type: string
+          nullable: true
         podcastFile:
           description: |-
             If manually uploading a file (i.e. not using Symfony Form) ensure an instance

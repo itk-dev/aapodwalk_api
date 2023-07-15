@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -49,6 +50,7 @@ class PointOfInterest
     private ?File $imageFile = null;
 
     // Set by serializer (cf. FileNormalizer).
+    #[SerializedName('image')]
     public ?string $imageUrl = null;
 
     #[ORM\Column(length: 255, nullable: false)]
@@ -62,6 +64,9 @@ class PointOfInterest
         maxSize: '1m'
     )]
     private ?File $podcastFile = null;
+
+    #[SerializedName('podcast')]
+    public ?string $podcastUrl = null;
 
     #[ORM\Column(length: 255, nullable: false)]
     private ?string $latitude = null;

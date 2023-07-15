@@ -508,7 +508,8 @@
                         "type": "string"
                     },
                     "image": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "imageFile": {
                         "description": "If manually uploading a file (i.e. not using Symfony Form) ensure an instance\nof 'UploadedFile' is injected into this setter to trigger the update. If this\nbundle's configuration parameter 'inject_on_load' is set to 'true' this setter\nmust be able to accept an instance of 'File' as the bundle will inject one here\nduring Doctrine hydration.",
@@ -519,12 +520,9 @@
                         "format": "binary",
                         "nullable": true
                     },
-                    "imageUrl": {
+                    "podcast": {
                         "type": "string",
                         "nullable": true
-                    },
-                    "podcast": {
-                        "type": "string"
                     },
                     "podcastFile": {
                         "description": "If manually uploading a file (i.e. not using Symfony Form) ensure an instance\nof 'UploadedFile' is injected into this setter to trigger the update. If this\nbundle's configuration parameter 'inject_on_load' is set to 'true' this setter\nmust be able to accept an instance of 'File' as the bundle will inject one here\nduring Doctrine hydration.",
@@ -609,7 +607,8 @@
                         "type": "string"
                     },
                     "image": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "imageFile": {
                         "description": "If manually uploading a file (i.e. not using Symfony Form) ensure an instance\nof 'UploadedFile' is injected into this setter to trigger the update. If this\nbundle's configuration parameter 'inject_on_load' is set to 'true' this setter\nmust be able to accept an instance of 'File' as the bundle will inject one here\nduring Doctrine hydration.",
@@ -620,12 +619,9 @@
                         "format": "binary",
                         "nullable": true
                     },
-                    "imageUrl": {
+                    "podcast": {
                         "type": "string",
                         "nullable": true
-                    },
-                    "podcast": {
-                        "type": "string"
                     },
                     "podcastFile": {
                         "description": "If manually uploading a file (i.e. not using Symfony Form) ensure an instance\nof 'UploadedFile' is injected into this setter to trigger the update. If this\nbundle's configuration parameter 'inject_on_load' is set to 'true' this setter\nmust be able to accept an instance of 'File' as the bundle will inject one here\nduring Doctrine hydration.",
