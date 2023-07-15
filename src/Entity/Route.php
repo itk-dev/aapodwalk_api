@@ -22,7 +22,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     operations: [
         new Get(),
         new GetCollection(),
-    ]
+    ],
+    security: "is_granted('ROLE_API_USER')"
 )]
 #[Vich\Uploadable]
 class Route
