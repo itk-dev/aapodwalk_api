@@ -19,13 +19,13 @@ paths:
           content:
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/PointOfInterest.jsonld'
+                $ref: '#/components/schemas/PointOfInterest.jsonld-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/PointOfInterest'
+                $ref: '#/components/schemas/PointOfInterest-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/PointOfInterest'
+                $ref: '#/components/schemas/PointOfInterest-read'
         404:
           description: 'Resource not found'
       summary: 'Retrieves a PointOfInterest resource.'
@@ -243,65 +243,23 @@ paths:
     parameters: []
 components:
   schemas:
-    PointOfInterest:
+    PointOfInterest-read:
       type: object
       description: ''
       deprecated: false
       properties:
-        id:
-          readOnly: true
-          type: integer
         subtitles:
           type: string
         name:
           type: string
         image:
           type: string
-        imageFile:
-          description: |-
-            If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-            of 'UploadedFile' is injected into this setter to trigger the update. If this
-            bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-            must be able to accept an instance of 'File' as the bundle will inject one here
-            during Doctrine hydration.
-          externalDocs:
-            url: 'https://schema.org/MediaObject'
-          type: string
-          format: binary
-          nullable: true
-        imageUrl:
-          type: string
-          nullable: true
-        podcast:
-          type: string
-        podcastFile:
-          description: |-
-            If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-            of 'UploadedFile' is injected into this setter to trigger the update. If this
-            bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-            must be able to accept an instance of 'File' as the bundle will inject one here
-            during Doctrine hydration.
-          externalDocs:
-            url: 'https://schema.org/MediaObject'
-          type: string
-          format: binary
           nullable: true
         latitude:
           type: string
         longitude:
           type: string
-        routes:
-          type: array
-          items:
-            type: string
-            format: iri-reference
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    PointOfInterest.jsonld:
+    PointOfInterest.jsonld-read:
       type: object
       description: ''
       deprecated: false
@@ -329,59 +287,17 @@ components:
         '@type':
           readOnly: true
           type: string
-        id:
-          readOnly: true
-          type: integer
         subtitles:
           type: string
         name:
           type: string
         image:
           type: string
-        imageFile:
-          description: |-
-            If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-            of 'UploadedFile' is injected into this setter to trigger the update. If this
-            bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-            must be able to accept an instance of 'File' as the bundle will inject one here
-            during Doctrine hydration.
-          externalDocs:
-            url: 'https://schema.org/MediaObject'
-          type: string
-          format: binary
-          nullable: true
-        imageUrl:
-          type: string
-          nullable: true
-        podcast:
-          type: string
-        podcastFile:
-          description: |-
-            If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-            of 'UploadedFile' is injected into this setter to trigger the update. If this
-            bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-            must be able to accept an instance of 'File' as the bundle will inject one here
-            during Doctrine hydration.
-          externalDocs:
-            url: 'https://schema.org/MediaObject'
-          type: string
-          format: binary
           nullable: true
         latitude:
           type: string
         longitude:
           type: string
-        routes:
-          type: array
-          items:
-            type: string
-            format: iri-reference
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
     Route-read:
       type: object
       description: ''
@@ -396,6 +312,10 @@ components:
         image:
           type: string
           nullable: true
+        pointsOfInterest:
+          type: array
+          items:
+            $ref: '#/components/schemas/PointOfInterest-read'
     Route.jsonld-read:
       type: object
       description: ''
@@ -433,6 +353,10 @@ components:
         image:
           type: string
           nullable: true
+        pointsOfInterest:
+          type: array
+          items:
+            $ref: '#/components/schemas/PointOfInterest.jsonld-read'
     Tags:
       type: object
       description: ''

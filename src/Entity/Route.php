@@ -18,11 +18,12 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: RouteRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => ['read']],
     operations: [
         new Get(),
         new GetCollection(),
-    ]
+    ],
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['read']],
 )]
 #[Vich\Uploadable]
 class Route
@@ -35,15 +36,15 @@ class Route
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('read')]
+    #[Groups(['read'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('read')]
+    #[Groups(['read'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('read')]
+    #[Groups(['read'])]
     private ?string $distance = null;
 
     #[ORM\Column(length: 255)]
@@ -59,11 +60,12 @@ class Route
     )]
     private ?File $imageFile = null;
 
-    #[Groups('read')]
+    #[Groups(['read'])]
     #[SerializedName('image')]
     public ?string $imageUrl = null;
 
     #[ORM\ManyToMany(targetEntity: PointOfInterest::class, inversedBy: 'routes')]
+    #[Groups(['read'])]
     private Collection $pointsOfInterest;
 
     #[ORM\ManyToMany(targetEntity: Tags::class, inversedBy: 'routes')]

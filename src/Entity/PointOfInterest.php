@@ -12,30 +12,36 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 #[ORM\Entity(repositoryClass: PointOfInterestRepository::class)]
 #[ApiResource(
+    normalizationContext: ['groups' => ['read']],
     operations: [
         new Get(),
     ],
-    security: "is_granted('ROLE_API_USER')"
 )]
 #[Vich\Uploadable]
 class PointOfInterest
 {
     use TimestampableEntity;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 10000, nullable: false)]
+    #[Groups(['read'])]
     private ?string $subtitles = null;
 
     #[ORM\Column(length: 255, nullable: false)]
+    #[Groups(['read'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: false)]
+    #[Groups(['read'])]
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'uploads', fileNameProperty: 'image')]
@@ -49,6 +55,8 @@ class PointOfInterest
     private ?File $imageFile = null;
 
     // Set by serializer (cf. FileNormalizer).
+    #[Groups(['read'])]
+    #[SerializedName('image')]
     public ?string $imageUrl = null;
 
     #[ORM\Column(length: 255, nullable: false)]
@@ -64,9 +72,11 @@ class PointOfInterest
     private ?File $podcastFile = null;
 
     #[ORM\Column(length: 255, nullable: false)]
+    #[Groups(['read'])]
     private ?string $latitude = null;
 
     #[ORM\Column(length: 255, nullable: false)]
+    #[Groups(['read'])]
     private ?string $longitude = null;
 
     #[ORM\ManyToMany(targetEntity: Route::class, mappedBy: 'pointsOfInterest')]
