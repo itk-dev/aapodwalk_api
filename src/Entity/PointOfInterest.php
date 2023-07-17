@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\PointOfInterestRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,10 +18,9 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 #[ORM\Entity(repositoryClass: PointOfInterestRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => ['read']],
     operations: [
-        new Get(),
     ],
+    normalizationContext: ['groups' => ['read']],
 )]
 #[Vich\Uploadable]
 class PointOfInterest
@@ -29,6 +29,7 @@ class PointOfInterest
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups(['read'])]
     #[ORM\Column]
     private ?int $id = null;
 
@@ -60,6 +61,7 @@ class PointOfInterest
     public ?string $imageUrl = null;
 
     #[ORM\Column(length: 255, nullable: false)]
+    #[Groups(['read'])]
     private ?string $podcast = null;
 
     #[Vich\UploadableField(mapping: 'uploads', fileNameProperty: 'podcast')]
@@ -70,6 +72,11 @@ class PointOfInterest
         maxSize: '1m'
     )]
     private ?File $podcastFile = null;
+
+    // Set by serializer (cf. FileNormalizer).
+    #[Groups(['read'])]
+    #[SerializedName('podcast')]
+    public ?string $podcastUrl = null;
 
     #[ORM\Column(length: 255, nullable: false)]
     #[Groups(['read'])]

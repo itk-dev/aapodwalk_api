@@ -20,7 +20,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ApiResource(
     operations: [
         new Get(),
-        new GetCollection(),
     ],
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['read']],
@@ -32,6 +31,7 @@ class Route
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups(['read'])]
     #[ORM\Column]
     private ?int $id = null;
 
