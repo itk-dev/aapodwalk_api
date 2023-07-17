@@ -15,6 +15,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 #[ApiResource(
     operations: [
         new GetCollection(),
+        new Get(),
     ],
 )]
 class Tags
