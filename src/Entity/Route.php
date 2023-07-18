@@ -56,7 +56,7 @@ class Route
             'image/jpeg',
             'image/png',
         ],
-        maxSize: '1m'
+        maxSize: '2m'
     )]
     private ?File $imageFile = null;
 
