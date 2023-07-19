@@ -51,7 +51,7 @@ class PointOfInterest
             'image/jpeg',
             'image/png',
         ],
-        maxSize: '2m'
+        maxSize: '2M'
     )]
     private ?File $imageFile = null;
 
@@ -69,7 +69,7 @@ class PointOfInterest
         mimeTypes: [
             'audio/mpeg',
         ],
-        maxSize: '10m'
+        maxSize: '10M'
     )]
     private ?File $podcastFile = null;
 
