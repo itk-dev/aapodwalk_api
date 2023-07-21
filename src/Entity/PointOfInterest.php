@@ -3,18 +3,16 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
 use App\Repository\PointOfInterestRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: PointOfInterestRepository::class)]
 #[ApiResource(
@@ -41,7 +39,7 @@ class PointOfInterest
     #[Groups(['read'])]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255, nullable: false)]
+    #[ORM\Column(length: 255)]
     #[Groups(['read'])]
     private ?string $image = null;
 
@@ -60,7 +58,7 @@ class PointOfInterest
     #[SerializedName('image')]
     public ?string $imageUrl = null;
 
-    #[ORM\Column(length: 255, nullable: false)]
+    #[ORM\Column(length: 255)]
     #[Groups(['read'])]
     private ?string $podcast = null;
 
@@ -133,7 +131,7 @@ class PointOfInterest
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
@@ -145,7 +143,7 @@ class PointOfInterest
         return $this->podcast;
     }
 
-    public function setPodcast(string $podcast): static
+    public function setPodcast(?string $podcast): static
     {
         $this->podcast = $podcast;
 
