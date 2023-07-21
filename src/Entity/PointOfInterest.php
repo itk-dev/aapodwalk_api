@@ -41,7 +41,7 @@ class PointOfInterest
     #[Groups(['read'])]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255, nullable: false)]
+    #[ORM\Column(length: 255)]
     #[Groups(['read'])]
     private ?string $image = null;
 
@@ -60,7 +60,7 @@ class PointOfInterest
     #[SerializedName('image')]
     public ?string $imageUrl = null;
 
-    #[ORM\Column(length: 255, nullable: false)]
+    #[ORM\Column(length: 255)]
     #[Groups(['read'])]
     private ?string $podcast = null;
 
@@ -133,7 +133,7 @@ class PointOfInterest
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
@@ -145,7 +145,7 @@ class PointOfInterest
         return $this->podcast;
     }
 
-    public function setPodcast(string $podcast): static
+    public function setPodcast(?string $podcast): static
     {
         $this->podcast = $podcast;
 
