@@ -83,6 +83,14 @@ class Route
     #[Groups(['read'])]
     private ?string $centerlongitude = null;
 
+    #[ORM\Column(length: 255)]
+    #[Groups(['read'])]
+    private ?string $partcount = null;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(['read'])]
+    private ?string $totalduration = null;
+
     public function __toString(): string
     {
         return $this->name ?? '';
@@ -256,6 +264,30 @@ class Route
     public function setCenterlongitude(string $centerlongitude): static
     {
         $this->centerlongitude = $centerlongitude;
+
+        return $this;
+    }
+
+    public function getPartcount(): ?string
+    {
+        return $this->partcount;
+    }
+
+    public function setPartcount(string $partcount): static
+    {
+        $this->partcount = $partcount;
+
+        return $this;
+    }
+
+    public function getTotalduration(): ?string
+    {
+        return $this->totalduration;
+    }
+
+    public function setTotalduration(string $totalduration): static
+    {
+        $this->totalduration = $totalduration;
 
         return $this;
     }

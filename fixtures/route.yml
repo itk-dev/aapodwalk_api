@@ -8,6 +8,8 @@ App\Entity\Route:
     centerlatitude: '56.162966242542396'
     centerlongitude: '10.214671991697763'
     zoomValue: '7'
+    partcount: '4'
+    totalduration: '16'
     pointsOfInterest: ['@pizza_1', '@pizza_2', '@pizza_3']
     tags: ['@pizza','@mad']
 
@@ -19,5 +21,7 @@ App\Entity\Route:
     centerlatitude: '56.15414558833946'
     centerlongitude: '10.21411751024173'
     zoomValue: '7.7'
+    partcount: '3'
+    totalduration: '25'
     pointsOfInterest: ['@dokk1', '@pizza_2','@navitas_parkeringskælder', '@domen']
     tags: ['@mad', '@arkitektur']
