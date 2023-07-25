@@ -64,11 +64,24 @@ class Route
     public ?string $imageUrl = null;
 
     #[ORM\ManyToMany(targetEntity: PointOfInterest::class, inversedBy: 'routes')]
+    #[ORM\OrderBy(['poiOrder' => 'ASC'])]
     #[Groups(['read'])]
     private Collection $pointsOfInterest;
 
     #[ORM\ManyToMany(targetEntity: Tags::class, inversedBy: 'routes')]
     private Collection $tags;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(['read'])]
+    private ?string $zoomValue = null;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(['read'])]
+    private ?string $centerlatitude = null;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(['read'])]
+    private ?string $centerlongitude = null;
 
     public function __toString(): string
     {
@@ -208,5 +221,42 @@ class Route
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+
+    public function getZoomValue(): ?string
+    {
+        return $this->zoomValue;
+    }
+
+    public function setZoomValue(string $zoomValue): static
+    {
+        $this->zoomValue = $zoomValue;
+
+        return $this;
+    }
+
+    public function getCenterlatitude(): ?string
+    {
+        return $this->centerlatitude;
+    }
+
+    public function setCenterlatitude(string $centerlatitude): static
+    {
+        $this->centerlatitude = $centerlatitude;
+
+        return $this;
+    }
+
+    public function getCenterlongitude(): ?string
+    {
+        return $this->centerlongitude;
+    }
+
+    public function setCenterlongitude(string $centerlongitude): static
+    {
+        $this->centerlongitude = $centerlongitude;
+
+        return $this;
     }
 }

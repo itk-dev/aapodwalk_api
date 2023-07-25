@@ -39,6 +39,10 @@ class PointOfInterest
     #[Groups(['read'])]
     private ?string $name = null;
 
+    #[ORM\Column(length: 255, nullable: false)]
+    #[Groups(['read'])]
+    private ?int $poiOrder = null;
+
     #[ORM\Column(length: 255)]
     #[Groups(['read'])]
     private ?string $image = null;
@@ -249,5 +253,17 @@ class PointOfInterest
     public function getPodcastFile(): ?File
     {
         return $this->podcastFile;
+    }
+
+    public function getPoiOrder(): ?int
+    {
+        return $this->poiOrder;
+    }
+
+    public function setPoiOrder(int $poiOrder): static
+    {
+        $this->poiOrder = $poiOrder;
+
+        return $this;
     }
 }

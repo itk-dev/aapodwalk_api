@@ -295,6 +295,9 @@
                     "name": {
                         "type": "string"
                     },
+                    "poiOrder": {
+                        "type": "integer"
+                    },
                     "image": {
                         "type": "string",
                         "nullable": true
@@ -361,6 +364,9 @@
                     "name": {
                         "type": "string"
                     },
+                    "poiOrder": {
+                        "type": "integer"
+                    },
                     "image": {
                         "type": "string",
                         "nullable": true
@@ -404,6 +410,15 @@
                         "items": {
                             "$ref": "#/components/schemas/PointOfInterest-read"
                         }
+                    },
+                    "zoomValue": {
+                        "type": "string"
+                    },
+                    "centerlatitude": {
+                        "type": "string"
+                    },
+                    "centerlongitude": {
+                        "type": "string"
                     }
                 }
             },
@@ -469,6 +484,15 @@
                         "items": {
                             "$ref": "#/components/schemas/PointOfInterest.jsonld-read"
                         }
+                    },
+                    "zoomValue": {
+                        "type": "string"
+                    },
+                    "centerlatitude": {
+                        "type": "string"
+                    },
+                    "centerlongitude": {
+                        "type": "string"
                     }
                 }
             },

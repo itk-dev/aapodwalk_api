@@ -27,6 +27,12 @@ class RouteController extends AbstractCrudController
         yield TextField::new('description');
         yield TextField::new('distance')
             ->setHelp(new TranslatableMessage('The distance should be how far the route is with all points of interests included, e.g. "840m"', [], 'admin'));
+        yield TextField::new('centerlatitude')
+            ->setHelp(new TranslatableMessage('The latitude for the map to center to, when this route is selected.', [], 'admin'));
+        yield TextField::new('centerlongitude')
+            ->setHelp(new TranslatableMessage('The longitude for the map to center to, when this route is selected.', [], 'admin'));
+        yield TextField::new('zoomValue')
+            ->setHelp(new TranslatableMessage('The level of zoom for the map to comfortably show the route (0-28)', [], 'admin'));
 
         $context = $this->getContext();
         if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && null !== $context) {
