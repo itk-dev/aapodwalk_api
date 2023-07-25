@@ -5,9 +5,9 @@ App\Entity\Route:
     description: 'Denne rute er overordentligt fokuseret på pizza'
     distance: '3 meter'
     imageFile: <uploadFile(files/pizza-1.jpg)>
-    centerlatitude: '56.15414558833946'
-    centerlongitude: '10.21411751024173'
-    zoomValue: '5'
+    centerlatitude: '56.162966242542396'
+    centerlongitude: '10.214671991697763'
+    zoomValue: '7'
     pointsOfInterest: ['@pizza_1', '@pizza_2', '@pizza_3']
     tags: ['@pizza','@mad']
 
@@ -18,6 +18,6 @@ App\Entity\Route:
     imageFile: <uploadFile(files/pizza-1.jpg)>
     centerlatitude: '56.15414558833946'
     centerlongitude: '10.21411751024173'
-    zoomValue: '2'
+    zoomValue: '7.7'
     pointsOfInterest: ['@dokk1', '@pizza_2','@navitas_parkeringskælder', '@domen']
     tags: ['@mad', '@arkitektur']
