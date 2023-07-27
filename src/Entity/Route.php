@@ -231,7 +231,6 @@ class Route
         return $this->imageFile;
     }
 
-
     public function getZoomValue(): ?string
     {
         return $this->zoomValue;
