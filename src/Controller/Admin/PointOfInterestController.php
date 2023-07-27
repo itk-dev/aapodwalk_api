@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Translation\TranslatableMessage;
 
@@ -26,6 +27,8 @@ class PointOfInterestController extends AbstractCrudController
         yield TextField::new('name');
         yield TextField::new('subtitles')->setRequired(true)
         ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin'));
+        yield NumberField::new('poiOrder')->setRequired(false)
+        ->setHelp(new TranslatableMessage('The order of the interest point.', [], 'admin'));
         yield TextField::new('latitude')->setRequired(true)
         ->setHelp(new TranslatableMessage('The latitude of the interest point.', [], 'admin'));
         yield TextField::new('longitude')->setRequired(true)
