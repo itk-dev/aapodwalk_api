@@ -419,6 +419,12 @@
                     },
                     "centerlongitude": {
                         "type": "string"
+                    },
+                    "partcount": {
+                        "type": "string"
+                    },
+                    "totalduration": {
+                        "type": "string"
                     }
                 }
             },
@@ -492,6 +498,12 @@
                         "type": "string"
                     },
                     "centerlongitude": {
+                        "type": "string"
+                    },
+                    "partcount": {
+                        "type": "string"
+                    },
+                    "totalduration": {
                         "type": "string"
                     }
                 }

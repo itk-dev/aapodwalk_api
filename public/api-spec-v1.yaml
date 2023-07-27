@@ -243,6 +243,10 @@ components:
           type: string
         centerlongitude:
           type: string
+        partcount:
+          type: string
+        totalduration:
+          type: string
     Route.jsonld-read:
       type: object
       description: ''
@@ -292,6 +296,10 @@ components:
         centerlatitude:
           type: string
         centerlongitude:
+          type: string
+        partcount:
+          type: string
+        totalduration:
           type: string
     Tags:
       type: object
