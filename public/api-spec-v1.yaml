@@ -169,6 +169,9 @@ components:
           type: string
         longitude:
           type: string
+        proximityToUnlock:
+          type: string
+          nullable: true
     PointOfInterest.jsonld-read:
       type: object
       description: ''
@@ -216,6 +219,9 @@ components:
           type: string
         longitude:
           type: string
+        proximityToUnlock:
+          type: string
+          nullable: true
     Route-read:
       type: object
       description: ''
