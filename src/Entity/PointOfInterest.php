@@ -91,6 +91,10 @@ class PointOfInterest
     #[ORM\ManyToMany(targetEntity: Route::class, mappedBy: 'pointsOfInterest')]
     private Collection $routes;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['read'])]
+    private ?string $proximityToUnlock = null;
+
     public function __construct()
     {
         $this->routes = new ArrayCollection();
@@ -263,6 +267,18 @@ class PointOfInterest
     public function setPoiOrder(int $poiOrder): static
     {
         $this->poiOrder = $poiOrder;
+
+        return $this;
+    }
+
+    public function getProximityToUnlock(): ?string
+    {
+        return $this->proximityToUnlock;
+    }
+
+    public function setProximityToUnlock(?string $proximityToUnlock): static
+    {
+        $this->proximityToUnlock = $proximityToUnlock;
 
         return $this;
     }
