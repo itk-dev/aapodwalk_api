@@ -271,12 +271,12 @@ class PointOfInterest
         return $this;
     }
 
-    public function getProximityToUnlock(): ?string
+    public function getProximityToUnlock(): ?int
     {
         return $this->proximityToUnlock;
     }
 
-    public function setProximityToUnlock(?string $proximityToUnlock): static
+    public function setProximityToUnlock(?int $proximityToUnlock): static
     {
         $this->proximityToUnlock = $proximityToUnlock;
 
