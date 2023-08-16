@@ -313,7 +313,7 @@
                         "type": "string"
                     },
                     "proximityToUnlock": {
-                        "type": "string",
+                        "type": "integer",
                         "nullable": true
                     }
                 }
@@ -386,7 +386,7 @@
                         "type": "string"
                     },
                     "proximityToUnlock": {
-                        "type": "string",
+                        "type": "integer",
                         "nullable": true
                     }
                 }

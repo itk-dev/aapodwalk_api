@@ -33,7 +33,7 @@ class PointOfInterestController extends AbstractCrudController
         ->setHelp(new TranslatableMessage('The latitude of the interest point.', [], 'admin'));
         yield TextField::new('longitude')->setRequired(true)
         ->setHelp(new TranslatableMessage('The longitude of the interest point.', [], 'admin'));
-        yield TextField::new('proximityToUnlock')
+        yield NumberField::new('proximityToUnlock')
         ->setHelp(new TranslatableMessage('The proximity that allows unlocking this point of interest (in m).', [], 'admin'));
 
         $context = $this->getContext();

@@ -93,7 +93,7 @@ class PointOfInterest
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Groups(['read'])]
-    private ?string $proximityToUnlock = null;
+    private ?int $proximityToUnlock = null;
 
     public function __construct()
     {

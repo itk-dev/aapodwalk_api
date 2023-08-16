@@ -170,7 +170,7 @@ components:
         longitude:
           type: string
         proximityToUnlock:
-          type: string
+          type: integer
           nullable: true
     PointOfInterest.jsonld-read:
       type: object
@@ -220,7 +220,7 @@ components:
         longitude:
           type: string
         proximityToUnlock:
-          type: string
+          type: integer
           nullable: true
     Route-read:
       type: object
