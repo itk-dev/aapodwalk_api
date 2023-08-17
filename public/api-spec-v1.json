@@ -311,6 +311,10 @@
                     },
                     "longitude": {
                         "type": "string"
+                    },
+                    "proximityToUnlock": {
+                        "type": "integer",
+                        "nullable": true
                     }
                 }
             },
@@ -380,6 +384,10 @@
                     },
                     "longitude": {
                         "type": "string"
+                    },
+                    "proximityToUnlock": {
+                        "type": "integer",
+                        "nullable": true
                     }
                 }
             },

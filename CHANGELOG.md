@@ -21,3 +21,4 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 - Increase allowed file size on upload
 - Added order param to PointOfInterest.
 - Added centerlatitude, centerlongitude, zoom, partcount and totalduration to route.
+- Add proximity to point of interest, that allows for setting an unlockable distance in meters.
