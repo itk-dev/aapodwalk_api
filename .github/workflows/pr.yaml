@@ -36,7 +36,6 @@ jobs:
           set -a && source .env && set +a
           APP_ENV=prod composer install --no-dev -o
 
-
   php-cs-fixer:
     runs-on: ubuntu-20.04
     strategy:
@@ -71,6 +70,41 @@ jobs:
 
       - name: php-cs-fixer
         run: phpdbg -qrr ./vendor/bin/php-cs-fixer fix --dry-run
+
+  twig-cs-fixer:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ["8.3"]
+    name: Twig Coding Standards Fixer (PHP ${{ matrix.php }})
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php}}
+          extensions: apcu, ctype, iconv, imagick, json, pdo_sqlsrv, redis, soap, sqlsrv, xmlreader, zip
+          coverage: none
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ matrix.php }}-composer-
+
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
+      - name: twig-cs-fixer
+        run: phpdbg -qrr ./vendor/bin/twig-cs-fixer lint templates
 
   psalm:
     runs-on: ubuntu-latest
