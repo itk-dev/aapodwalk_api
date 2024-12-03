@@ -4,11 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Role;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -32,6 +34,15 @@ class UserCrudController extends AbstractCrudController
         return User::class;
     }
 
+    public function configureActions(Actions $actions): Actions
+    {
+        return parent::configureActions($actions)
+            ->setPermission(Action::NEW, Role::ADMIN->value)
+            ->setPermission(Action::EDIT, Role::ADMIN->value)
+            ->setPermission(Action::DELETE, Role::ADMIN->value)
+            ->disable(Action::DELETE);
+    }
+
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id')->hideOnForm();
@@ -46,7 +57,7 @@ class UserCrudController extends AbstractCrudController
                 'mapped' => false,
             ])
             ->setRequired(Crud::PAGE_NEW === $pageName)
-            ->onlyOnForms();
+            ->onlyWhenCreating();
 
         $options = array_combine(
             Role::values(),
@@ -63,6 +74,9 @@ class UserCrudController extends AbstractCrudController
 
         yield DateField::new('createdAt')->hideOnForm()->hideOnIndex();
         yield DateField::new('updatedAt')->hideOnForm();
+        yield AssociationField::new('createdBy', new TranslatableMessage('Created by'))
+            ->setPermission(Role::USER_ADMIN->value)
+            ->hideOnForm();
     }
 
     public function createNewFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface

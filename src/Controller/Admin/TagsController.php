@@ -2,9 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Role;
 use App\Entity\Tags;
 use App\Repository\TagsRepository;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Translation\TranslatableMessage;
@@ -26,5 +27,8 @@ class TagsController extends AbstractCrudController
         yield IdField::new('id')->hideOnForm();
         yield TextField::new('name')
             ->setHelp(new TranslatableMessage('The name of the tag', [], 'admin'));
+        yield AssociationField::new('createdBy', new TranslatableMessage('Created by'))
+            ->setPermission(Role::USER_ADMIN->value)
+            ->hideOnForm();
     }
 }
