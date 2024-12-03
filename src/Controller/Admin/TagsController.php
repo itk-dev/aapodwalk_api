@@ -23,10 +23,8 @@ class TagsController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('name')
-            ->setHelp(new TranslatableMessage('The name of the tag', [], 'admin')),
-        ];
+        yield IdField::new('id')->hideOnForm();
+        yield TextField::new('name')
+            ->setHelp(new TranslatableMessage('The name of the tag', [], 'admin'));
     }
 }
