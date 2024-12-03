@@ -13,15 +13,17 @@ docker compose exec phpfpm bin/console doctrine:migrations:migrate --no-interact
 
 ## Fixtures
 
-```shell
+```shell name=fixtures-load
 docker compose exec phpfpm composer fixtures-load
 ```
 
 If you run the fixtures, the following user will be available:
 
-| Username            | Password    |
-|---------------------|-------------|
-| admin@example.com    | apassword   |
+| Username               | Password | Roles           |
+|------------------------|----------|-----------------|
+| admin@example.com      | password | ROLE_ADMIN      |
+| user-admin@example.com | password | ROLE_USER_ADMIN |
+| user@example.com       | password | ROLE_USER       |
 
 And this token for the frontend:
 
