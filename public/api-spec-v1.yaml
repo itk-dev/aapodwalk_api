@@ -14,7 +14,7 @@ paths:
       tags:
         - Route
       responses:
-        200:
+        '200':
           description: 'Route resource'
           content:
             application/ld+json:
@@ -23,7 +23,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Route-read'
-        404:
+        '404':
           description: 'Resource not found'
       summary: 'Retrieves a Route resource.'
       description: 'Retrieves a Route resource.'
@@ -41,14 +41,13 @@ paths:
           explode: false
           allowReserved: false
       deprecated: false
-    parameters: []
   /api/v1/tags:
     get:
       operationId: api_tags_get_collection
       tags:
         - Tags
       responses:
-        200:
+        '200':
           description: 'Tags collection'
           content:
             application/ld+json:
@@ -97,14 +96,13 @@ paths:
           explode: false
           allowReserved: false
       deprecated: false
-    parameters: []
   '/api/v1/tags/{id}':
     get:
       operationId: api_tags_id_get
       tags:
         - Tags
       responses:
-        200:
+        '200':
           description: 'Tags resource'
           content:
             application/ld+json:
@@ -113,7 +111,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Tags'
-        404:
+        '404':
           description: 'Resource not found'
       summary: 'Retrieves a Tags resource.'
       description: 'Retrieves a Tags resource.'
@@ -131,7 +129,6 @@ paths:
           explode: false
           allowReserved: false
       deprecated: false
-    parameters: []
 components:
   schemas:
     PointOfInterest-read:
@@ -384,3 +381,4 @@ security:
   -
     access_token: []
 tags: []
+webhooks: {  }

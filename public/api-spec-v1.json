@@ -57,8 +57,7 @@
                     }
                 ],
                 "deprecated": false
-            },
-            "parameters": []
+            }
         },
         "/api/v1/tags": {
             "get": {
@@ -210,8 +209,7 @@
                     }
                 ],
                 "deprecated": false
-            },
-            "parameters": []
+            }
         },
         "/api/v1/tags/{id}": {
             "get": {
@@ -258,8 +256,7 @@
                     }
                 ],
                 "deprecated": false
-            },
-            "parameters": []
+            }
         }
     },
     "components": {
@@ -629,5 +626,6 @@
             "access_token": []
         }
     ],
-    "tags": []
+    "tags": [],
+    "webhooks": {}
 }
