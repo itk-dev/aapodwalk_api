@@ -6,11 +6,16 @@ App\Entity\User:
     roles: [ROLE_ADMIN]
 
   user-admin:
-      email: 'user-admin@example.com'
-      password: '<password(@self, "password")>'
-      roles: [ROLE_USER_ADMIN]
+    email: 'user-admin@example.com'
+    password: '<password(@self, "password")>'
+    roles: [ROLE_USER_ADMIN]
 
   user:
-      email: 'user@example.com'
-      password: '<password(@self, "password")>'
-      roles: [ROLE_USER]
+    email: 'user@example.com'
+    password: '<password(@self, "password")>'
+    roles: [ROLE_USER]
+
+  another-user:
+    email: 'another-user@example.com'
+    password: '<password(@self, "password")>'
+    roles: [ROLE_USER]
