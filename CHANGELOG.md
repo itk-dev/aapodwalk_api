@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information about writing changes to this log.
 
 ## [Unreleased]
-
+- In fixtures, renaming john to admin
 - Basic setup (api_platform and easyadminbundle)
 - Add basic user login
 - Add Point of interest

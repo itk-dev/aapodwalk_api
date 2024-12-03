@@ -25,7 +25,7 @@ If you run the fixtures, the following user will be available:
 
 | Username            | Password    |
 |---------------------|-------------|
-| john@example.com    | apassword   |
+| admin@example.com    | apassword   |
 
 And this token for the frontend:
 
