@@ -8,13 +8,12 @@ use App\Entity\Role;
 use App\Entity\Route as RouteWithPOI;
 use App\Entity\Tags;
 use App\Entity\User;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class AdminDashboardController extends AbstractDashboardController
 {
@@ -26,11 +25,7 @@ class AdminDashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        $dashboard = $this->adminUrlGenerator
-            ->setController(PointOfInterestController::class)->setAction(Crud::PAGE_INDEX)
-            ->generateUrl();
-
-        return $this->redirect($dashboard);
+        return $this->redirect($this->adminUrlGenerator->setController(RouteController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard
