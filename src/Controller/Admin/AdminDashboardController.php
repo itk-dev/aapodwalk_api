@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\ApiUser;
 use App\Entity\PointOfInterest;
+use App\Entity\Role;
 use App\Entity\Route as RouteWithPOI;
 use App\Entity\Tags;
 use App\Entity\User;
@@ -40,9 +41,10 @@ class AdminDashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('API Users', 'fas fa-user-pen', ApiUser::class);
-        yield MenuItem::linkToCrud('Users', 'fas fa-user', User::class);
+        yield MenuItem::linkToCrud('API Users', 'fas fa-user-pen', ApiUser::class)
+            ->setPermission(Role::USER_ADMIN->value);
+        yield MenuItem::linkToCrud('Users', 'fas fa-user', User::class)
+            ->setPermission(Role::USER_ADMIN->value);
         yield MenuItem::linkToCrud('Route', 'fa-solid fa-spaghetti-monster-flying', RouteWithPOI::class);
         yield MenuItem::linkToCrud('Tags', 'fa-solid fa-cloud-meatball', Tags::class);
         yield MenuItem::linkToCrud('Points of interest', 'fas fa-ghost', PointOfInterest::class);

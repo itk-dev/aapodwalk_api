@@ -2,12 +2,14 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Role;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -45,6 +47,20 @@ class UserCrudController extends AbstractCrudController
             ])
             ->setRequired(Crud::PAGE_NEW === $pageName)
             ->onlyOnForms();
+
+        $options = array_combine(
+            Role::values(),
+            Role::values()
+        );
+        yield ChoiceField::new('roles', new TranslatableMessage('Roles'))
+            ->setTemplatePath('admin/User/roles.html.twig')
+            ->setFormTypeOptions([
+                'multiple' => true,
+                'expanded' => true,
+                'choices' => $options,
+            ])
+        ;
+
         yield DateField::new('createdAt')->hideOnForm()->hideOnIndex();
         yield DateField::new('updatedAt')->hideOnForm();
     }
