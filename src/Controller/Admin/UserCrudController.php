@@ -32,23 +32,21 @@ class UserCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('email')
-            ->setHelp(new TranslatableMessage('Users mail address, which is also used as login name', [], 'admin')),
-            TextField::new('password')
-                ->setFormType(RepeatedType::class)
-                ->setFormTypeOptions([
-                    'type' => PasswordType::class,
-                    'first_options' => ['label' => 'Password'],
-                    'second_options' => ['label' => '(Repeat)'],
-                    'mapped' => false,
-                ])
-                ->setRequired(Crud::PAGE_NEW === $pageName)
-                ->onlyOnForms(),
-            DateField::new('createdAt')->hideOnForm()->hideOnIndex(),
-            DateField::new('updatedAt')->hideOnForm(),
-        ];
+        yield IdField::new('id')->hideOnForm();
+        yield TextField::new('email')
+            ->setHelp(new TranslatableMessage('Users mail address, which is also used as login name', [], 'admin'));
+        yield TextField::new('password')
+            ->setFormType(RepeatedType::class)
+            ->setFormTypeOptions([
+                'type' => PasswordType::class,
+                'first_options' => ['label' => 'Password'],
+                'second_options' => ['label' => '(Repeat)'],
+                'mapped' => false,
+            ])
+            ->setRequired(Crud::PAGE_NEW === $pageName)
+            ->onlyOnForms();
+        yield DateField::new('createdAt')->hideOnForm()->hideOnIndex();
+        yield DateField::new('updatedAt')->hideOnForm();
     }
 
     public function createNewFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
