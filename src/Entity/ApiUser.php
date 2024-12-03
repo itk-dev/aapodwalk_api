@@ -47,6 +47,8 @@ class ApiUser implements UserInterface
      */
     public function getUserIdentifier(): string
     {
+        assert(!empty($this->token));
+
         return $this->token;
     }
 
@@ -70,7 +72,7 @@ class ApiUser implements UserInterface
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;

@@ -6,10 +6,11 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "api-platform/core": "^3.1",
+        "cweagans/composer-patches": "^1.7",
         "doctrine/annotations": "^2.0",
         "doctrine/doctrine-bundle": "^2.10",
         "doctrine/doctrine-migrations-bundle": "^3.2",
@@ -22,29 +23,30 @@
         "phpstan/phpdoc-parser": "^1.22",
         "psalm/plugin-symfony": "^5.0",
         "stof/doctrine-extensions-bundle": "^1.7",
-        "symfony/asset": "6.3.*",
-        "symfony/console": "6.3.*",
-        "symfony/dotenv": "6.3.*",
-        "symfony/expression-language": "6.3.*",
+        "symfony/asset": "7.2.*",
+        "symfony/console": "7.2.*",
+        "symfony/dotenv": "7.2.*",
+        "symfony/expression-language": "7.2.*",
         "symfony/flex": "^2",
-        "symfony/framework-bundle": "6.3.*",
-        "symfony/mime": "6.3.*",
+        "symfony/framework-bundle": "7.2.*",
+        "symfony/mime": "7.2.*",
         "symfony/monolog-bundle": "^3.8",
-        "symfony/property-access": "6.3.*",
-        "symfony/property-info": "6.3.*",
-        "symfony/runtime": "6.3.*",
-        "symfony/security-bundle": "6.3.*",
-        "symfony/serializer": "6.3.*",
-        "symfony/translation": "6.3.*",
-        "symfony/twig-bundle": "6.3.*",
-        "symfony/validator": "6.3.*",
-        "symfony/yaml": "6.3.*",
+        "symfony/property-access": "7.2.*",
+        "symfony/property-info": "7.2.*",
+        "symfony/runtime": "7.2.*",
+        "symfony/security-bundle": "7.2.*",
+        "symfony/serializer": "7.2.*",
+        "symfony/translation": "7.2.*",
+        "symfony/twig-bundle": "7.2.*",
+        "symfony/validator": "7.2.*",
+        "symfony/yaml": "7.2.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
         "vich/uploader-bundle": "^2.1"
     },
     "config": {
         "allow-plugins": {
+            "cweagans/composer-patches": true,
             "php-http/discovery": true,
             "symfony/flex": true,
             "symfony/runtime": true
@@ -80,13 +82,13 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ], 
+        ],
         "coding-standards-apply": [
             "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix"
         ],
         "coding-standards-check": [
             "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run"
-        ],        
+        ],
         "psalm": [
             "./vendor/bin/psalm --no-cache"
         ],
@@ -104,8 +106,14 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.3.*"
+            "require": "7.2.*"
+        },
+        "patches": {
+            "symfony/twig-bridge": {
+                "https://github.com/EasyCorp/EasyAdminBundle/issues/6609 > https://github.com/symfony/symfony/pull/59059": "patches/symfony-symfony-pull-59059.patch"
+            }
         }
+
     },
     "require-dev": {
         "hautelook/alice-bundle": "^2.12",

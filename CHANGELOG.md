@@ -10,6 +10,9 @@ All notable changes to this project will be documented in this file.
 See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information about writing changes to this log.
 
 ## [Unreleased]
+
+- [PR-13](https://github.com/itk-dev/aapodwalk_api/pull/13)
+  Updated docker compose setup. Updated composer packages.
 - In fixtures, renaming john to admin
 - Basic setup (api_platform and easyadminbundle)
 - Add basic user login

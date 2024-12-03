@@ -4,15 +4,11 @@
 
 Getting started:
 
-```shell
-docker compose up -d
+```shell name=install
+docker compose pull
+docker compose up --detach --remove-orphans
 docker compose exec phpfpm composer install
-```
-
-Install database
-
-```shell
-docker compose exec phpfpm bin/console doctrine:migrations:migrate
+docker compose exec phpfpm bin/console doctrine:migrations:migrate --no-interaction
 ```
 
 ## Fixtures

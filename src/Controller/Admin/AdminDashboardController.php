@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminDashboardController extends AbstractDashboardController
 {
     public function __construct(
-        private readonly AdminUrlGenerator $adminUrlGenerator
+        private readonly AdminUrlGenerator $adminUrlGenerator,
     ) {
     }
 
