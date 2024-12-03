@@ -31,7 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Blameab
 
     public function __toString(): string
     {
-        return $this->email;
+        return $this->email ?? static::class;
     }
 
     public function getId(): ?int
