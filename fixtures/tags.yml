@@ -2,9 +2,13 @@
 App\Entity\Tags:
   mad:
     name: 'Her kan man spise'
+    createdBy: '@user'
   pizza:
     name: 'Pizza'
+    createdBy: '@user'
   arkitektur:
     name: 'Arkitektur'
+    createdBy: '@admin'
   tag_4:
     name: 'Tomt tag'
+    createdBy: '@another-user'
