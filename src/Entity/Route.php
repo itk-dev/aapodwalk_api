@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use App\Repository\RouteRepository;
+use App\Trait\BlameableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -24,8 +25,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     denormalizationContext: ['groups' => ['read']],
 )]
 #[Vich\Uploadable]
-class Route
+class Route implements BlameableInterface
 {
+    use BlameableEntity;
     use TimestampableEntity;
 
     #[ORM\Id]

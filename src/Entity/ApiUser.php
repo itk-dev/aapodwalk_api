@@ -3,13 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\ApiUserRepository;
+use App\Trait\BlameableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: ApiUserRepository::class)]
-class ApiUser implements UserInterface
+class ApiUser implements UserInterface, BlameableInterface
 {
+    use BlameableEntity;
     use TimestampableEntity;
 
     #[ORM\Id]
