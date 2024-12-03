@@ -218,7 +218,7 @@ class PointOfInterest
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
      */
-    public function setImageFile(File $imageFile = null): void
+    public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
 
@@ -243,7 +243,7 @@ class PointOfInterest
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $podcastFile
      */
-    public function setPodcastFile(File $podcastFile = null): void
+    public function setPodcastFile(?File $podcastFile = null): void
     {
         $this->podcastFile = $podcastFile;
 

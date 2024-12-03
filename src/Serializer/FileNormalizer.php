@@ -19,11 +19,11 @@ final class FileNormalizer implements NormalizerInterface
     public function __construct(
         readonly private ObjectNormalizer $normalizer,
         readonly private StorageInterface $storage,
-        readonly private EntityManagerInterface $entityManager
+        readonly private EntityManagerInterface $entityManager,
     ) {
     }
 
-    public function normalize($object, string $format = null, array $context = [])
+    public function normalize($object, ?string $format = null, array $context = [])
     {
         if (is_object($object)) {
             // TODO: Find these field names using reflection or some such magic …
@@ -72,7 +72,7 @@ final class FileNormalizer implements NormalizerInterface
         ];
     }
 
-    public function supportsNormalization($data, string $format = null, array $context = []): bool
+    public function supportsNormalization($data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof Route || $data instanceof PointOfInterest;
     }
