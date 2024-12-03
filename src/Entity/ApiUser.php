@@ -47,6 +47,8 @@ class ApiUser implements UserInterface
      */
     public function getUserIdentifier(): string
     {
+        assert(!empty($this->token));
+
         return $this->token;
     }
 
