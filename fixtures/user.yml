@@ -1,5 +1,5 @@
 ---
 App\Entity\User:
   user_1:
-    email: 'john@example.com'
+    email: 'admin@example.com'
     password: '<password(@self, "apassword")>'
