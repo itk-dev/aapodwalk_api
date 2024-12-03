@@ -13,6 +13,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use Symfony\Component\Translation\TranslatableMessage;
 
 class PointOfInterestController extends AbstractCrudController
@@ -22,12 +24,26 @@ class PointOfInterestController extends AbstractCrudController
         return PointOfInterest::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle('index', new TranslatableMessage('Point of interest title', [], 'messages'));
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
+                return $action->setIcon('fa fa-plus')->setLabel(new TranslatableMessage('Add a new point of interest', [], 'messages'));
+            });
+    }
+
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id')->hideOnForm();
         yield TextField::new('name');
         yield TextField::new('subtitles')->setRequired(true)
-        ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin'));
+        ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'messages'));
         yield NumberField::new('poiOrder')->setRequired(false)
         ->setHelp(new TranslatableMessage('The order of the interest point.', [], 'admin'));
         yield TextField::new('latitude')->setRequired(true)
