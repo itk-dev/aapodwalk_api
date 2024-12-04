@@ -73,7 +73,7 @@ class PointOfInterest implements BlameableInterface
         mimeTypes: [
             'audio/mpeg',
         ],
-        maxSize: '10M'
+        maxSize: '24M'
     )]
     private ?File $podcastFile = null;
 

@@ -1,0 +1,13 @@
+services:
+  phpfpm:
+    environment:
+      - PHP_MAX_EXECUTION_TIME=60
+      - PHP_MEMORY_LIMIT=512M
+      # Match maxSize in src/Entity/PointOfInterest.php
+      - PHP_UPLOAD_MAX_FILESIZE=32M
+      # Allow uploading very large files.
+      - PHP_POST_MAX_SIZE=48M
+
+  nginx:
+    environment:
+      NGINX_MAX_BODY_SIZE: 48M
