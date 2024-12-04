@@ -29,7 +29,7 @@ tasks:
   composer:
     desc: "Run composer command. Example: task composer -- install"
     cmds:
-      - task compose-exec -- phpfpm composer {{ .CLI_ARGS }}
+      - task compose -- run --rm phpfpm composer {{ .CLI_ARGS }}
     silent: true
 
   start:
