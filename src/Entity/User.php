@@ -3,14 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use App\Trait\BlameableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, BlameableInterface
 {
+    use BlameableEntity;
     use TimestampableEntity;
 
     #[ORM\Id]
@@ -26,6 +28,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(nullable: false)]
     private ?string $password = null;
+
+    public function __toString(): string
+    {
+        return $this->email ?? static::class;
+    }
 
     public function getId(): ?int
     {
@@ -61,10 +68,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        $roles[] = 'ROLE_ADMIN';
-
-        return array_unique($roles);
+        return $this->roles;
     }
 
     public function setRoles(array $roles): self

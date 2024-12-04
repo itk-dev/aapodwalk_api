@@ -3,7 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\ApiUser;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use App\Entity\Role;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -18,14 +19,15 @@ class ApiUserCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('name')->setRequired(true),
-            TextField::new('token')->setRequired(true)->setFormTypeOption('disabled', 'disabled')
-            ->setHelp(new TranslatableMessage('Access token used by the frontend for access to the api', [], 'admin')),
-            DateField::new('createdAt')->hideOnForm()->hideOnIndex(),
-            DateField::new('updatedAt')->hideOnForm(),
-        ];
+        yield IdField::new('id')->hideOnForm();
+        yield TextField::new('name')->setRequired(true);
+        yield TextField::new('token')->setRequired(true)->setFormTypeOption('disabled', 'disabled')
+            ->setHelp(new TranslatableMessage('Access token used by the frontend for access to the api', [], 'admin'));
+        yield DateField::new('createdAt')->hideOnForm()->hideOnIndex();
+        yield DateField::new('updatedAt')->hideOnForm();
+        yield AssociationField::new('createdBy', new TranslatableMessage('Created by'))
+            ->setPermission(Role::USER_ADMIN->value)
+            ->hideOnForm();
     }
 
     public function createEntity(string $entityFqcn): ApiUser

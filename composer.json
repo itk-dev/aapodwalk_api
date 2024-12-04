@@ -29,6 +29,8 @@
         "symfony/expression-language": "7.2.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.2.*",
+        "symfony/http-client": "7.2.*",
+        "symfony/mailer": "7.2.*",
         "symfony/mime": "7.2.*",
         "symfony/monolog-bundle": "^3.8",
         "symfony/property-access": "7.2.*",
@@ -40,6 +42,7 @@
         "symfony/twig-bundle": "7.2.*",
         "symfony/validator": "7.2.*",
         "symfony/yaml": "7.2.*",
+        "symfonycasts/reset-password-bundle": "^1.23",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
         "vich/uploader-bundle": "^2.1"
@@ -84,10 +87,12 @@
             "@auto-scripts"
         ],
         "coding-standards-apply": [
-            "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix"
+            "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix",
+            "twig-cs-fixer lint templates --fix"
         ],
         "coding-standards-check": [
-            "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run"
+            "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run",
+            "twig-cs-fixer lint templates"
         ],
         "psalm": [
             "./vendor/bin/psalm --no-cache"
@@ -105,7 +110,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": true,
             "require": "7.2.*"
         },
         "patches": {
@@ -116,10 +121,11 @@
 
     },
     "require-dev": {
-        "hautelook/alice-bundle": "^2.12",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "friendsofphp/php-cs-fixer": "^3.20",
+        "hautelook/alice-bundle": "^2.12",
         "symfony/maker-bundle": "*",
-        "weirdan/doctrine-psalm-plugin": "^2.8",
-        "doctrine/doctrine-fixtures-bundle": "^3.4"
+        "vincentlanglet/twig-cs-fixer": "^3.3",
+        "weirdan/doctrine-psalm-plugin": "^2.8"
     }
 }

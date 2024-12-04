@@ -2,11 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Role;
 use App\Entity\Route;
 use App\Field\VichImageField;
 use App\Service\EasyAdminHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -59,5 +59,11 @@ class RouteController extends AbstractCrudController
             ->setHelp(new TranslatableMessage('Connect points of interest to this podwalk.', [], 'admin'));
         yield DateField::new('createdAt')->hideOnForm();
         yield DateField::new('updatedAt')->hideOnForm();
+        $createdBy = AssociationField::new('createdBy', new TranslatableMessage('Created by'))
+            ->setPermission(Role::USER_ADMIN->value);
+        if (!$this->isGranted(Role::ADMIN->value)) {
+            $createdBy->hideOnForm();
+        }
+        yield $createdBy;
     }
 }

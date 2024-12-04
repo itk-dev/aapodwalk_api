@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\Repository\TagsRepository;
+use App\Trait\BlameableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,9 +19,11 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
         new Get(),
     ],
 )]
-class Tags
+class Tags implements BlameableInterface
 {
+    use BlameableEntity;
     use TimestampableEntity;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PointOfInterestRepository;
+use App\Trait\BlameableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,8 +22,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     normalizationContext: ['groups' => ['read']],
 )]
 #[Vich\Uploadable]
-class PointOfInterest
+class PointOfInterest implements BlameableInterface
 {
+    use BlameableEntity;
     use TimestampableEntity;
 
     #[ORM\Id]

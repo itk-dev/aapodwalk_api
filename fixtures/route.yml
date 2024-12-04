@@ -12,6 +12,7 @@ App\Entity\Route:
     totalduration: '16'
     pointsOfInterest: ['@pizza_1', '@pizza_2', '@pizza_3']
     tags: ['@pizza','@mad']
+    createdBy: '@user'
 
   route_havnen:
     name: 'Havneruten'
@@ -25,3 +26,4 @@ App\Entity\Route:
     totalduration: '25'
     pointsOfInterest: ['@dokk1', '@pizza_2','@navitas_parkeringskælder', '@domen']
     tags: ['@mad', '@arkitektur']
+    createdBy: '@another-user'

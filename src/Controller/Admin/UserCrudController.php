@@ -2,12 +2,16 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Role;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -30,25 +34,49 @@ class UserCrudController extends AbstractCrudController
         return User::class;
     }
 
+    public function configureActions(Actions $actions): Actions
+    {
+        return parent::configureActions($actions)
+            ->setPermission(Action::NEW, Role::ADMIN->value)
+            ->setPermission(Action::EDIT, Role::ADMIN->value)
+            ->setPermission(Action::DELETE, Role::ADMIN->value)
+            ->disable(Action::DELETE);
+    }
+
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('email')
-            ->setHelp(new TranslatableMessage('Users mail address, which is also used as login name', [], 'admin')),
-            TextField::new('password')
-                ->setFormType(RepeatedType::class)
-                ->setFormTypeOptions([
-                    'type' => PasswordType::class,
-                    'first_options' => ['label' => 'Password'],
-                    'second_options' => ['label' => '(Repeat)'],
-                    'mapped' => false,
-                ])
-                ->setRequired(Crud::PAGE_NEW === $pageName)
-                ->onlyOnForms(),
-            DateField::new('createdAt')->hideOnForm()->hideOnIndex(),
-            DateField::new('updatedAt')->hideOnForm(),
-        ];
+        yield IdField::new('id')->hideOnForm();
+        yield TextField::new('email')
+            ->setHelp(new TranslatableMessage('Users mail address, which is also used as login name', [], 'admin'));
+        yield TextField::new('password')
+            ->setFormType(RepeatedType::class)
+            ->setFormTypeOptions([
+                'type' => PasswordType::class,
+                'first_options' => ['label' => 'Password'],
+                'second_options' => ['label' => '(Repeat)'],
+                'mapped' => false,
+            ])
+            ->setRequired(Crud::PAGE_NEW === $pageName)
+            ->onlyWhenCreating();
+
+        $options = array_combine(
+            Role::values(),
+            Role::values()
+        );
+        yield ChoiceField::new('roles', new TranslatableMessage('Roles'))
+            ->setTemplatePath('admin/User/roles.html.twig')
+            ->setFormTypeOptions([
+                'multiple' => true,
+                'expanded' => true,
+                'choices' => $options,
+            ])
+        ;
+
+        yield DateField::new('createdAt')->hideOnForm()->hideOnIndex();
+        yield DateField::new('updatedAt')->hideOnForm();
+        yield AssociationField::new('createdBy', new TranslatableMessage('Created by'))
+            ->setPermission(Role::USER_ADMIN->value)
+            ->hideOnForm();
     }
 
     public function createNewFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
