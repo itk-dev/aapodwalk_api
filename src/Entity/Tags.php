@@ -18,6 +18,8 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
         new GetCollection(),
         new Get(),
     ],
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['read']],
 )]
 class Tags implements BlameableInterface
 {

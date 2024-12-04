@@ -11,6 +11,8 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+- [PR-17](https://github.com/itk-dev/aapodwalk_api/pull/17)
+  Moved API token to user and required API authorization
 - [PR-14](https://github.com/itk-dev/aapodwalk_api/pull/14)
   3159: User management
 - [PR-13](https://github.com/itk-dev/aapodwalk_api/pull/13)

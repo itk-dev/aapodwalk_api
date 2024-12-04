@@ -19,3 +19,9 @@ App\Entity\User:
     email: 'another-user@example.com'
     password: '<password(@self, "password")>'
     roles: [ROLE_USER]
+
+  api-user:
+    email: 'api-user@example.com'
+    password: '<password(@self, "password")>'
+    apiToken: this-is-not-a-very-secret-token
+    roles: [ROLE_API]

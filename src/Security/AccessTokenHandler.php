@@ -2,8 +2,9 @@
 
 namespace App\Security;
 
-use App\Entity\ApiUser;
-use App\Repository\ApiUserRepository;
+use App\Entity\Role;
+use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Http\AccessToken\AccessTokenHandlerInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
@@ -11,18 +12,18 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 class AccessTokenHandler implements AccessTokenHandlerInterface
 {
     public function __construct(
-        private readonly ApiUserRepository $repository,
+        private readonly UserRepository $repository,
+        private readonly AuthorizationCheckerInterface $authorizationChecker,
     ) {
     }
 
     public function getUserBadgeFrom(string $accessToken): UserBadge
     {
-        /** @var ApiUser $accessToken */
-        $user = $this->repository->findOneBy(['token' => $accessToken]);
-        if (null === $user) {
+        $user = $this->repository->findOneBy(['apiToken' => $accessToken]);
+        if (null === $user || !in_array(Role::API->value, $user->getRoles())) {
             throw new BadCredentialsException('Invalid credentials.');
         }
 
-        return new UserBadge($user->getToken());
+        return new UserBadge($user->getUserIdentifier());
     }
 }

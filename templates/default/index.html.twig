@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>{{ block('title') }}</h1>
+
+    <ul class="list-group">
+        <li class="list-group-item"><a href="{{ path('admin') }}">{{ 'Administration'|trans }}</a></li>
+        <li class="list-group-item"><a href="{{ path('api_doc') }}">{{ 'API documentation'|trans }}</a></li>
+    </ul>
+{% endblock %}

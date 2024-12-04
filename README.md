@@ -57,6 +57,12 @@ API documentation is available on `/api/v1/docs`:
 open "http://$(docker compose port nginx 8080)/api/v1/docs"
 ```
 
+A user must authenticate to actually use the API:
+
+``` shell name=api-request
+curl --header 'Authorization: Bearer this-is-not-a-very-secret-token' "http://$(docker compose port nginx 8080)/api/v1/routes"
+```
+
 ### Update api spec
 
 ```shell

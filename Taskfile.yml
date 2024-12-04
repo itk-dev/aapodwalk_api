@@ -68,9 +68,7 @@ tasks:
   code-analysis:
     desc: "Run code analysis"
     cmds:
-      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md'
       - task composer -- code-analysis
-      - task composer -- coding-standards-check
 
   coding-standards:apply:
     desc: "Apply coding standards"

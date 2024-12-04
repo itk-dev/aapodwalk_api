@@ -15,24 +15,18 @@ security:
                 class: App\Entity\User
                 property: email
 
-        api_user_provider:
-            entity:
-                class: App\Entity\ApiUser
-                property: token
-
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
         api:
-            pattern: ^/api/v1
+            pattern: ^/api/
             stateless: true
-            provider: api_user_provider
+            provider: admin_user_provider
             access_token:
                 token_handler: App\Security\AccessTokenHandler
-                token_extractors:
-                    - 'header'
+
         admin:
             lazy: true
             form_login:
@@ -59,6 +53,11 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_USER }
+        # https://api-platform.com/docs/core/jwt/
+        # Allow public access to API documentation.
+        - { path: ^/api/.+/docs, roles: PUBLIC_ACCESS }
+        # Require authentication to access API
+        - { path: ^/api/, roles: ROLE_API }
 
     # https://symfony.com/bundles/EasyAdminBundle/current/security.html#custom-security-voters
     access_decision_manager:
