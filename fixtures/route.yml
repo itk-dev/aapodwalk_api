@@ -10,8 +10,11 @@ App\Entity\Route:
     zoomValue: '7'
     partcount: '4'
     totalduration: '16'
-    pointsOfInterest: ['@pizza_1', '@pizza_2', '@pizza_3']
-    tags: ['@pizza','@mad']
+    pointsOfInterest:
+      - '@pizza_1'
+      - '@pizza_2'
+      - '@pizza_3'
+    tags: ['@pizza', '@mad']
     createdBy: '@user'
 
   route_havnen:
@@ -24,6 +27,10 @@ App\Entity\Route:
     zoomValue: '7.7'
     partcount: '3'
     totalduration: '25'
-    pointsOfInterest: ['@dokk1', '@pizza_2','@navitas_parkeringskælder', '@domen']
+    pointsOfInterest:
+      - '@dokk1'
+      - '@pizza_2'
+      - '@navitas_parkeringskælder'
+      - '@domen'
     tags: ['@mad', '@arkitektur']
     createdBy: '@another-user'
