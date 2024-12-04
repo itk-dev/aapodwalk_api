@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="9AG3Fb7" resname="The distance should be how far the route is with all points of interests included, e.g. &quot;840m&quot;">
+        <source>The distance should be how far the route is with all points of interests included, e.g. "840m"</source>
+        <target>The distance should be how far the route is with all points of interests included, e.g. "840m"</target>
+      </trans-unit>
+      <trans-unit id="oIn3FYf" resname="The latitude for the map to center to, when this route is selected.">
+        <source>The latitude for the map to center to, when this route is selected.</source>
+        <target>The latitude for the map to center to, when this route is selected.</target>
+      </trans-unit>
+      <trans-unit id="LMdBBXO" resname="The longitude for the map to center to, when this route is selected.">
+        <source>The longitude for the map to center to, when this route is selected.</source>
+        <target>The longitude for the map to center to, when this route is selected.</target>
+      </trans-unit>
+      <trans-unit id="3jxmLJz" resname="The level of zoom for the map to comfortably show the route (0-28).">
+        <source>The level of zoom for the map to comfortably show the route (0-28).</source>
+        <target>The level of zoom for the map to comfortably show the route (0-28).</target>
+      </trans-unit>
+      <trans-unit id="Vf5ps1Y" resname="The number of points of interest in this route.">
+        <source>The number of points of interest in this route.</source>
+        <target>The number of points of interest in this route.</target>
+      </trans-unit>
+      <trans-unit id="ua7kdpc" resname="The total duration of the audio tracks in this route.">
+        <source>The total duration of the audio tracks in this route.</source>
+        <target>The total duration of the audio tracks in this route.</target>
+      </trans-unit>
+      <trans-unit id="leQUq0a" resname="Tags are used in the frontend to organize the routes.">
+        <source>Tags are used in the frontend to organize the routes.</source>
+        <target>Tags are used in the frontend to organize the routes.</target>
+      </trans-unit>
+      <trans-unit id="RBV8Ue5" resname="Connect points of interest to this podwalk.">
+        <source>Connect points of interest to this podwalk.</source>
+        <target>Connect points of interest to this podwalk.</target>
+      </trans-unit>
+      <trans-unit id="P9_Y7yU" resname="Created by">
+        <source>Created by</source>
+        <target>Created by</target>
+      </trans-unit>
+      <trans-unit id="qAyxWTE" resname="The name of the tag">
+        <source>The name of the tag</source>
+        <target>The name of the tag</target>
+      </trans-unit>
+      <trans-unit id="ZauCBEI" resname="Access token used by the frontend for access to the api">
+        <source>Access token used by the frontend for access to the api</source>
+        <target>Access token used by the frontend for access to the api</target>
+      </trans-unit>
+      <trans-unit id="n2kKneL" resname="Point of interest title">
+        <source>Point of interest title</source>
+        <target>Point of interest title</target>
+      </trans-unit>
+      <trans-unit id="ADQ5Hwd" resname="Add a new point of interest">
+        <source>Add a new point of interest</source>
+        <target>Add a new point of interest</target>
+      </trans-unit>
+      <trans-unit id="mbGC2Vh" resname="A text version of the podcast, for people with hearing disabilities.">
+        <source>A text version of the podcast, for people with hearing disabilities.</source>
+        <target>A text version of the podcast, for people with hearing disabilities.</target>
+      </trans-unit>
+      <trans-unit id="gM4BSh." resname="The order of the interest point.">
+        <source>The order of the interest point.</source>
+        <target>The order of the interest point.</target>
+      </trans-unit>
+      <trans-unit id="xrVoM.X" resname="The latitude of the interest point.">
+        <source>The latitude of the interest point.</source>
+        <target>The latitude of the interest point.</target>
+      </trans-unit>
+      <trans-unit id="Va0LTyp" resname="The longitude of the interest point.">
+        <source>The longitude of the interest point.</source>
+        <target>The longitude of the interest point.</target>
+      </trans-unit>
+      <trans-unit id="bbzr4x2" resname="The proximity that allows unlocking this point of interest (in m).">
+        <source>The proximity that allows unlocking this point of interest (in m).</source>
+        <target>The proximity that allows unlocking this point of interest (in m).</target>
+      </trans-unit>
+      <trans-unit id="IquzO6S" resname="Users mail address, which is also used as login name">
+        <source>Users mail address, which is also used as login name</source>
+        <target>Users mail address, which is also used as login name</target>
+      </trans-unit>
+      <trans-unit id="aq2eM8Q" resname="Roles">
+        <source>Roles</source>
+        <target>Roles</target>
+      </trans-unit>
+      <trans-unit id="ikchTHE" resname="ROLE_ADMIN">
+        <source>ROLE_ADMIN</source>
+        <target>ROLE_ADMIN</target>
+      </trans-unit>
+      <trans-unit id="oEaQqTo" resname="ROLE_USER">
+        <source>ROLE_USER</source>
+        <target>ROLE_USER</target>
+      </trans-unit>
+      <trans-unit id="X46NBNz" resname="ROLE_USER_ADMIN">
+        <source>ROLE_USER_ADMIN</source>
+        <target>ROLE_USER_ADMIN</target>
+      </trans-unit>
+      <trans-unit id="mRBu7fA" resname="Your username">
+        <source>Your username</source>
+        <target>Your username</target>
+      </trans-unit>
+      <trans-unit id="emNzEru" resname="Your password">
+        <source>Your password</source>
+        <target>Your password</target>
+      </trans-unit>
+      <trans-unit id="RxIIlzy" resname="Log in">
+        <source>Log in</source>
+        <target>Log in</target>
+      </trans-unit>
+      <trans-unit id="Fztxgjr" resname="Forgot your password?">
+        <source>Forgot your password?</source>
+        <target>Forgot your password?</target>
+      </trans-unit>
+      <trans-unit id="WevL4T_" resname="Remember me">
+        <source>Remember me</source>
+        <target>Remember me</target>
+      </trans-unit>
+      <trans-unit id="eyayNGN" resname="Reset your password">
+        <source>Reset your password</source>
+        <target>Reset your password</target>
+      </trans-unit>
+      <trans-unit id="ifotYH6" resname="Enter your email address, and we will send you a link to reset your password.">
+        <source>Enter your email address, and we will send you a link to reset your password.</source>
+        <target>Enter your email address, and we will send you a link to reset your password.</target>
+      </trans-unit>
+      <trans-unit id="5XiCCZa" resname="Send password reset email">
+        <source>Send password reset email</source>
+        <target>Send password reset email</target>
+      </trans-unit>
+      <trans-unit id="MJxrF67" resname="Password Reset Email Sent">
+        <source>Password Reset Email Sent</source>
+        <target>Password Reset Email Sent</target>
+      </trans-unit>
+      <trans-unit id="NJn0f4_" resname="If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.">
+        <source>If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.</source>
+        <target>If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.</target>
+      </trans-unit>
+      <trans-unit id="0.AUUwc" resname="This link will expire in {expire_info}.">
+        <source>This link will expire in {expire_info}.</source>
+        <target>This link will expire in {expire_info}.</target>
+      </trans-unit>
+      <trans-unit id="zyE0yOM" resname="If you don't receive an email please check your spam folder or &lt;a href=&quot;{forgot_password_url}&quot;&gt;try again&lt;/a&gt;.">
+        <source>If you don't receive an email please check your spam folder or &lt;a href="{forgot_password_url}"&gt;try again&lt;/a&gt;.</source>
+        <target><![CDATA[If you don't receive an email please check your spam folder or <a href="{forgot_password_url}">try again</a>.]]></target>
+      </trans-unit>
+      <trans-unit id="ETTNQ2F" resname="To reset your password, please visit the following link">
+        <source>To reset your password, please visit the following link</source>
+        <target>To reset your password, please visit the following link</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

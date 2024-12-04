@@ -27,14 +27,14 @@ class PointOfInterestController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setPageTitle('index', new TranslatableMessage('Point of interest title', [], 'messages'));
+            ->setPageTitle('index', new TranslatableMessage('Point of interest title', [], 'admin'));
     }
 
     public function configureActions(Actions $actions): Actions
     {
         return $actions
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
-                return $action->setIcon('fa fa-plus')->setLabel(new TranslatableMessage('Add a new point of interest', [], 'messages'));
+                return $action->setIcon('fa fa-plus')->setLabel(new TranslatableMessage('Add a new point of interest', [], 'admin'));
             });
     }
 
@@ -43,7 +43,7 @@ class PointOfInterestController extends AbstractCrudController
         yield IdField::new('id')->hideOnForm();
         yield TextField::new('name');
         yield TextField::new('subtitles')->setRequired(true)
-        ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'messages'));
+        ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin'));
         yield NumberField::new('poiOrder')->setRequired(false)
         ->setHelp(new TranslatableMessage('The order of the interest point.', [], 'admin'));
         yield TextField::new('latitude')->setRequired(true)
@@ -76,7 +76,7 @@ class PointOfInterestController extends AbstractCrudController
 
         yield DateField::new('createdAt')->hideOnForm();
         yield DateField::new('updatedAt')->hideOnForm();
-        $createdBy = AssociationField::new('createdBy', new TranslatableMessage('Created by'))
+        $createdBy = AssociationField::new('createdBy', new TranslatableMessage('Created by', [], 'admin'))
             ->setPermission(Role::USER_ADMIN->value);
         if (!$this->isGranted(Role::ADMIN->value)) {
             $createdBy->hideOnForm();

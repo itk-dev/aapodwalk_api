@@ -63,7 +63,7 @@ class UserCrudController extends AbstractCrudController
             Role::values(),
             Role::values()
         );
-        yield ChoiceField::new('roles', new TranslatableMessage('Roles'))
+        yield ChoiceField::new('roles', new TranslatableMessage('Roles', [], 'admin'))
             ->setTemplatePath('admin/User/roles.html.twig')
             ->setFormTypeOptions([
                 'multiple' => true,
@@ -82,7 +82,7 @@ class UserCrudController extends AbstractCrudController
 
         yield DateField::new('createdAt')->hideOnForm()->hideOnIndex();
         yield DateField::new('updatedAt')->hideOnForm();
-        yield AssociationField::new('createdBy', new TranslatableMessage('Created by'))
+        yield AssociationField::new('createdBy', new TranslatableMessage('Created by', [], 'admin'))
             ->setPermission(Role::USER_ADMIN->value)
             ->hideOnForm();
     }

@@ -63,3 +63,21 @@ curl --header 'Authorization: Bearer this-is-not-a-very-secret-token' "http://$(
 ```shell
 docker compose exec phpfpm composer update-api-spec
 ```
+
+## Translations
+
+Update translations
+
+``` shell name=translations-update
+docker compose exec phpfpm composer update-translations
+```
+
+Update Danish translations (`translations/*.da.xlf`), e.g. using [Poedit](https://poedit.net/):
+
+``` shell
+open translations/admin.da.xlf
+```
+
+To help the [translation
+extractor](https://symfony.com/doc/current/translation.html#extracting-translation-contents-and-updating-catalogs-automatically)
+find some translations, we have some translation expressions in `templates/admin/_messages.html.twig`.

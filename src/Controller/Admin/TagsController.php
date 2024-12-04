@@ -27,7 +27,7 @@ class TagsController extends AbstractCrudController
         yield IdField::new('id')->hideOnForm();
         yield TextField::new('name')
             ->setHelp(new TranslatableMessage('The name of the tag', [], 'admin'));
-        $createdBy = AssociationField::new('createdBy', new TranslatableMessage('Created by'))
+        $createdBy = AssociationField::new('createdBy', new TranslatableMessage('Created by', [], 'admin'))
             ->setPermission(Role::USER_ADMIN->value);
         if (!$this->isGranted(Role::ADMIN->value)) {
             $createdBy->hideOnForm();
