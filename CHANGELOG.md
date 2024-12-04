@@ -11,6 +11,8 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+- [PR-19](https://github.com/itk-dev/aapodwalk_api/pull/19)
+  Enables [Profiler](https://symfony.com/doc/current/profiler.html)
 - [PR-17](https://github.com/itk-dev/aapodwalk_api/pull/17)
   Moved API token to user and required API authorization
 - [PR-14](https://github.com/itk-dev/aapodwalk_api/pull/14)
