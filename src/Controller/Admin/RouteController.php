@@ -59,8 +59,11 @@ class RouteController extends AbstractCrudController
             ->setHelp(new TranslatableMessage('Connect points of interest to this podwalk.', [], 'admin'));
         yield DateField::new('createdAt')->hideOnForm();
         yield DateField::new('updatedAt')->hideOnForm();
-        yield AssociationField::new('createdBy', new TranslatableMessage('Created by'))
-            ->setPermission(Role::USER_ADMIN->value)
-            ->hideOnForm();
+        $createdBy = AssociationField::new('createdBy', new TranslatableMessage('Created by'))
+            ->setPermission(Role::USER_ADMIN->value);
+        if (!$this->isGranted(Role::ADMIN->value)) {
+            $createdBy->hideOnForm();
+        }
+        yield $createdBy;
     }
 }
