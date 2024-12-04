@@ -72,7 +72,7 @@ class Route implements BlameableInterface
     #[Groups(['read'])]
     private Collection $pointsOfInterest;
 
-    #[ORM\ManyToMany(targetEntity: Tags::class, inversedBy: 'routes')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'routes')]
     private Collection $tags;
 
     #[ORM\Column(length: 255)]
@@ -184,14 +184,14 @@ class Route implements BlameableInterface
     }
 
     /**
-     * @return Collection<int, Tags>
+     * @return Collection<int, Tag>
      */
     public function getTags(): Collection
     {
         return $this->tags;
     }
 
-    public function addTag(Tags $tag): static
+    public function addTag(Tag $tag): static
     {
         if (!$this->tags->contains($tag)) {
             $this->tags->add($tag);
@@ -201,7 +201,7 @@ class Route implements BlameableInterface
         return $this;
     }
 
-    public function removeTag(Tags $tag): static
+    public function removeTag(Tag $tag): static
     {
         if ($this->tags->removeElement($tag)) {
             $tag->removeRoute($this);

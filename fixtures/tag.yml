@@ -1,5 +1,5 @@
 ---
-App\Entity\Tags:
+App\Entity\Tag:
   mad:
     name: 'Her kan man spise'
     createdBy: '@user'

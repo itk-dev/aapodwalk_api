@@ -5,7 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\PointOfInterest;
 use App\Entity\Role;
 use App\Entity\Route as RouteWithPOI;
-use App\Entity\Tags;
+use App\Entity\Tag;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -37,7 +37,7 @@ class AdminDashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToCrud(new TranslatableMessage('Routes', [], 'admin'), 'fa-solid fa-spaghetti-monster-flying', RouteWithPOI::class);
-        yield MenuItem::linkToCrud(new TranslatableMessage('Tags', [], 'admin'), 'fa-solid fa-cloud-meatball', Tags::class);
+        yield MenuItem::linkToCrud(new TranslatableMessage('Tags', [], 'admin'), 'fa-solid fa-cloud-meatball', Tag::class);
         yield MenuItem::linkToCrud(new TranslatableMessage('Points of interest', [], 'admin'), 'fas fa-ghost', PointOfInterest::class);
         yield MenuItem::linkToCrud(new TranslatableMessage('Users', [], 'admin'), 'fas fa-user', User::class)
             ->setPermission(Role::USER_ADMIN->value);

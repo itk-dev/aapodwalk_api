@@ -3,8 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Role;
-use App\Entity\Tags;
-use App\Repository\TagsRepository;
+use App\Entity\Tag;
+use App\Repository\TagRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
@@ -15,13 +15,13 @@ use Symfony\Component\Translation\TranslatableMessage;
 class TagsController extends AbstractCrudController
 {
     public function __construct(
-        private readonly TagsRepository $tagsRepository,
+        private readonly TagRepository $tagsRepository,
     ) {
     }
 
     public static function getEntityFqcn(): string
     {
-        return Tags::class;
+        return Tag::class;
     }
 
     public function configureCrud(Crud $crud): Crud
