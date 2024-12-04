@@ -19,17 +19,11 @@ docker compose exec phpfpm composer fixtures-load
 
 If you run the fixtures, the following user will be available:
 
-| Username               | Password | Roles           |
-|------------------------|----------|-----------------|
+| Username                 | Password | Roles           |
+|--------------------------|----------|-----------------|
 | <admin@example.com>      | password | ROLE_ADMIN      |
 | <user-admin@example.com> | password | ROLE_USER_ADMIN |
 | <user@example.com>       | password | ROLE_USER       |
-
-And this token for the frontend:
-
-| Name     | Token  |
-|----------|--------|
-| api user | 123    |
 
 For creating more users, run the following command
 
