@@ -79,23 +79,7 @@ class Route implements BlameableInterface
 
     #[ORM\Column(length: 255)]
     #[Groups(['read'])]
-    private ?string $zoomValue = null;
-
-    #[ORM\Column(length: 255)]
-    #[Groups(['read'])]
-    private ?string $centerlatitude = null;
-
-    #[ORM\Column(length: 255)]
-    #[Groups(['read'])]
-    private ?string $centerlongitude = null;
-
-    #[ORM\Column(length: 255)]
-    #[Groups(['read'])]
-    private ?string $partcount = null;
-
-    #[ORM\Column(length: 255)]
-    #[Groups(['read'])]
-    private ?string $totalduration = null;
+    private ?string $totalDuration = null;
 
     public function __toString(): string
     {
@@ -237,62 +221,14 @@ class Route implements BlameableInterface
         return $this->imageFile;
     }
 
-    public function getZoomValue(): ?string
+    public function getTotalDuration(): ?string
     {
-        return $this->zoomValue;
+        return $this->totalDuration;
     }
 
-    public function setZoomValue(string $zoomValue): static
+    public function setTotalDuration(string $totalDuration): static
     {
-        $this->zoomValue = $zoomValue;
-
-        return $this;
-    }
-
-    public function getCenterlatitude(): ?string
-    {
-        return $this->centerlatitude;
-    }
-
-    public function setCenterlatitude(string $centerlatitude): static
-    {
-        $this->centerlatitude = $centerlatitude;
-
-        return $this;
-    }
-
-    public function getCenterlongitude(): ?string
-    {
-        return $this->centerlongitude;
-    }
-
-    public function setCenterlongitude(string $centerlongitude): static
-    {
-        $this->centerlongitude = $centerlongitude;
-
-        return $this;
-    }
-
-    public function getPartcount(): ?string
-    {
-        return $this->partcount;
-    }
-
-    public function setPartcount(string $partcount): static
-    {
-        $this->partcount = $partcount;
-
-        return $this;
-    }
-
-    public function getTotalduration(): ?string
-    {
-        return $this->totalduration;
-    }
-
-    public function setTotalduration(string $totalduration): static
-    {
-        $this->totalduration = $totalduration;
+        $this->totalDuration = $totalDuration;
 
         return $this;
     }

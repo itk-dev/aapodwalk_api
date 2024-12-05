@@ -295,15 +295,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag-read'
-        zoomValue:
-          type: string
-        centerlatitude:
-          type: string
-        centerlongitude:
-          type: string
-        partcount:
-          type: string
-        totalduration:
+        totalDuration:
           type: string
     Route.jsonld-read:
       type: object
@@ -354,15 +346,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag.jsonld-read'
-        zoomValue:
-          type: string
-        centerlatitude:
-          type: string
-        centerlongitude:
-          type: string
-        partcount:
-          type: string
-        totalduration:
+        totalDuration:
           type: string
     Tag-read:
       type: object

@@ -572,19 +572,7 @@
                             "$ref": "#/components/schemas/Tag-read"
                         }
                     },
-                    "zoomValue": {
-                        "type": "string"
-                    },
-                    "centerlatitude": {
-                        "type": "string"
-                    },
-                    "centerlongitude": {
-                        "type": "string"
-                    },
-                    "partcount": {
-                        "type": "string"
-                    },
-                    "totalduration": {
+                    "totalDuration": {
                         "type": "string"
                     }
                 }
@@ -660,19 +648,7 @@
                             "$ref": "#/components/schemas/Tag.jsonld-read"
                         }
                     },
-                    "zoomValue": {
-                        "type": "string"
-                    },
-                    "centerlatitude": {
-                        "type": "string"
-                    },
-                    "centerlongitude": {
-                        "type": "string"
-                    },
-                    "partcount": {
-                        "type": "string"
-                    },
-                    "totalduration": {
+                    "totalDuration": {
                         "type": "string"
                     }
                 }
