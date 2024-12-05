@@ -45,10 +45,6 @@
         <source>The name of the tag</source>
         <target state="needs-l10n">__The name of the tag</target>
       </trans-unit>
-      <trans-unit id="ZauCBEI" resname="Access token used by the frontend for access to the api">
-        <source>Access token used by the frontend for access to the api</source>
-        <target state="needs-l10n">__Access token used by the frontend for access to the api</target>
-      </trans-unit>
       <trans-unit id="n2kKneL" resname="Point of interest title">
         <source>Point of interest title</source>
         <target state="needs-l10n">__Point of interest title</target>
@@ -148,6 +144,34 @@
       <trans-unit id="ETTNQ2F" resname="To reset your password, please visit the following link">
         <source>To reset your password, please visit the following link</source>
         <target state="needs-l10n">__To reset your password, please visit the following link</target>
+      </trans-unit>
+      <trans-unit id="VAcHWco" resname="Route">
+        <source>Route</source>
+        <target state="needs-l10n">__Route</target>
+      </trans-unit>
+      <trans-unit id="c3JjHHp" resname="Tags">
+        <source>Tags</source>
+        <target state="needs-l10n">__Tags</target>
+      </trans-unit>
+      <trans-unit id="UL1TXo7" resname="Points of interest">
+        <source>Points of interest</source>
+        <target state="needs-l10n">__Points of interest</target>
+      </trans-unit>
+      <trans-unit id="BCGjfox" resname="Users">
+        <source>Users</source>
+        <target state="needs-l10n">__Users</target>
+      </trans-unit>
+      <trans-unit id="Q4p_Gmi" resname="API documentation">
+        <source>API documentation</source>
+        <target state="needs-l10n">__API documentation</target>
+      </trans-unit>
+      <trans-unit id="F5WxGEE" resname="The user must also have the {api_role} to access the API.">
+        <source>The user must also have the {api_role} to access the API.</source>
+        <target state="needs-l10n">__The user must also have the {api_role} to access the API.</target>
+      </trans-unit>
+      <trans-unit id="mpHDX6N" resname="Administration">
+        <source>Administration</source>
+        <target state="needs-l10n">__Administration</target>
       </trans-unit>
     </body>
   </file>

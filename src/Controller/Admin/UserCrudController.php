@@ -76,7 +76,7 @@ class UserCrudController extends AbstractCrudController
             yield TextField::new('apiToken')
                 ->setHelp(new TranslatableMessage('The user must also have the {api_role} to access the API.', [
                     'api_role' => Role::API->value,
-                ]))
+                ], 'admin'))
                 ->onlyOnForms();
         }
 

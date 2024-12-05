@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Translation\TranslatableMessage;
 
 class AdminDashboardController extends AbstractDashboardController
 {
@@ -35,13 +36,13 @@ class AdminDashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToCrud('Route', 'fa-solid fa-spaghetti-monster-flying', RouteWithPOI::class);
-        yield MenuItem::linkToCrud('Tags', 'fa-solid fa-cloud-meatball', Tags::class);
-        yield MenuItem::linkToCrud('Points of interest', 'fas fa-ghost', PointOfInterest::class);
-        yield MenuItem::linkToCrud('Users', 'fas fa-user', User::class)
+        yield MenuItem::linkToCrud(new TranslatableMessage('Route', [], 'admin'), 'fa-solid fa-spaghetti-monster-flying', RouteWithPOI::class);
+        yield MenuItem::linkToCrud(new TranslatableMessage('Tags', [], 'admin'), 'fa-solid fa-cloud-meatball', Tags::class);
+        yield MenuItem::linkToCrud(new TranslatableMessage('Points of interest', [], 'admin'), 'fas fa-ghost', PointOfInterest::class);
+        yield MenuItem::linkToCrud(new TranslatableMessage('Users', [], 'admin'), 'fas fa-user', User::class)
             ->setPermission(Role::USER_ADMIN->value);
 
         yield MenuItem::section();
-        yield MenuItem::linkToUrl('API documentation', 'fas fa-book', $this->generateUrl('api_doc'));
+        yield MenuItem::linkToUrl(new TranslatableMessage('API documentation', [], 'admin'), 'fas fa-book', $this->generateUrl('api_doc'));
     }
 }
