@@ -34,6 +34,13 @@ class UserCrudController extends AbstractCrudController
         return User::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return parent::configureCrud($crud)
+            ->setEntityLabelInSingular(new TranslatableMessage('User', [], 'admin'))
+            ->setEntityLabelInPlural(new TranslatableMessage('Users', [], 'admin'));
+    }
+
     public function configureActions(Actions $actions): Actions
     {
         return parent::configureActions($actions)
@@ -45,15 +52,15 @@ class UserCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')->hideOnForm();
-        yield TextField::new('email')
+        yield IdField::new('id', new TranslatableMessage('ID', [], 'admin'))->hideOnForm();
+        yield TextField::new('email', new TranslatableMessage('Email', [], 'admin'))
             ->setHelp(new TranslatableMessage('Users mail address, which is also used as login name', [], 'admin'));
-        yield TextField::new('password')
+        yield TextField::new('password', new TranslatableMessage('Password', [], 'admin'))
             ->setFormType(RepeatedType::class)
             ->setFormTypeOptions([
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'Password'],
-                'second_options' => ['label' => '(Repeat)'],
+                'first_options' => ['label' => new TranslatableMessage('Password', [], 'admin')],
+                'second_options' => ['label' => new TranslatableMessage('(Repeat)', [], 'admin')],
                 'mapped' => false,
             ])
             ->setRequired(Crud::PAGE_NEW === $pageName)
@@ -63,26 +70,27 @@ class UserCrudController extends AbstractCrudController
             Role::values(),
             Role::values()
         );
-        yield ChoiceField::new('roles', new TranslatableMessage('Roles'))
+        yield ChoiceField::new('roles', new TranslatableMessage('Roles', [], 'admin'))
             ->setTemplatePath('admin/User/roles.html.twig')
             ->setFormTypeOptions([
                 'multiple' => true,
                 'expanded' => true,
                 'choices' => $options,
+                'choice_translation_domain' => 'admin',
             ])
         ;
 
         if ($this->isGranted(Role::USER_ADMIN->value)) {
             yield TextField::new('apiToken')
-                ->setHelp(new TranslatableMessage('The user must also have the {api_role} to access the API.', [
-                    'api_role' => Role::API->value,
-                ]))
+                ->setHelp(new TranslatableMessage('The user must also have the {api_role} role to access the API.', [
+                    'api_role' => new TranslatableMessage(Role::API->value, [], 'admin'),
+                ], 'admin'))
                 ->onlyOnForms();
         }
 
-        yield DateField::new('createdAt')->hideOnForm()->hideOnIndex();
-        yield DateField::new('updatedAt')->hideOnForm();
-        yield AssociationField::new('createdBy', new TranslatableMessage('Created by'))
+        yield DateField::new('createdAt', new TranslatableMessage('Created at', [], 'admin'))->hideOnForm();
+        yield DateField::new('updatedAt', new TranslatableMessage('Updated at', [], 'admin'))->hideOnForm();
+        yield AssociationField::new('createdBy', new TranslatableMessage('Created by', [], 'admin'))
             ->setPermission(Role::USER_ADMIN->value)
             ->hideOnForm();
     }

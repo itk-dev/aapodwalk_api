@@ -22,19 +22,26 @@ class PointOfInterestController extends AbstractCrudController
         return PointOfInterest::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return parent::configureCrud($crud)
+            ->setEntityLabelInSingular(new TranslatableMessage('Point of interest', [], 'admin'))
+            ->setEntityLabelInPlural(new TranslatableMessage('Points of interest', [], 'admin'));
+    }
+
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')->hideOnForm();
-        yield TextField::new('name');
-        yield TextField::new('subtitles')->setRequired(true)
+        yield IdField::new('id', new TranslatableMessage('ID', [], 'admin'))->hideOnForm();
+        yield TextField::new('name', new TranslatableMessage('Name', [], 'admin'));
+        yield TextField::new('subtitles', new TranslatableMessage('Subtitles', [], 'admin'))->setRequired(true)
         ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin'));
-        yield NumberField::new('poiOrder')->setRequired(false)
+        yield NumberField::new('poiOrder', new TranslatableMessage('Order', [], 'admin'))->setRequired(false)
         ->setHelp(new TranslatableMessage('The order of the interest point.', [], 'admin'));
-        yield TextField::new('latitude')->setRequired(true)
+        yield TextField::new('latitude', new TranslatableMessage('Latitude', [], 'admin'))->setRequired(true)
         ->setHelp(new TranslatableMessage('The latitude of the interest point.', [], 'admin'));
-        yield TextField::new('longitude')->setRequired(true)
+        yield TextField::new('longitude', new TranslatableMessage('Longitude', [], 'admin'))->setRequired(true)
         ->setHelp(new TranslatableMessage('The longitude of the interest point.', [], 'admin'));
-        yield NumberField::new('proximityToUnlock')
+        yield NumberField::new('proximityToUnlock', new TranslatableMessage('Proximity to unlock', [], 'admin'))
         ->setHelp(new TranslatableMessage('The proximity that allows unlocking this point of interest (in m).', [], 'admin'));
 
         $context = $this->getContext();
@@ -44,23 +51,27 @@ class PointOfInterestController extends AbstractCrudController
 
             $imageAttr = EasyAdminHelper::getFileInputAttributes($entity, 'imageFile');
             yield VichImageField::new('imageFile')
+                ->setLabel(new TranslatableMessage('Image', [], 'admin'))
                 ->onlyOnForms()
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $imageAttr);
 
             $podcastAttr = EasyAdminHelper::getFileInputAttributes($entity, 'podcastFile');
             yield VichFileField::new('podcastFile')
+                ->setLabel(new TranslatableMessage('Podcast', [], 'admin'))
                 ->onlyOnForms()
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $podcastAttr);
         } else {
-            yield VichImageField::new('image');
-            yield VichFileField::new('podcast');
+            yield VichImageField::new('image')
+                ->setLabel(new TranslatableMessage('Image', [], 'admin'));
+            yield VichFileField::new('podcast')
+                ->setLabel(new TranslatableMessage('Podcast', [], 'admin'));
         }
 
-        yield DateField::new('createdAt')->hideOnForm();
-        yield DateField::new('updatedAt')->hideOnForm();
-        $createdBy = AssociationField::new('createdBy', new TranslatableMessage('Created by'))
+        yield DateField::new('createdAt', new TranslatableMessage('Created at', [], 'admin'))->hideOnForm();
+        yield DateField::new('updatedAt', new TranslatableMessage('Updated at', [], 'admin'))->hideOnForm();
+        $createdBy = AssociationField::new('createdBy', new TranslatableMessage('Created by', [], 'admin'))
             ->setPermission(Role::USER_ADMIN->value);
         if (!$this->isGranted(Role::ADMIN->value)) {
             $createdBy->hideOnForm();

@@ -12,7 +12,8 @@ abstract class AbstractCrudController extends BaseAbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return parent::configureCrud($crud)
-            ->showEntityActionsInlined();
+            ->showEntityActionsInlined()
+            ->setAutofocusSearch();
     }
 
     public function configureActions(Actions $actions): Actions
