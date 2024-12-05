@@ -6,10 +6,14 @@ use App\Repository\UserRepository;
 use App\Trait\BlameableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: 'email')]
+#[UniqueEntity(fields: 'apiToken', ignoreNull: 'apiToken')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, BlameableInterface
 {
     use BlameableEntity;
@@ -21,6 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Blameab
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true, nullable: false)]
+    #[Assert\Email]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -28,6 +33,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Blameab
 
     #[ORM\Column(nullable: false)]
     private ?string $password = null;
+
+    #[ORM\Column(length: 255, unique: true, nullable: true)]
+    private ?string $apiToken = null;
 
     public function __toString(): string
     {
@@ -97,5 +105,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Blameab
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getApiToken(): ?string
+    {
+        return $this->apiToken;
+    }
+
+    public function setApiToken(?string $apiToken): static
+    {
+        $this->apiToken = $apiToken;
+
+        return $this;
     }
 }

@@ -7,6 +7,7 @@ enum Role: string
     case ADMIN = 'ROLE_ADMIN';
     case USER = 'ROLE_USER';
     case USER_ADMIN = 'ROLE_USER_ADMIN';
+    case API = 'ROLE_API';
 
     public static function asArray(): array
     {

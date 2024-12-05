@@ -1,0 +1,98 @@
+version: '3'
+
+dotenv: [".task.env", ".env"]
+
+vars:
+  DOCKER_COMPOSE: '{{ .TASK_DOCKER_COMPOSE | default "docker compose" }}'
+  # https://taskfile.dev/reference/templating/
+  BASE_URL: '{{.TASK_BASE_URL | default .COMPOSE_SERVER_DOMAIN | default .COMPOSE_DOMAIN | default ""}}'
+
+tasks:
+  default:
+    cmds:
+      - task --list
+  silent: true
+
+  compose:
+    desc: "Run `docker compose` command. Example: task compose -- up --detach"
+    cmds:
+      - '{{ .DOCKER_COMPOSE }} {{ .CLI_ARGS }}'
+
+  compose-exec:
+    desc: "Run `docker compose exec` command handling content on stdin. Example: task compose-exec -- phpfpm php -v"
+    cmds:
+      # Check if we have content on stdin (cf.
+      # https://unix.stackexchange.com/questions/762992/bash-check-if-the-standard-input-contains-anything)
+      - if [[ ! -t 0 ]]; then task compose -- exec --no-TTY {{ .CLI_ARGS }}; else task compose -- exec {{ .CLI_ARGS }}; fi
+    silent: true
+
+  composer:
+    desc: "Run composer command. Example: task composer -- install"
+    cmds:
+      - task compose -- run --rm phpfpm composer {{ .CLI_ARGS }}
+    silent: true
+
+  start:
+    desc: "Start docker compose stuff and install composer stuff"
+    cmds:
+      - task compose -- pull
+      - task compose -- up --detach --remove-orphans --wait
+      - task composer -- install
+    silent: true
+
+  console:
+    desc: "Run Symfony console command"
+    cmds:
+      - task compose -- run --rm phpfpm bin/console {{.CLI_ARGS}}
+    silent: true
+
+  site:url:
+    desc: "Show site URL"
+    cmds:
+      - echo {{.URL}}
+    vars:
+      URL:
+        # Compute base URL if not set.
+        sh: if [ ! -z "{{.BASE_URL}}" ]; then echo "https://{{.BASE_URL}}"; else echo "http://$(task compose -- port nginx 8080)"; fi
+    silent: true
+
+  site:update:
+    desc: "Update site"
+    prompt: "This will update your setup. Continue?"
+    cmds:
+      - task start
+      - task console -- doctrine:migrations:migrate --no-interaction
+      - task console -- cache:clear
+    silent: true
+
+  code-analysis:
+    desc: "Run code analysis"
+    cmds:
+      - task composer -- code-analysis
+
+  coding-standards:apply:
+    desc: "Apply coding standards"
+    cmds:
+      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md' --fix
+      - task composer -- coding-standards-apply
+
+  coding-standards:check:
+    desc: "Apply coding standards"
+    cmds:
+      - task: coding-standards:apply
+      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md'
+      - task composer -- coding-standards-check
+      - docker run --volume "$PWD:/code" --rm pipelinecomponents/yamllint yamllint fixtures/
+
+  # prettier:
+  #   desc: "Run Prettier on tests source"
+  #   cmds:
+  #     - docker run --rm -v $(pwd):/work tmknom/prettier --write tests
+  #     - docker run --rm -v $(pwd):/work tmknom/prettier --check tests
+
+  fixtures:load:
+    desc: "Load fixtures"
+    prompt: "This will reset your database. Continue?"
+    cmds:
+      - task: site:update
+      - task console -- hautelook:fixtures:load --no-interaction

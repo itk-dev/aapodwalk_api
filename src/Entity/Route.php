@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\RouteRepository;
 use App\Trait\BlameableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -20,6 +21,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ApiResource(
     operations: [
         new Get(),
+        new GetCollection(),
     ],
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['read']],

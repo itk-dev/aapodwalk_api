@@ -72,6 +72,14 @@ class UserCrudController extends AbstractCrudController
             ])
         ;
 
+        if ($this->isGranted(Role::USER_ADMIN->value)) {
+            yield TextField::new('apiToken')
+                ->setHelp(new TranslatableMessage('The user must also have the {api_role} to access the API.', [
+                    'api_role' => Role::API->value,
+                ]))
+                ->onlyOnForms();
+        }
+
         yield DateField::new('createdAt')->hideOnForm()->hideOnIndex();
         yield DateField::new('updatedAt')->hideOnForm();
         yield AssociationField::new('createdBy', new TranslatableMessage('Created by'))
@@ -82,13 +90,6 @@ class UserCrudController extends AbstractCrudController
     public function createNewFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
     {
         $formBuilder = parent::createNewFormBuilder($entityDto, $formOptions, $context);
-
-        return $this->addPasswordEventListener($formBuilder);
-    }
-
-    public function createEditFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
-    {
-        $formBuilder = parent::createEditFormBuilder($entityDto, $formOptions, $context);
 
         return $this->addPasswordEventListener($formBuilder);
     }
