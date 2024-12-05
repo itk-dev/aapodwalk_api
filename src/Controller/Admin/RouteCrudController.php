@@ -13,7 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Translation\TranslatableMessage;
 
-class RouteController extends AbstractCrudController
+class RouteCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {

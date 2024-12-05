@@ -15,7 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Translation\TranslatableMessage;
 
-class PointOfInterestController extends AbstractCrudController
+class PointOfInterestCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
