@@ -277,7 +277,7 @@ components:
         id:
           readOnly: true
           type: integer
-        name:
+        title:
           type: string
         description:
           type: string
@@ -291,6 +291,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PointOfInterest-read'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag-read'
         zoomValue:
           type: string
         centerlatitude:
@@ -332,7 +336,7 @@ components:
         id:
           readOnly: true
           type: integer
-        name:
+        title:
           type: string
         description:
           type: string
@@ -346,6 +350,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PointOfInterest.jsonld-read'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag.jsonld-read'
         zoomValue:
           type: string
         centerlatitude:
@@ -360,6 +368,12 @@ components:
       type: object
       description: ''
       deprecated: false
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        title:
+          type: string
     Tag.jsonld-read:
       type: object
       description: ''
@@ -387,6 +401,11 @@ components:
           type: string
         '@type':
           readOnly: true
+          type: string
+        id:
+          readOnly: true
+          type: integer
+        title:
           type: string
   responses: {  }
   parameters: {  }
