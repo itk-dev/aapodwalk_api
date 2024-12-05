@@ -7,6 +7,7 @@ use App\Repository\PointOfInterestRepository;
 use App\Trait\BlameableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
@@ -82,11 +83,11 @@ class PointOfInterest implements BlameableInterface
     #[SerializedName('podcast')]
     public ?string $podcastUrl = null;
 
-    #[ORM\Column(length: 255, nullable: false)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 20, scale: 16)]
     #[Groups(['read'])]
     private ?string $latitude = null;
 
-    #[ORM\Column(length: 255, nullable: false)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 20, scale: 16)]
     #[Groups(['read'])]
     private ?string $longitude = null;
 
@@ -182,6 +183,18 @@ class PointOfInterest implements BlameableInterface
         $this->longitude = $longitude;
 
         return $this;
+    }
+
+    public function getLocation(): array
+    {
+        return [$this->getLatitude(), $this->getLongitude()];
+    }
+
+    public function setLocation(array $location): static
+    {
+        return $this
+            ->setLatitude($location[0])
+            ->setLongitude($location[1]);
     }
 
     /**
