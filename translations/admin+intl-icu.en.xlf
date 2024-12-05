@@ -45,14 +45,6 @@
         <source>The name of the tag</source>
         <target>The name of the tag</target>
       </trans-unit>
-      <trans-unit id="n2kKneL" resname="Point of interest title">
-        <source>Point of interest title</source>
-        <target>Point of interest title</target>
-      </trans-unit>
-      <trans-unit id="ADQ5Hwd" resname="Add a new point of interest">
-        <source>Add a new point of interest</source>
-        <target>Add a new point of interest</target>
-      </trans-unit>
       <trans-unit id="mbGC2Vh" resname="A text version of the podcast, for people with hearing disabilities.">
         <source>A text version of the podcast, for people with hearing disabilities.</source>
         <target>A text version of the podcast, for people with hearing disabilities.</target>
@@ -145,10 +137,6 @@
         <source>To reset your password, please visit the following link</source>
         <target>To reset your password, please visit the following link</target>
       </trans-unit>
-      <trans-unit id="VAcHWco" resname="Route">
-        <source>Route</source>
-        <target>Route</target>
-      </trans-unit>
       <trans-unit id="c3JjHHp" resname="Tags">
         <source>Tags</source>
         <target>Tags</target>
@@ -172,6 +160,102 @@
       <trans-unit id="mpHDX6N" resname="Administration">
         <source>Administration</source>
         <target>Administration</target>
+      </trans-unit>
+      <trans-unit id="37wivZ3" resname="ID">
+        <source>ID</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="wbMeKOh" resname="Name">
+        <source>Name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="NMmVjl0" resname="Description">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="kYt0vI9" resname="Distance">
+        <source>Distance</source>
+        <target>Distance</target>
+      </trans-unit>
+      <trans-unit id="DavdD2A" resname="Center latitude">
+        <source>Center latitude</source>
+        <target>Center latitude</target>
+      </trans-unit>
+      <trans-unit id="asLTZQF" resname="Center longitude">
+        <source>Center longitude</source>
+        <target>Center longitude</target>
+      </trans-unit>
+      <trans-unit id="nQNfjsi" resname="Zoom value">
+        <source>Zoom value</source>
+        <target>Zoom value</target>
+      </trans-unit>
+      <trans-unit id="Aw5WFwG" resname="Part count">
+        <source>Part count</source>
+        <target>Part count</target>
+      </trans-unit>
+      <trans-unit id="LjGg56y" resname="Total duration">
+        <source>Total duration</source>
+        <target>Total duration</target>
+      </trans-unit>
+      <trans-unit id="VKrWoPi" resname="Image">
+        <source>Image</source>
+        <target>Image</target>
+      </trans-unit>
+      <trans-unit id="La164xH" resname="Points">
+        <source>Points</source>
+        <target>Points</target>
+      </trans-unit>
+      <trans-unit id="LVVWz4T" resname="Created at">
+        <source>Created at</source>
+        <target>Created at</target>
+      </trans-unit>
+      <trans-unit id="E6miBl5" resname="Updated at">
+        <source>Updated at</source>
+        <target>Updated at</target>
+      </trans-unit>
+      <trans-unit id="wITS3E8" resname="Subtitles">
+        <source>Subtitles</source>
+        <target>Subtitles</target>
+      </trans-unit>
+      <trans-unit id="V2sSnK9" resname="Order">
+        <source>Order</source>
+        <target>Order</target>
+      </trans-unit>
+      <trans-unit id="1R7W0IN" resname="Latitude">
+        <source>Latitude</source>
+        <target>Latitude</target>
+      </trans-unit>
+      <trans-unit id="qYjq8h7" resname="Longitude">
+        <source>Longitude</source>
+        <target>Longitude</target>
+      </trans-unit>
+      <trans-unit id="tvqtAO3" resname="Proximity to unlock">
+        <source>Proximity to unlock</source>
+        <target>Proximity to unlock</target>
+      </trans-unit>
+      <trans-unit id="X08JJwR" resname="Podcast">
+        <source>Podcast</source>
+        <target>Podcast</target>
+      </trans-unit>
+      <trans-unit id="CpWwtOT" resname="Routes">
+        <source>Routes</source>
+        <target>Routes</target>
+      </trans-unit>
+      <trans-unit id="VAcHWco" resname="Route">
+        <source>Route</source>
+        <target>Route</target>
+      </trans-unit>
+      <trans-unit id="DxuZnkH" resname="Tag">
+        <source>Tag</source>
+        <target>Tag</target>
+      </trans-unit>
+      <trans-unit id="TkiKoB6" resname="User">
+        <source>User</source>
+        <target>User</target>
+      </trans-unit>
+      <trans-unit id="95H9DpV" resname="Point of interest">
+        <source>Point of interest</source>
+        <target>Point of interest</target>
       </trans-unit>
     </body>
   </file>

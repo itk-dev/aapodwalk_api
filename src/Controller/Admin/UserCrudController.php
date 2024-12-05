@@ -34,6 +34,13 @@ class UserCrudController extends AbstractCrudController
         return User::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return parent::configureCrud($crud)
+            ->setEntityLabelInSingular(new TranslatableMessage('User', [], 'admin'))
+            ->setEntityLabelInPlural(new TranslatableMessage('Users', [], 'admin'));
+    }
+
     public function configureActions(Actions $actions): Actions
     {
         return parent::configureActions($actions)
