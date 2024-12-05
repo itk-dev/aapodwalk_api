@@ -5,14 +5,14 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use App\Repository\TagsRepository;
+use App\Repository\TagRepository;
 use App\Trait\BlameableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
-#[ORM\Entity(repositoryClass: TagsRepository::class)]
+#[ORM\Entity(repositoryClass: TagRepository::class)]
 #[ApiResource(
     operations: [
         new GetCollection(),
@@ -21,7 +21,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['read']],
 )]
-class Tags implements BlameableInterface
+class Tag implements BlameableInterface
 {
     use BlameableEntity;
     use TimestampableEntity;

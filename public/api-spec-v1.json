@@ -215,11 +215,11 @@
             "get": {
                 "operationId": "api_tags_get_collection",
                 "tags": [
-                    "Tags"
+                    "Tag"
                 ],
                 "responses": {
                     "200": {
-                        "description": "Tags collection",
+                        "description": "Tag collection",
                         "content": {
                             "application/ld+json": {
                                 "schema": {
@@ -228,7 +228,7 @@
                                         "hydra:member": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/Tags.jsonld-read"
+                                                "$ref": "#/components/schemas/Tag.jsonld-read"
                                             }
                                         },
                                         "hydra:totalItems": {
@@ -318,15 +318,15 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Tags-read"
+                                        "$ref": "#/components/schemas/Tag-read"
                                     }
                                 }
                             }
                         }
                     }
                 },
-                "summary": "Retrieves the collection of Tags resources.",
-                "description": "Retrieves the collection of Tags resources.",
+                "summary": "Retrieves the collection of Tag resources.",
+                "description": "Retrieves the collection of Tag resources.",
                 "parameters": [
                     {
                         "name": "page",
@@ -367,20 +367,20 @@
             "get": {
                 "operationId": "api_tags_id_get",
                 "tags": [
-                    "Tags"
+                    "Tag"
                 ],
                 "responses": {
                     "200": {
-                        "description": "Tags resource",
+                        "description": "Tag resource",
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Tags.jsonld-read"
+                                    "$ref": "#/components/schemas/Tag.jsonld-read"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Tags-read"
+                                    "$ref": "#/components/schemas/Tag-read"
                                 }
                             }
                         }
@@ -389,13 +389,13 @@
                         "description": "Resource not found"
                     }
                 },
-                "summary": "Retrieves a Tags resource.",
-                "description": "Retrieves a Tags resource.",
+                "summary": "Retrieves a Tag resource.",
+                "description": "Retrieves a Tag resource.",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Tags identifier",
+                        "description": "Tag identifier",
                         "required": true,
                         "deprecated": false,
                         "allowEmptyValue": false,
@@ -665,12 +665,12 @@
                     }
                 }
             },
-            "Tags-read": {
+            "Tag-read": {
                 "type": "object",
                 "description": "",
                 "deprecated": false
             },
-            "Tags.jsonld-read": {
+            "Tag.jsonld-read": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,
