@@ -40,6 +40,7 @@ class Route implements BlameableInterface
 
     #[ORM\Column(length: 255)]
     #[Groups(['read'])]
+    #[SerializedName('title')]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
@@ -73,6 +74,7 @@ class Route implements BlameableInterface
     private Collection $pointsOfInterest;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'routes')]
+    #[Groups(['read'])]
     private Collection $tags;
 
     #[ORM\Column(length: 255)]

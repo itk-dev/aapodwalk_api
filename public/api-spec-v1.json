@@ -545,7 +545,7 @@
                         "readOnly": true,
                         "type": "integer"
                     },
-                    "name": {
+                    "title": {
                         "type": "string"
                     },
                     "description": {
@@ -564,6 +564,12 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/PointOfInterest-read"
+                        }
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Tag-read"
                         }
                     },
                     "zoomValue": {
@@ -627,7 +633,7 @@
                         "readOnly": true,
                         "type": "integer"
                     },
-                    "name": {
+                    "title": {
                         "type": "string"
                     },
                     "description": {
@@ -646,6 +652,12 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/PointOfInterest.jsonld-read"
+                        }
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Tag.jsonld-read"
                         }
                     },
                     "zoomValue": {
@@ -668,7 +680,16 @@
             "Tag-read": {
                 "type": "object",
                 "description": "",
-                "deprecated": false
+                "deprecated": false,
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    }
+                }
             },
             "Tag.jsonld-read": {
                 "type": "object",
@@ -708,6 +729,13 @@
                     },
                     "@type": {
                         "readOnly": true,
+                        "type": "string"
+                    },
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "title": {
                         "type": "string"
                     }
                 }
