@@ -153,10 +153,6 @@
         <source>API documentation</source>
         <target>API documentation</target>
       </trans-unit>
-      <trans-unit id="F5WxGEE" resname="The user must also have the {api_role} to access the API.">
-        <source>The user must also have the {api_role} to access the API.</source>
-        <target>The user must also have the {api_role} to access the API.</target>
-      </trans-unit>
       <trans-unit id="mpHDX6N" resname="Administration">
         <source>Administration</source>
         <target>Administration</target>
@@ -256,6 +252,26 @@
       <trans-unit id="95H9DpV" resname="Point of interest">
         <source>Point of interest</source>
         <target>Point of interest</target>
+      </trans-unit>
+      <trans-unit id="mqAiYDC" resname="The user must also have the {api_role} role to access the API.">
+        <source>The user must also have the {api_role} role to access the API.</source>
+        <target>The user must also have the {api_role} role to access the API.</target>
+      </trans-unit>
+      <trans-unit id="0irkoqb" resname="ROLE_API">
+        <source>ROLE_API</source>
+        <target>ROLE_API</target>
+      </trans-unit>
+      <trans-unit id="GqmFSHc" resname="Password">
+        <source>Password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="DFvpMmL" resname="(Repeat)">
+        <source>(Repeat)</source>
+        <target>(Repeat)</target>
+      </trans-unit>
+      <trans-unit id="JZi_tm0" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
       </trans-unit>
     </body>
   </file>

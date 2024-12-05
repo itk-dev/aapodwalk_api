@@ -7,8 +7,6 @@ use App\Entity\Role;
 use App\Field\VichFileField;
 use App\Field\VichImageField;
 use App\Service\EasyAdminHelper;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
@@ -52,19 +50,23 @@ class PointOfInterestController extends AbstractCrudController
             assert($entity instanceof PointOfInterest);
 
             $imageAttr = EasyAdminHelper::getFileInputAttributes($entity, 'imageFile');
-            yield VichImageField::new('imageFile', new TranslatableMessage('Image', [], 'admin'))
+            yield VichImageField::new('imageFile')
+                ->setLabel(new TranslatableMessage('Image', [], 'admin'))
                 ->onlyOnForms()
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $imageAttr);
 
             $podcastAttr = EasyAdminHelper::getFileInputAttributes($entity, 'podcastFile');
-            yield VichFileField::new('podcastFile', new TranslatableMessage('Podcast', [], 'admin'))
+            yield VichFileField::new('podcastFile')
+                ->setLabel(new TranslatableMessage('Podcast', [], 'admin'))
                 ->onlyOnForms()
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $podcastAttr);
         } else {
-            yield VichImageField::new('image', new TranslatableMessage('Image', [], 'admin'));
-            yield VichFileField::new('podcast', new TranslatableMessage('Podcast', [], 'admin'));
+            yield VichImageField::new('image')
+                ->setLabel(new TranslatableMessage('Image', [], 'admin'));
+            yield VichFileField::new('podcast')
+                ->setLabel(new TranslatableMessage('Podcast', [], 'admin'));
         }
 
         yield DateField::new('createdAt', new TranslatableMessage('Created at', [], 'admin'))->hideOnForm();

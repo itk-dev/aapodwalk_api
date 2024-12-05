@@ -7,255 +7,271 @@
     <body>
       <trans-unit id="9AG3Fb7" resname="The distance should be how far the route is with all points of interests included, e.g. &quot;840m&quot;">
         <source>The distance should be how far the route is with all points of interests included, e.g. "840m"</source>
-        <target state="needs-l10n">__The distance should be how far the route is with all points of interests included, e.g. "840m"</target>
+        <target state="translated">Distancen skal angive hvor lang hele ruten inkl. seværdigheder er, fx "840m”</target>
       </trans-unit>
       <trans-unit id="oIn3FYf" resname="The latitude for the map to center to, when this route is selected.">
         <source>The latitude for the map to center to, when this route is selected.</source>
-        <target state="needs-l10n">__The latitude for the map to center to, when this route is selected.</target>
+        <target state="translated">Breddegraden for centrum af kortet når denne rute vælges.</target>
       </trans-unit>
       <trans-unit id="LMdBBXO" resname="The longitude for the map to center to, when this route is selected.">
         <source>The longitude for the map to center to, when this route is selected.</source>
-        <target state="needs-l10n">__The longitude for the map to center to, when this route is selected.</target>
+        <target state="translated">Længegraden for centrum af kortet når denne rute vælges.</target>
       </trans-unit>
       <trans-unit id="3jxmLJz" resname="The level of zoom for the map to comfortably show the route (0-28).">
         <source>The level of zoom for the map to comfortably show the route (0-28).</source>
-        <target state="needs-l10n">__The level of zoom for the map to comfortably show the route (0-28).</target>
+        <target state="translated">Zoom-niveau for kortet så det kan vise hele ruten (0-28).</target>
       </trans-unit>
       <trans-unit id="Vf5ps1Y" resname="The number of points of interest in this route.">
         <source>The number of points of interest in this route.</source>
-        <target state="needs-l10n">__The number of points of interest in this route.</target>
+        <target state="translated">Antal seværdigheder på denne rute.</target>
       </trans-unit>
       <trans-unit id="ua7kdpc" resname="The total duration of the audio tracks in this route.">
         <source>The total duration of the audio tracks in this route.</source>
-        <target state="needs-l10n">__The total duration of the audio tracks in this route.</target>
+        <target state="translated">Den samlede længde af podcasts på denne rute.</target>
       </trans-unit>
       <trans-unit id="leQUq0a" resname="Tags are used in the frontend to organize the routes.">
         <source>Tags are used in the frontend to organize the routes.</source>
-        <target state="needs-l10n">__Tags are used in the frontend to organize the routes.</target>
+        <target state="translated">Tags bruges til at organisere ruter i app’en.</target>
       </trans-unit>
       <trans-unit id="RBV8Ue5" resname="Connect points of interest to this podwalk.">
         <source>Connect points of interest to this podwalk.</source>
-        <target state="needs-l10n">__Connect points of interest to this podwalk.</target>
+        <target state="translated">Forbind seværdigheder med denne podcast.</target>
       </trans-unit>
       <trans-unit id="P9_Y7yU" resname="Created by">
         <source>Created by</source>
-        <target state="needs-l10n">__Created by</target>
+        <target state="translated">Oprettet af</target>
       </trans-unit>
       <trans-unit id="qAyxWTE" resname="The name of the tag">
         <source>The name of the tag</source>
-        <target state="needs-l10n">__The name of the tag</target>
+        <target state="translated">Taggets navn</target>
       </trans-unit>
       <trans-unit id="mbGC2Vh" resname="A text version of the podcast, for people with hearing disabilities.">
         <source>A text version of the podcast, for people with hearing disabilities.</source>
-        <target state="needs-l10n">__A text version of the podcast, for people with hearing disabilities.</target>
+        <target state="translated">En tekstuel udgave af podcasten til mennesker med hørenedsættelse.</target>
       </trans-unit>
       <trans-unit id="gM4BSh." resname="The order of the interest point.">
         <source>The order of the interest point.</source>
-        <target state="needs-l10n">__The order of the interest point.</target>
+        <target state="translated">Placering af seværdigheden på ruten.</target>
       </trans-unit>
       <trans-unit id="xrVoM.X" resname="The latitude of the interest point.">
         <source>The latitude of the interest point.</source>
-        <target state="needs-l10n">__The latitude of the interest point.</target>
+        <target state="translated">Seværdighedens breddegrad.</target>
       </trans-unit>
       <trans-unit id="Va0LTyp" resname="The longitude of the interest point.">
         <source>The longitude of the interest point.</source>
-        <target state="needs-l10n">__The longitude of the interest point.</target>
+        <target state="translated">Længdegraden for seværdigheden.</target>
       </trans-unit>
       <trans-unit id="bbzr4x2" resname="The proximity that allows unlocking this point of interest (in m).">
         <source>The proximity that allows unlocking this point of interest (in m).</source>
-        <target state="needs-l10n">__The proximity that allows unlocking this point of interest (in m).</target>
+        <target state="translated">Nærheden for at afspille seværdigheden (i meter).</target>
       </trans-unit>
       <trans-unit id="IquzO6S" resname="Users mail address, which is also used as login name">
         <source>Users mail address, which is also used as login name</source>
-        <target state="needs-l10n">__Users mail address, which is also used as login name</target>
+        <target state="translated">E-mailadresse som også bruges som brugernavn</target>
       </trans-unit>
       <trans-unit id="aq2eM8Q" resname="Roles">
         <source>Roles</source>
-        <target state="needs-l10n">__Roles</target>
+        <target state="translated">Roller</target>
       </trans-unit>
       <trans-unit id="ikchTHE" resname="ROLE_ADMIN">
         <source>ROLE_ADMIN</source>
-        <target state="needs-l10n">__ROLE_ADMIN</target>
+        <target state="translated">Administrator</target>
       </trans-unit>
       <trans-unit id="oEaQqTo" resname="ROLE_USER">
         <source>ROLE_USER</source>
-        <target state="needs-l10n">__ROLE_USER</target>
+        <target state="translated">Bruger</target>
       </trans-unit>
       <trans-unit id="X46NBNz" resname="ROLE_USER_ADMIN">
         <source>ROLE_USER_ADMIN</source>
-        <target state="needs-l10n">__ROLE_USER_ADMIN</target>
+        <target state="translated">Brugeradministrator</target>
       </trans-unit>
       <trans-unit id="mRBu7fA" resname="Your username">
         <source>Your username</source>
-        <target state="needs-l10n">__Your username</target>
+        <target state="translated">Dit brugernavn</target>
       </trans-unit>
       <trans-unit id="emNzEru" resname="Your password">
         <source>Your password</source>
-        <target state="needs-l10n">__Your password</target>
+        <target state="translated">Din adgangskode</target>
       </trans-unit>
       <trans-unit id="RxIIlzy" resname="Log in">
         <source>Log in</source>
-        <target state="needs-l10n">__Log in</target>
+        <target state="translated">Log ind</target>
       </trans-unit>
       <trans-unit id="Fztxgjr" resname="Forgot your password?">
         <source>Forgot your password?</source>
-        <target state="needs-l10n">__Forgot your password?</target>
+        <target state="translated">Glemt adgangskode?</target>
       </trans-unit>
       <trans-unit id="WevL4T_" resname="Remember me">
         <source>Remember me</source>
-        <target state="needs-l10n">__Remember me</target>
+        <target state="translated">Husk mig</target>
       </trans-unit>
       <trans-unit id="eyayNGN" resname="Reset your password">
         <source>Reset your password</source>
-        <target state="needs-l10n">__Reset your password</target>
+        <target state="translated">Nulstil din adgangskode</target>
       </trans-unit>
       <trans-unit id="ifotYH6" resname="Enter your email address, and we will send you a link to reset your password.">
         <source>Enter your email address, and we will send you a link to reset your password.</source>
-        <target state="needs-l10n">__Enter your email address, and we will send you a link to reset your password.</target>
+        <target state="translated">Indtast din e-mailadresse og vi sender et link til at nulstille din adgangskode.</target>
       </trans-unit>
       <trans-unit id="5XiCCZa" resname="Send password reset email">
         <source>Send password reset email</source>
-        <target state="needs-l10n">__Send password reset email</target>
+        <target state="translated">Send e-mail til nulstilling af adgangskode</target>
       </trans-unit>
       <trans-unit id="MJxrF67" resname="Password Reset Email Sent">
         <source>Password Reset Email Sent</source>
-        <target state="needs-l10n">__Password Reset Email Sent</target>
+        <target state="translated">E-mail sendt</target>
       </trans-unit>
       <trans-unit id="NJn0f4_" resname="If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.">
         <source>If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.</source>
-        <target state="needs-l10n">__If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.</target>
+        <target state="translated">Hvis der findes en konto med den angivne e-mailadresse, så har vi sendt en mail med et link til nulstilling af adgangskoden.</target>
       </trans-unit>
       <trans-unit id="0.AUUwc" resname="This link will expire in {expire_info}.">
         <source>This link will expire in {expire_info}.</source>
-        <target state="needs-l10n">__This link will expire in {expire_info}.</target>
+        <target state="translated">Linket udløber om {expire_info}.</target>
       </trans-unit>
       <trans-unit id="zyE0yOM" resname="If you don't receive an email please check your spam folder or &lt;a href=&quot;{forgot_password_url}&quot;&gt;try again&lt;/a&gt;.">
         <source>If you don't receive an email please check your spam folder or &lt;a href="{forgot_password_url}"&gt;try again&lt;/a&gt;.</source>
-        <target><![CDATA[__If you don't receive an email please check your spam folder or <a href="{forgot_password_url}">try again</a>.]]></target>
+        <target state="translated"><![CDATA[Hvis du ikke modtager en e-mail, så tjek din “Uønsket mail”-mappe eller <a href="{forgot_password_url}">prøv igen</a>.]]></target>
       </trans-unit>
       <trans-unit id="ETTNQ2F" resname="To reset your password, please visit the following link">
         <source>To reset your password, please visit the following link</source>
-        <target state="needs-l10n">__To reset your password, please visit the following link</target>
+        <target state="translated">Brug følgende link for at nulstille din adgangskode</target>
       </trans-unit>
       <trans-unit id="c3JjHHp" resname="Tags">
         <source>Tags</source>
-        <target state="needs-l10n">__Tags</target>
+        <target state="translated">Tags</target>
       </trans-unit>
       <trans-unit id="UL1TXo7" resname="Points of interest">
         <source>Points of interest</source>
-        <target state="needs-l10n">__Points of interest</target>
+        <target state="translated">Seværdigheder</target>
       </trans-unit>
       <trans-unit id="BCGjfox" resname="Users">
         <source>Users</source>
-        <target state="needs-l10n">__Users</target>
+        <target state="translated">Brugere</target>
       </trans-unit>
       <trans-unit id="Q4p_Gmi" resname="API documentation">
         <source>API documentation</source>
-        <target state="needs-l10n">__API documentation</target>
-      </trans-unit>
-      <trans-unit id="F5WxGEE" resname="The user must also have the {api_role} to access the API.">
-        <source>The user must also have the {api_role} to access the API.</source>
-        <target state="needs-l10n">__The user must also have the {api_role} to access the API.</target>
+        <target state="translated">API-documentation</target>
       </trans-unit>
       <trans-unit id="mpHDX6N" resname="Administration">
         <source>Administration</source>
-        <target state="needs-l10n">__Administration</target>
+        <target state="translated">Administration</target>
       </trans-unit>
       <trans-unit id="37wivZ3" resname="ID">
         <source>ID</source>
-        <target state="needs-l10n">__ID</target>
+        <target state="translated">Id</target>
       </trans-unit>
       <trans-unit id="wbMeKOh" resname="Name">
         <source>Name</source>
-        <target state="needs-l10n">__Name</target>
+        <target state="translated">Navn</target>
       </trans-unit>
       <trans-unit id="NMmVjl0" resname="Description">
         <source>Description</source>
-        <target state="needs-l10n">__Description</target>
+        <target state="translated">Beskrivelse</target>
       </trans-unit>
       <trans-unit id="kYt0vI9" resname="Distance">
         <source>Distance</source>
-        <target state="needs-l10n">__Distance</target>
+        <target state="translated">Længde</target>
       </trans-unit>
       <trans-unit id="DavdD2A" resname="Center latitude">
         <source>Center latitude</source>
-        <target state="needs-l10n">__Center latitude</target>
+        <target state="translated">Centrums-breddegrad</target>
       </trans-unit>
       <trans-unit id="asLTZQF" resname="Center longitude">
         <source>Center longitude</source>
-        <target state="needs-l10n">__Center longitude</target>
+        <target state="translated">Centrums-længdegrad</target>
       </trans-unit>
       <trans-unit id="nQNfjsi" resname="Zoom value">
         <source>Zoom value</source>
-        <target state="needs-l10n">__Zoom value</target>
+        <target state="translated">Zoomværdi</target>
       </trans-unit>
       <trans-unit id="Aw5WFwG" resname="Part count">
         <source>Part count</source>
-        <target state="needs-l10n">__Part count</target>
+        <target state="translated">Antal dele</target>
       </trans-unit>
       <trans-unit id="LjGg56y" resname="Total duration">
         <source>Total duration</source>
-        <target state="needs-l10n">__Total duration</target>
+        <target state="translated">Samlet varighed</target>
       </trans-unit>
       <trans-unit id="VKrWoPi" resname="Image">
         <source>Image</source>
-        <target state="needs-l10n">__Image</target>
+        <target state="translated">Billede</target>
       </trans-unit>
       <trans-unit id="La164xH" resname="Points">
         <source>Points</source>
-        <target state="needs-l10n">__Points</target>
+        <target state="translated">Punkt</target>
       </trans-unit>
       <trans-unit id="LVVWz4T" resname="Created at">
         <source>Created at</source>
-        <target state="needs-l10n">__Created at</target>
+        <target state="translated">Oprettet</target>
       </trans-unit>
       <trans-unit id="E6miBl5" resname="Updated at">
         <source>Updated at</source>
-        <target state="needs-l10n">__Updated at</target>
+        <target state="translated">Opdateret</target>
       </trans-unit>
       <trans-unit id="wITS3E8" resname="Subtitles">
         <source>Subtitles</source>
-        <target state="needs-l10n">__Subtitles</target>
+        <target state="translated">Undertekster</target>
       </trans-unit>
       <trans-unit id="V2sSnK9" resname="Order">
         <source>Order</source>
-        <target state="needs-l10n">__Order</target>
+        <target state="translated">Placering</target>
       </trans-unit>
       <trans-unit id="1R7W0IN" resname="Latitude">
         <source>Latitude</source>
-        <target state="needs-l10n">__Latitude</target>
+        <target state="translated">Breddegrad</target>
       </trans-unit>
       <trans-unit id="qYjq8h7" resname="Longitude">
         <source>Longitude</source>
-        <target state="needs-l10n">__Longitude</target>
+        <target state="translated">Længdegrad</target>
       </trans-unit>
       <trans-unit id="tvqtAO3" resname="Proximity to unlock">
         <source>Proximity to unlock</source>
-        <target state="needs-l10n">__Proximity to unlock</target>
+        <target state="translated">Nærhed for at kunne afspille</target>
       </trans-unit>
       <trans-unit id="X08JJwR" resname="Podcast">
         <source>Podcast</source>
-        <target state="needs-l10n">__Podcast</target>
+        <target state="translated">Podcast</target>
       </trans-unit>
       <trans-unit id="CpWwtOT" resname="Routes">
         <source>Routes</source>
-        <target state="needs-l10n">__Routes</target>
+        <target state="translated">Ruter</target>
       </trans-unit>
       <trans-unit id="VAcHWco" resname="Route">
         <source>Route</source>
-        <target state="needs-l10n">__Route</target>
+        <target state="translated">Rute</target>
       </trans-unit>
       <trans-unit id="DxuZnkH" resname="Tag">
         <source>Tag</source>
-        <target state="needs-l10n">__Tag</target>
+        <target state="translated">Tag</target>
       </trans-unit>
       <trans-unit id="TkiKoB6" resname="User">
         <source>User</source>
-        <target state="needs-l10n">__User</target>
+        <target state="translated">Bruger</target>
       </trans-unit>
       <trans-unit id="95H9DpV" resname="Point of interest">
         <source>Point of interest</source>
-        <target state="needs-l10n">__Point of interest</target>
+        <target state="translated">Seværdighed</target>
+      </trans-unit>
+      <trans-unit id="mqAiYDC" resname="The user must also have the {api_role} role to access the API.">
+        <source>The user must also have the {api_role} role to access the API.</source>
+        <target state="translated">Brugeren skal også have {api_role}-rollen for at tilgå API’et.</target>
+      </trans-unit>
+      <trans-unit id="0irkoqb" resname="ROLE_API">
+        <source>ROLE_API</source>
+        <target state="translated">API</target>
+      </trans-unit>
+      <trans-unit id="GqmFSHc" resname="Password">
+        <source>Password</source>
+        <target state="translated">Adgangskode</target>
+      </trans-unit>
+      <trans-unit id="DFvpMmL" resname="(Repeat)">
+        <source>(Repeat)</source>
+        <target state="translated">(Gentag)</target>
+      </trans-unit>
+      <trans-unit id="JZi_tm0" resname="Email">
+        <source>Email</source>
+        <target state="translated">E-mail</target>
       </trans-unit>
     </body>
   </file>
