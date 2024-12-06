@@ -13,7 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Translation\TranslatableMessage;
 
-class RouteController extends AbstractCrudController
+class RouteCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
@@ -34,16 +34,8 @@ class RouteController extends AbstractCrudController
         yield TextField::new('description', new TranslatableMessage('Description', [], 'admin'));
         yield TextField::new('distance', new TranslatableMessage('Distance', [], 'admin'))
             ->setHelp(new TranslatableMessage('The distance should be how far the route is with all points of interests included, e.g. "840m"', [], 'admin'));
-        yield TextField::new('centerlatitude', new TranslatableMessage('Center latitude', [], 'admin'))
-            ->setHelp(new TranslatableMessage('The latitude for the map to center to, when this route is selected.', [], 'admin'));
-        yield TextField::new('centerlongitude', new TranslatableMessage('Center longitude', [], 'admin'))
-            ->setHelp(new TranslatableMessage('The longitude for the map to center to, when this route is selected.', [], 'admin'));
-        yield TextField::new('zoomValue', new TranslatableMessage('Zoom value', [], 'admin'))
-            ->setHelp(new TranslatableMessage('The level of zoom for the map to comfortably show the route (0-28).', [], 'admin'));
-        yield TextField::new('partcount', new TranslatableMessage('Part count', [], 'admin'))
-            ->setHelp(new TranslatableMessage('The number of points of interest in this route.', [], 'admin'));
-        yield TextField::new('totalduration', new TranslatableMessage('Total duration', [], 'admin'))
-            ->setHelp(new TranslatableMessage('The total duration of the audio tracks in this route.', [], 'admin'));
+        yield TextField::new('totalDuration', new TranslatableMessage('Total duration', [], 'admin'))
+            ->setHelp(new TranslatableMessage('The total duration of the route, i.e. the total duration of audio tracks in the route plus the time needed for moving along the route.', [], 'admin'));
 
         $context = $this->getContext();
         if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && null !== $context) {

@@ -11,6 +11,8 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+- [PR-20](https://github.com/itk-dev/aapodwalk_api/pull/20)
+  Add location field on point.
 - [PR-21](https://github.com/itk-dev/aapodwalk_api/pull/21)
   Updated API
 - [PR-16](https://github.com/itk-dev/aapodwalk_api/pull/16)

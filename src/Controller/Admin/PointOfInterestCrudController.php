@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Admin\Field\LocationField;
 use App\Entity\PointOfInterest;
 use App\Entity\Role;
 use App\Field\VichFileField;
@@ -15,7 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Translation\TranslatableMessage;
 
-class PointOfInterestController extends AbstractCrudController
+class PointOfInterestCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
@@ -37,10 +38,9 @@ class PointOfInterestController extends AbstractCrudController
         ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin'));
         yield NumberField::new('poiOrder', new TranslatableMessage('Order', [], 'admin'))->setRequired(false)
         ->setHelp(new TranslatableMessage('The order of the interest point.', [], 'admin'));
-        yield TextField::new('latitude', new TranslatableMessage('Latitude', [], 'admin'))->setRequired(true)
-        ->setHelp(new TranslatableMessage('The latitude of the interest point.', [], 'admin'));
-        yield TextField::new('longitude', new TranslatableMessage('Longitude', [], 'admin'))->setRequired(true)
-        ->setHelp(new TranslatableMessage('The longitude of the interest point.', [], 'admin'));
+        yield LocationField::new('location', new TranslatableMessage('Location', [], 'admin'))
+            ->setRequired(true)
+            ->setVirtual(true);
         yield NumberField::new('proximityToUnlock', new TranslatableMessage('Proximity to unlock', [], 'admin'))
         ->setHelp(new TranslatableMessage('The proximity that allows unlocking this point of interest (in m).', [], 'admin'));
 

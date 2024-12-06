@@ -12,7 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Translation\TranslatableMessage;
 
-class TagsController extends AbstractCrudController
+class TagsCrudController extends AbstractCrudController
 {
     public function __construct(
         private readonly TagRepository $tagsRepository,
