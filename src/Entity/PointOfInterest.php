@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PointOfInterestRepository;
+use App\Serializer\EntityNormalizer;
 use App\Trait\BlameableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -61,7 +62,11 @@ class PointOfInterest implements BlameableInterface
     )]
     private ?File $imageFile = null;
 
-    // Set by serializer (cf. FileNormalizer).
+    /**
+     * Image Url set by serializer (cf. EntityNormalizer).
+     *
+     * @see EntityNormalizer::processImages()
+     */
     #[Groups(['read'])]
     #[SerializedName('image')]
     public ?string $imageUrl = null;
@@ -89,6 +94,14 @@ class PointOfInterest implements BlameableInterface
     #[Assert\Url()]
     #[Groups(['read'])]
     private ?string $mediaUrl = null;
+
+    /**
+     * Media embed code set by serializer (cf. EntityNormalizer).
+     *
+     * @see EntityNormalizer::processMedia()
+     */
+    #[Groups(['read'])]
+    public ?string $mediaEmbedCode = null;
 
     #[ORM\Column(nullable: true)]
     #[Groups(['read'])]
