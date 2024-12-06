@@ -24,7 +24,9 @@ final class MediaProcessor implements MediaProcessorInterface
         $url = $this->propertyAccessor->getValue($entity, $property);
         if ($url) {
             $processedUrl = $url;
-            if ($entity->isAudio()) {
+            $isAudioProperty = preg_replace('/Url$/', 'IsAudio', $property);
+            if ($this->propertyAccessor->isReadable($entity, $isAudioProperty)
+                && $this->propertyAccessor->getValue($entity, $isAudioProperty)) {
                 $processedUrl .= (str_contains($url, '?') ? '&' : '?').http_build_query(['is_audio' => true]);
             }
             foreach ($this->options['templates'] as $template) {
@@ -32,9 +34,11 @@ final class MediaProcessor implements MediaProcessorInterface
                     if (preg_match($template['pattern'], $processedUrl, $matches)) {
                         $twig = $this->twig->createTemplate($template['template']);
                         $context = $matches + [
-                            'title' => $entity->getName(),
                             'url' => $url,
                         ];
+                        if ($entity instanceof \JsonSerializable) {
+                            $context += $entity->jsonSerialize();
+                        }
 
                         return $twig->render($context);
                     }

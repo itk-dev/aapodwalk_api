@@ -125,7 +125,7 @@ final class EntityNormalizer implements NormalizerInterface
                 if (property_exists($data, $embedCodeName)) {
                     try {
                         $data->{$embedCodeName} = $this->mediaProcessor->getEmbedCode($data, $mediaUrlName);
-                    } catch (VichUploaderExceptionInterface $exception) {
+                    } catch (\Throwable $exception) {
                     }
                 }
             }

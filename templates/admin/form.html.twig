@@ -6,7 +6,7 @@
 
     {% set code = get_media_embed_code(ea.entity.instance) %}
     {% if code %}
-        <details open>
+        <details>
             <summary>{{ 'Media preview'|trans }}</summary>
             <pre><code>{{ code|raw }}</code></pre>
         </details>

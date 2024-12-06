@@ -24,7 +24,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     normalizationContext: ['groups' => ['read']],
 )]
 #[Vich\Uploadable]
-class PointOfInterest implements BlameableInterface
+class PointOfInterest implements BlameableInterface, \JsonSerializable
 {
     use BlameableEntity;
     use TimestampableEntity;
@@ -95,6 +95,10 @@ class PointOfInterest implements BlameableInterface
     #[Groups(['read'])]
     private ?string $mediaUrl = null;
 
+    #[ORM\Column(nullable: true)]
+    #[Groups(['read'])]
+    private ?bool $mediaIsAudio = true;
+
     /**
      * Media embed code set by serializer (cf. EntityNormalizer).
      *
@@ -102,10 +106,6 @@ class PointOfInterest implements BlameableInterface
      */
     #[Groups(['read'])]
     public ?string $mediaEmbedCode = null;
-
-    #[ORM\Column(nullable: true)]
-    #[Groups(['read'])]
-    private ?bool $isAudio = true;
 
     public function __construct()
     {
@@ -282,15 +282,22 @@ class PointOfInterest implements BlameableInterface
         return $this;
     }
 
-    public function isAudio(): ?bool
+    public function getMediaIsAudio(): ?bool
     {
-        return $this->isAudio;
+        return $this->mediaIsAudio;
     }
 
-    public function setIsAudio(bool $isAudio): static
+    public function setMediaIsAudio(bool $mediaIsAudio): static
     {
-        $this->isAudio = $isAudio;
+        $this->mediaIsAudio = $mediaIsAudio;
 
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'title' => $this->getName(),
+        ];
     }
 }
