@@ -14,10 +14,13 @@ App\Entity\PointOfInterest:
       sheets containing Lorem Ipsum passages, and more recently with desktop
       publishing software like Aldus PageMaker including versions of Lorem
       Ipsum.
+    mediaUrl: https://media.videotool.dk?vn=467_2024071114551733221498156038
+    isAudio: true
     latitude: 56.1692189111948
     longitude: 10.21696426741526
     poiOrder: 1
     createdBy: '@user'
+    proximityToUnlock: 10
 
   pizza_2:
     name: 'Pizza 2'
@@ -33,10 +36,13 @@ App\Entity\PointOfInterest:
       sheets containing Lorem Ipsum passages, and more recently with desktop
       publishing software like Aldus PageMaker including versions of Lorem
       Ipsum.
+    mediaUrl: https://media.videotool.dk?vn=467_2023061309304795086815187103
+    isAudio: false
     latitude: 56.15820599988522
     longitude: 10.212120454729606
     poiOrder: 2
     createdBy: '@another-user'
+    proximityToUnlock: 10
 
   pizza_3:
     name: 'Pizza 3'
@@ -52,10 +58,13 @@ App\Entity\PointOfInterest:
       sheets containing Lorem Ipsum passages, and more recently with desktop
       publishing software like Aldus PageMaker including versions of Lorem
       Ipsum.
+    mediaUrl: https://media.videotool.dk?vn=467_2023061309304795086815187103
+    isAudio: false
     latitude: 56.1646496903666
     longitude: 10.222745588704443
     poiOrder: 3
     createdBy: '@user'
+    proximityToUnlock: 10
 
   dokk1:
     name: 'Dokk1'
@@ -71,10 +80,13 @@ App\Entity\PointOfInterest:
       sheets containing Lorem Ipsum passages, and more recently with desktop
       publishing software like Aldus PageMaker including versions of Lorem
       Ipsum.
+    mediaUrl: https://media.videotool.dk?vn=467_2023061309304795086815187103
+    isAudio: false
     latitude: 56.15374103214133
     longitude: 10.214433061656008
     poiOrder: 4
     createdBy: '@another-user'
+    proximityToUnlock: 10
 
   navitas_parkeringskælder:
     name: 'Navitas parkeringskælder'
@@ -90,10 +102,13 @@ App\Entity\PointOfInterest:
       sheets containing Lorem Ipsum passages, and more recently with desktop
       publishing software like Aldus PageMaker including versions of Lorem
       Ipsum.
+    mediaUrl: https://media.videotool.dk?vn=467_2023061309304795086815187103
+    isAudio: false
     latitude: 56.159568048896006
     longitude: 10.21654905528191
     poiOrder: 5
     createdBy: '@user'
+    proximityToUnlock: 10
 
   domen:
     name: 'Domen'
@@ -109,7 +124,10 @@ App\Entity\PointOfInterest:
       sheets containing Lorem Ipsum passages, and more recently with desktop
       publishing software like Aldus PageMaker including versions of Lorem
       Ipsum.
+    mediaUrl: https://media.videotool.dk?vn=467_2023061309304795086815187103
+    isAudio: false
     latitude: 56.15826675157271
     longitude: 10.21855490960478
     poiOrder: 6
     createdBy: '@another-user'
+    proximityToUnlock: 10

@@ -13,7 +13,9 @@ abstract class AbstractCrudController extends BaseAbstractCrudController
     {
         return parent::configureCrud($crud)
             ->showEntityActionsInlined()
-            ->setAutofocusSearch();
+            ->setAutofocusSearch()
+            // https://symfony.com/bundles/EasyAdminBundle/current/design.html#form-field-templates
+            ->setFormThemes(['admin/form.html.twig', '@EasyAdmin/crud/form_theme.html.twig']);
     }
 
     public function configureActions(Actions $actions): Actions

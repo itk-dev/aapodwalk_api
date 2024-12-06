@@ -1,0 +1,14 @@
+{# https://symfony.com/bundles/EasyAdminBundle/current/design.html#form-field-templates #}
+{% trans_default_domain 'admin' %}
+
+{% block _PointOfInterest_mediaUrl_widget %}
+    {{ block('form_widget') }}
+
+    {% set code = get_media_embed_code(ea.entity.instance) %}
+    {% if code %}
+        <details open>
+            <summary>{{ 'Media preview'|trans }}</summary>
+            <pre><code>{{ code|raw }}</code></pre>
+        </details>
+    {% endif %}
+{% endblock %}

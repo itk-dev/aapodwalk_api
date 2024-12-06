@@ -31,3 +31,34 @@ services:
         arguments:
             $config:
                 project_dir: '%kernel.project_dir%'
+
+    App\Service\MediaProcessor:
+        arguments:
+            $options:
+              # @todo Define these in config (.env)?
+              templates: #'%env(json:MEDIA_PROCESSOR_TEMPLATES)%'
+                -
+                    pattern: "~^https://media.videotool.dk\\?vn=(?P<id>[^&#]+)&is_audio=1$~"
+                    template: |
+                        <div style="position: relative; padding-bottom: 26.25%%; height: 0;">
+                        <iframe aria-label="{{ title }}"
+                                type="text/html"
+                                style="position: absolute; top: 0; left: 0; width: 100%% !important; height: 100%% !important;"
+                                src="{{ url }}&ao=1"
+                                frameborder="0"
+                                allowfullscreen
+                                allow="autoplay; fullscreen"></iframe>
+                        </div>"
+
+                -
+                    pattern: "~^https://media.videotool.dk\\?vn=(?P<id>[^&#]+)$~"
+                    template: |
+                        <div style="position: relative; padding-bottom: 56.25%%; height: 0;">
+                        <iframe aria-label="{{ title }}"
+                                type="text/html"
+                                style="position: absolute; top: 0; left: 0; width: 100%% !important; height: 100%% !important;"
+                                src="{{ url }}"
+                                frameborder="0"
+                                allowfullscreen
+                                allow="autoplay; fullscreen"></iframe>
+                        </div>"

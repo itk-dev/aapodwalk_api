@@ -39,6 +39,7 @@ class PointOfInterest implements BlameableInterface
     private ?string $subtitles = null;
 
     #[ORM\Column(length: 255, nullable: false)]
+    #[Assert\NotBlank]
     #[Groups(['read'])]
     private ?string $name = null;
 
@@ -65,29 +66,13 @@ class PointOfInterest implements BlameableInterface
     #[SerializedName('image')]
     public ?string $imageUrl = null;
 
-    #[ORM\Column(length: 255)]
-    #[Groups(['read'])]
-    private ?string $podcast = null;
-
-    #[Vich\UploadableField(mapping: 'uploads', fileNameProperty: 'podcast')]
-    #[Assert\File(
-        mimeTypes: [
-            'audio/mpeg',
-        ],
-        maxSize: '24M'
-    )]
-    private ?File $podcastFile = null;
-
-    // Set by serializer (cf. FileNormalizer).
-    #[Groups(['read'])]
-    #[SerializedName('podcast')]
-    public ?string $podcastUrl = null;
-
     #[ORM\Column(type: Types::DECIMAL, precision: 20, scale: 16)]
+    #[Assert\NotBlank]
     #[Groups(['read'])]
     private ?string $latitude = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 20, scale: 16)]
+    #[Assert\NotBlank]
     #[Groups(['read'])]
     private ?string $longitude = null;
 
@@ -95,8 +80,19 @@ class PointOfInterest implements BlameableInterface
     private Collection $routes;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank]
     #[Groups(['read'])]
     private ?int $proximityToUnlock = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Url()]
+    #[Groups(['read'])]
+    private ?string $mediaUrl = null;
+
+    #[ORM\Column(nullable: true)]
+    #[Groups(['read'])]
+    private ?bool $isAudio = true;
 
     public function __construct()
     {
@@ -145,18 +141,6 @@ class PointOfInterest implements BlameableInterface
     public function setImage(?string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    public function getPodcast(): ?string
-    {
-        return $this->podcast;
-    }
-
-    public function setPodcast(?string $podcast): static
-    {
-        $this->podcast = $podcast;
 
         return $this;
     }
@@ -249,31 +233,6 @@ class PointOfInterest implements BlameableInterface
         return $this->imageFile;
     }
 
-    /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $podcastFile
-     */
-    public function setPodcastFile(?File $podcastFile = null): void
-    {
-        $this->podcastFile = $podcastFile;
-
-        if (null !== $podcastFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime();
-        }
-    }
-
-    public function getPodcastFile(): ?File
-    {
-        return $this->podcastFile;
-    }
-
     public function getPoiOrder(): ?int
     {
         return $this->poiOrder;
@@ -294,6 +253,30 @@ class PointOfInterest implements BlameableInterface
     public function setProximityToUnlock(?int $proximityToUnlock): static
     {
         $this->proximityToUnlock = $proximityToUnlock;
+
+        return $this;
+    }
+
+    public function getMediaUrl(): ?string
+    {
+        return $this->mediaUrl;
+    }
+
+    public function setMediaUrl(string $mediaUrl): static
+    {
+        $this->mediaUrl = $mediaUrl;
+
+        return $this;
+    }
+
+    public function isAudio(): ?bool
+    {
+        return $this->isAudio;
+    }
+
+    public function setIsAudio(bool $isAudio): static
+    {
+        $this->isAudio = $isAudio;
 
         return $this;
     }

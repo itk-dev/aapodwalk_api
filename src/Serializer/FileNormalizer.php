@@ -15,8 +15,6 @@ use Vich\UploaderBundle\Storage\StorageInterface;
  */
 final class FileNormalizer implements NormalizerInterface
 {
-    private const ALREADY_CALLED = 'MEDIA_OBJECT_NORMALIZER_ALREADY_CALLED';
-
     public function __construct(
         #[Autowire(service: 'api_platform.jsonld.normalizer.item')]
         readonly private NormalizerInterface $normalizer,
@@ -29,11 +27,11 @@ final class FileNormalizer implements NormalizerInterface
         ?string $format = null,
         array $context = [],
     ): array|string|int|float|bool|\ArrayObject|null {
-        $context[self::ALREADY_CALLED] = true;
+        $this->setIsProcessed($data, $context);
 
         if (is_object($data)) {
             // TODO: Find these field names using reflection or some such magic …
-            $fileFieldNames = ['imageFile', 'podcastFile'];
+            $fileFieldNames = ['imageFile'];
 
             foreach ($fileFieldNames as $fileFieldName) {
                 if (!property_exists($data, $fileFieldName)) {
@@ -43,23 +41,14 @@ final class FileNormalizer implements NormalizerInterface
                 $reflectionProperty = new \ReflectionProperty($data, $fileFieldName);
                 foreach ($reflectionProperty->getAttributes() as $attribute) {
                     if (UploadableField::class === $attribute->getName()) {
-                        $mapping = null;
-                        $fileNameProperty = null;
-                        foreach ($attribute->getArguments() as $name => $value) {
-                            if ('mapping' === $name) {
-                                $mapping = $value;
-                            } elseif ('fileNameProperty' === $name) {
-                                $fileNameProperty = $value;
-                            }
-                        }
-                    }
-
-                    if (isset($mapping, $fileNameProperty)) {
-                        $urlFieldName = $fileNameProperty.'Url';
-                        if (property_exists($data, $urlFieldName)) {
-                            try {
-                                $data->{$urlFieldName} = $this->storage->resolveUri($data, $fileFieldName);
-                            } catch (VichUploaderExceptionInterface $exception) {
+                        $uploadableField = new UploadableField(...$attribute->getArguments());
+                        if ($uploadableField->getFileNameProperty()) {
+                            $urlFieldName = $uploadableField->getFileNameProperty().'Url';
+                            if (property_exists($data, $urlFieldName)) {
+                                try {
+                                    $data->{$urlFieldName} = $this->storage->resolveUri($data, $fileFieldName);
+                                } catch (VichUploaderExceptionInterface $exception) {
+                                }
                             }
                         }
                     }
@@ -80,10 +69,31 @@ final class FileNormalizer implements NormalizerInterface
 
     public function supportsNormalization($data, ?string $format = null, array $context = []): bool
     {
-        if (isset($context[self::ALREADY_CALLED])) {
+        if ($this->isProcessed($data, $context)) {
             return false;
         }
 
         return $data instanceof Route || $data instanceof PointOfInterest;
+    }
+
+    private function isProcessed(mixed $data, array $context): bool
+    {
+        return isset($context[$this->getIsProcessedKey($data)]);
+    }
+
+    private function setIsProcessed(mixed $data, array &$context): void
+    {
+        if ($key = $this->getIsProcessedKey($data)) {
+            $context[$key] = true;
+        }
+    }
+
+    private function getIsProcessedKey(mixed $data): ?string
+    {
+        if ($data instanceof Route || $data instanceof PointOfInterest) {
+            return sprintf('%s||%s||%s', static::class, $data::class, $data->getId() ?? '');
+        }
+
+        return null;
     }
 }
