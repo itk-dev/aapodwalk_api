@@ -249,6 +249,10 @@
         <source>Media preview</source>
         <target>Media preview</target>
       </trans-unit>
+      <trans-unit id="sxxnmbY" resname="Cannot generate media embed code">
+        <source>Cannot generate media embed code</source>
+        <target>Cannot generate media embed code</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

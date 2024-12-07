@@ -10,5 +10,7 @@
             <summary>{{ 'Media preview'|trans }}</summary>
             <pre><code>{{ code|raw }}</code></pre>
         </details>
+    {% else %}
+        <div class="alert alert-warning">{{ 'Cannot generate media embed code'|trans }}</div>
     {% endif %}
 {% endblock %}

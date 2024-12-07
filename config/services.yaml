@@ -38,7 +38,7 @@ services:
               # @todo Define these in config (.env)?
               templates: #'%env(json:MEDIA_PROCESSOR_TEMPLATES)%'
                 -
-                    pattern: "~^https://media.videotool.dk\\?vn=(?P<id>[^&#]+)&is_audio=1$~"
+                    pattern: "~^https://media.videotool.dk/?\\?vn=(?P<id>[^&#]+)&is_audio=1$~"
                     template: >-
                         <div style="position: relative; padding-bottom: 26.25%%; height: 0;">
                         <iframe aria-label="{{ title }}"
@@ -51,7 +51,7 @@ services:
                         </div>"
 
                 -
-                    pattern: "~^https://media.videotool.dk\\?vn=(?P<id>[^&#]+)$~"
+                    pattern: "~^https://media.videotool.dk/?\\?vn=(?P<id>[^&#]+)$~"
                     template: >-
                         <div style="position: relative; padding-bottom: 56.25%%; height: 0;">
                         <iframe aria-label="{{ title }}"
