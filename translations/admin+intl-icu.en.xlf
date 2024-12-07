@@ -253,6 +253,14 @@
         <source>Cannot generate media embed code</source>
         <target>Cannot generate media embed code</target>
       </trans-unit>
+      <trans-unit id="UNl3J6g" resname="Information on media URLs">
+        <source>Information on media URLs</source>
+        <target>Information on media URLs</target>
+      </trans-unit>
+      <trans-unit id="CPIQaaz" resname="Check if &quot;{media_url}&quot; points to an audio file.">
+        <source>Check if "{media_url}" points to an audio file.</source>
+        <target>Check if "{media_url}" points to an audio file.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

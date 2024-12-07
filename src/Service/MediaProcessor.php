@@ -3,8 +3,10 @@
 namespace App\Service;
 
 use App\Entity\PointOfInterest;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
+use Symfony\Component\Translation\LocaleSwitcher;
 use Twig\Environment;
 
 final class MediaProcessor implements MediaProcessorInterface
@@ -12,11 +14,12 @@ final class MediaProcessor implements MediaProcessorInterface
     private readonly array $options;
 
     public function __construct(
+        private readonly LocaleSwitcher $localeSwitcher,
         private readonly PropertyAccessorInterface $propertyAccessor,
         private readonly Environment $twig,
         array $options,
     ) {
-        $this->options = $options;
+        $this->options = $this->processOptions($options);
     }
 
     public function getEmbedCode(PointOfInterest $entity, string $property = 'mediaUrl'): string
@@ -29,7 +32,7 @@ final class MediaProcessor implements MediaProcessorInterface
                 && $this->propertyAccessor->getValue($entity, $isAudioProperty)) {
                 $processedUrl .= (str_contains($url, '?') ? '&' : '?').http_build_query(['is_audio' => true]);
             }
-            foreach ($this->options['templates'] as $template) {
+            foreach ($this->getTemplates() as $template) {
                 try {
                     if (preg_match($template['pattern'], $processedUrl, $matches)) {
                         $twig = $this->twig->createTemplate($template['template']);
@@ -51,9 +54,39 @@ final class MediaProcessor implements MediaProcessorInterface
         throw new \RuntimeException(sprintf('Could not process media url %s', $url ?? 'null'));
     }
 
+    public function getTemplates(): array
+    {
+        return $this->options['templates'];
+    }
+
     private function processOptions(array $options): array
     {
+        $locale = $this->localeSwitcher->getLocale();
+        $getLocalizedString = function (Options $options, array|string $value) use ($locale): string {
+            if (is_array($value)) {
+                // Use the value for the current locale if defined; otherwise use the first value.
+                $value = (string) ($value[$locale] ?? reset($value));
+            }
+
+            return $value;
+        };
+
         return (new OptionsResolver())
+            ->setRequired('templates')
+            ->setAllowedTypes('templates', 'array')
+            ->setDefault('templates', function (OptionsResolver $resolver) use ($getLocalizedString): void {
+                $resolver
+                    ->setPrototype(true)
+                    ->setRequired('name')
+                    ->setAllowedTypes('name', 'string')
+                    ->setRequired('help')
+                    ->setAllowedTypes('help', ['string', 'array'])
+                    ->setNormalizer('help', $getLocalizedString(...))
+                    ->setRequired('pattern')
+                    ->setAllowedTypes('pattern', 'string')
+                    ->setRequired('template')
+                    ->setAllowedTypes('template', 'string');
+            })
             ->resolve($options);
     }
 }

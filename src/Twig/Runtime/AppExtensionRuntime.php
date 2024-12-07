@@ -25,4 +25,9 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
 
         return null;
     }
+
+    public function getMediaTemplates(): array
+    {
+        return $this->mediaProcessor->getTemplates();
+    }
 }

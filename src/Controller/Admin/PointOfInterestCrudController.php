@@ -36,8 +36,12 @@ class PointOfInterestCrudController extends AbstractCrudController
         yield IdField::new('id', new TranslatableMessage('ID', [], 'admin'))->hideOnForm();
         yield TextField::new('name', new TranslatableMessage('Name', [], 'admin'));
 
-        yield UrlField::new('mediaUrl', new TranslatableMessage('Media URL', [], 'admin'));
+        $mediaUrlLabel = new TranslatableMessage('Media URL', [], 'admin');
+        yield UrlField::new('mediaUrl', $mediaUrlLabel);
         yield BooleanField::new('mediaIsAudio', new TranslatableMessage('Is audio?', [], 'admin'))
+            ->setHelp(new TranslatableMessage('Check if "{media_url}" points to an audio file.', [
+                'media_url' => $mediaUrlLabel,
+            ], 'admin'))
             ->renderAsSwitch(false);
 
         yield TextField::new('subtitles', new TranslatableMessage('Subtitles', [], 'admin'))->setRequired(true)

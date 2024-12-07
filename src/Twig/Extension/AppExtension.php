@@ -12,6 +12,7 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFunction('get_media_embed_code', [AppExtensionRuntime::class, 'getMediaEmbedCode']),
+            new TwigFunction('get_media_templates', [AppExtensionRuntime::class, 'getMediaTemplates']),
         ];
     }
 }

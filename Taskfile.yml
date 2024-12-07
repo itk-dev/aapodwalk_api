@@ -96,3 +96,7 @@ tasks:
     cmds:
       - task: site:update
       - task console -- hautelook:fixtures:load --no-interaction
+
+  update-translations:
+    cmds:
+      - task composer -- update-translations

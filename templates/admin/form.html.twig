@@ -4,13 +4,65 @@
 {% block _PointOfInterest_mediaUrl_widget %}
     {{ block('form_widget') }}
 
-    {% set code = get_media_embed_code(ea.entity.instance) %}
-    {% if code %}
-        <details>
-            <summary>{{ 'Media preview'|trans }}</summary>
-            <pre><code>{{ code|raw }}</code></pre>
-        </details>
-    {% else %}
-        <div class="alert alert-warning">{{ 'Cannot generate media embed code'|trans }}</div>
+    {# Help and info sections to render #}
+    {% set sections = [] %}
+
+    {# Build sections #}
+    {% if value %}
+        {% set body %}
+            {% set code = get_media_embed_code(ea.entity.instance) %}
+            {% if code %}
+                {{ code|raw }}
+            {% else %}
+                <div class="alert alert-warning">{{ 'Cannot generate media embed code'|trans }}</div>
+            {% endif %}
+        {% endset %}
+
+        {% set sections = sections|merge([{
+            header: 'Media preview'|trans,
+            body: body,
+        }]) %}
+    {% endif %}
+
+    {% set templates = get_media_templates() %}
+    {% if templates %}
+        {% set body %}
+            <dl>
+                {% for template in templates %}
+                    <dt>{{ template.name }}</dt>
+                    <dd>{{ template.help|raw }}</dd>
+                {% endfor %}
+            </dl>
+        {% endset %}
+        {% set sections = sections|merge([{
+            header: 'Information on media URLs'|trans,
+            body: body,
+        }]) %}
+    {% endif %}
+
+    {# Render sections #}
+    {% if sections %}
+        {% set parent_id = id~'-sections' %}
+        <div class="media-information {{ parent_id }}">
+            {# @see https://getbootstrap.com/docs/5.3/components/accordion/ #}
+            <div class="accordion" id="{{ parent_id }}">
+                {% for section in sections %}
+                    {% set item_id = parent_id ~ '-section-' ~ loop.index %}
+                    {% set show = false and loop.first and loop.last %}
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <button class="accordion-button {{ not show ? 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ item_id }}" aria-expanded="{{ show ? 'true' : 'false' }}" aria-controls="{{ item_id }}">
+                                {{ section.header }}
+                            </button>
+                        </div>
+                        <div id="{{ item_id }}" class="accordion-collapse collapse {{ show ? 'show' }}" data-bs-parent="#{{ parent_id }}">
+                            <div class="accordion-body">
+                                {{ section.body }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     {% endif %}
 {% endblock %}
