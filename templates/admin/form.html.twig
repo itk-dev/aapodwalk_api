@@ -42,7 +42,7 @@
 
     {# Render sections #}
     {% if sections %}
-        {% set parent_id = id~'-sections' %}
+        {% set parent_id = id ~ '-sections' %}
         <div class="media-information {{ parent_id }}">
             {# @see https://getbootstrap.com/docs/5.3/components/accordion/ #}
             <div class="accordion" id="{{ parent_id }}">

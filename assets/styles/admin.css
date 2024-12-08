@@ -1,0 +1,8 @@
+.media-information {
+	.accordion-header {
+		.accordion-button {
+			font-size: var(--font-size-base);
+			padding: .5em;
+		}
+	}
+}
