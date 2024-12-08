@@ -12,7 +12,9 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 ## [Unreleased]
 
 - [PR-22](https://github.com/itk-dev/aapodwalk_api/pull/22)
-  3164: Added Media URL to points
+  - Added Media URL to points.
+  - Added admin styling.
+  - Normalized `composer.json`
 - [PR-20](https://github.com/itk-dev/aapodwalk_api/pull/20)
   Add location field on point.
 - [PR-21](https://github.com/itk-dev/aapodwalk_api/pull/21)
