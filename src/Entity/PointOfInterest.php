@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PointOfInterestRepository;
 use App\Serializer\EntityNormalizer;
 use App\Trait\BlameableEntity;
+use App\Validator\MediaUrl;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -88,6 +89,7 @@ class PointOfInterest implements BlameableInterface, \JsonSerializable
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Url()]
+    #[MediaUrl]
     #[Groups(['read'])]
     private ?string $mediaUrl = null;
 
