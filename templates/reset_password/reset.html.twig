@@ -4,12 +4,12 @@
 {% block title %}{{ 'Reset your password'|trans }}{% endblock %}
 
 {% block content %}
-    <h1>Reset your password</h1>
+    <h1>{{ 'Reset your password'|trans }}</h1>
 
     {% form_theme resetForm with 'bootstrap_5_layout.html.twig' %}
 
     {{ form_start(resetForm) }}
         {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
+        <button class="btn btn-primary">{{ 'Reset password'|trans }}</button>
     {{ form_end(resetForm) }}
 {% endblock %}
