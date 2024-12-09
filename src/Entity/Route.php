@@ -9,6 +9,7 @@ use App\Repository\RouteRepository;
 use App\Trait\BlameableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
@@ -79,7 +80,8 @@ class Route implements BlameableInterface
     /**
      * @var Collection<int, PointOfInterest>
      */
-    #[ORM\OneToMany(mappedBy: 'route', targetEntity: PointOfInterest::class)]
+    #[ORM\OneToMany(mappedBy: 'route', targetEntity: PointOfInterest::class, cascade: ['persist'], orphanRemoval: true)]
+    #[ORM\OrderBy(['poiOrder' => Order::Ascending->value])]
     private Collection $points;
 
     public function __toString(): string

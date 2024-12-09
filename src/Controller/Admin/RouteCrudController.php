@@ -8,6 +8,7 @@ use App\Field\VichImageField;
 use App\Service\EasyAdminHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -45,17 +46,25 @@ class RouteCrudController extends AbstractCrudController
 
             yield VichImageField::new('imageFile')
                 ->setLabel(new TranslatableMessage('Image', [], 'admin'))
-                ->setRequired(true)
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $attr);
         } else {
             yield VichImageField::new('image');
         }
 
+        yield CollectionField::new('points', new TranslatableMessage('Points', [], 'admin'))
+            ->setEntryIsComplex()
+            ->useEntryCrudForm(PointOfInterestCrudController::class)
+            ->setRequired(true)
+            ->setFormTypeOption('attr', [
+                'add_new_item_label' => new TranslatableMessage('Add new route', [], 'admin'),
+            ])
+            // We need some space for the nested forms.
+            ->setColumns(12)
+        ;
+
         yield AssociationField::new('tags', new TranslatableMessage('Tags', [], 'admin'))->hideOnIndex()->setRequired(true)->setFormTypeOption('by_reference', false)
         ->setHelp(new TranslatableMessage('Tags are used in the frontend to organize the routes.', [], 'admin'));
-        yield AssociationField::new('pointsOfInterest', new TranslatableMessage('Points', [], 'admin'))->hideOnIndex()->setRequired(true)
-            ->setHelp(new TranslatableMessage('Connect points of interest to this podwalk.', [], 'admin'));
 
         yield DateField::new('createdAt', new TranslatableMessage('Created at', [], 'admin'))->hideOnForm();
         yield DateField::new('updatedAt', new TranslatableMessage('Updated at', [], 'admin'))->hideOnForm();

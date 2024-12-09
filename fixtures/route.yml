@@ -6,10 +6,6 @@ App\Entity\Route:
     distance: '3 meter'
     imageFile: <uploadFile(files/pizza-1.jpg)>
     total_duration: '16'
-    pointsOfInterest:
-      - '@pizza_1'
-      - '@pizza_2'
-      - '@pizza_3'
     tags: ['@pizza', '@mad']
     createdBy: '@user'
 
@@ -19,10 +15,5 @@ App\Entity\Route:
     distance: '103 meter'
     imageFile: <uploadFile(files/pizza-1.jpg)>
     total_duration: '25'
-    pointsOfInterest:
-      - '@dokk1'
-      - '@pizza_2'
-      - '@navitas_parkeringskælder'
-      - '@domen'
     tags: ['@mad', '@arkitektur']
     createdBy: '@another-user'

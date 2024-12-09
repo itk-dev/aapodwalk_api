@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Admin\Field\LocationField;
 use App\Entity\PointOfInterest;
 use App\Entity\Role;
+use App\Entity\Route;
 use App\Field\VichImageField;
 use App\Service\EasyAdminHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -33,26 +34,46 @@ class PointOfInterestCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        $route = AssociationField::new('route', new TranslatableMessage('Route', [], 'admin'))
+            ->setRequired(true);
+
+        $position = NumberField::new('poiOrder', new TranslatableMessage('Order', [], 'admin'))
+            ->addCssClass('route-point-position')
+            ->setRequired(false);
+
+        // Check if this controller is being used in a collection.
+        if ($this->getContext()?->getEntity()?->getInstance() instanceof Route) {
+            $route->addCssClass('visually-hidden');
+            $position->addCssClass('visually-hidden');
+        }
+
+        yield $route;
+        yield $position;
+
         yield IdField::new('id', new TranslatableMessage('ID', [], 'admin'))->hideOnForm();
         yield TextField::new('name', new TranslatableMessage('Name', [], 'admin'));
 
         $mediaUrlLabel = new TranslatableMessage('Media URL', [], 'admin');
-        yield UrlField::new('mediaUrl', $mediaUrlLabel);
+        yield UrlField::new('mediaUrl', $mediaUrlLabel)
+            ->setFormTypeOptions([
+                'block_name' => 'mediaUrl',
+            ]);
         yield BooleanField::new('mediaIsAudio', new TranslatableMessage('Is audio?', [], 'admin'))
             ->setHelp(new TranslatableMessage('Check if "{media_url}" points to an audio file.', [
                 'media_url' => $mediaUrlLabel,
             ], 'admin'))
             ->renderAsSwitch(false);
 
-        yield TextField::new('subtitles', new TranslatableMessage('Subtitles', [], 'admin'))->setRequired(true)
-        ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin'));
-        yield NumberField::new('poiOrder', new TranslatableMessage('Order', [], 'admin'))->setRequired(false)
-        ->setHelp(new TranslatableMessage('The order of the interest point.', [], 'admin'));
+        yield TextField::new('subtitles', new TranslatableMessage('Subtitles', [], 'admin'))
+            ->setRequired(true)
+            ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin'));
+
         yield LocationField::new('location', new TranslatableMessage('Location', [], 'admin'))
             ->setRequired(true)
             ->setVirtual(true);
+
         yield NumberField::new('proximityToUnlock', new TranslatableMessage('Proximity to unlock', [], 'admin'))
-        ->setHelp(new TranslatableMessage('The proximity that allows unlocking this point of interest (in m).', [], 'admin'));
+            ->setHelp(new TranslatableMessage('The proximity that allows unlocking this point of interest (in m).', [], 'admin'));
 
         $context = $this->getContext();
         if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && null !== $context) {
@@ -62,7 +83,6 @@ class PointOfInterestCrudController extends AbstractCrudController
             $imageAttr = EasyAdminHelper::getFileInputAttributes($entity, 'imageFile');
             yield VichImageField::new('imageFile')
                 ->setLabel(new TranslatableMessage('Image', [], 'admin'))
-                ->setRequired(true)
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $imageAttr);
         } else {

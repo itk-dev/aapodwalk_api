@@ -15,7 +15,8 @@ abstract class AbstractCrudController extends BaseAbstractCrudController
             ->showEntityActionsInlined()
             ->setAutofocusSearch()
             // https://symfony.com/bundles/EasyAdminBundle/current/design.html#form-field-templates
-            ->setFormThemes(['admin/form.html.twig', '@EasyAdmin/crud/form_theme.html.twig']);
+            // Our form theme extends EaseAdmin's form theme.
+            ->setFormThemes(['admin/form.html.twig']);
     }
 
     public function configureActions(Actions $actions): Actions
