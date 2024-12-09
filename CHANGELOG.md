@@ -11,6 +11,8 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+- [PR-24](https://github.com/itk-dev/aapodwalk_api/pull/24)
+  Route admin
 - [PR-23](https://github.com/itk-dev/aapodwalk_api/pull/23)
   Tidy-up password recovery flow
 - [PR-22](https://github.com/itk-dev/aapodwalk_api/pull/22)

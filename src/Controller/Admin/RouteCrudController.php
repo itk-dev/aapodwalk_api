@@ -45,7 +45,7 @@ class RouteCrudController extends AbstractCrudController
 
             yield VichImageField::new('imageFile')
                 ->setLabel(new TranslatableMessage('Image', [], 'admin'))
-                ->onlyOnForms()
+                ->setRequired(true)
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $attr);
         } else {

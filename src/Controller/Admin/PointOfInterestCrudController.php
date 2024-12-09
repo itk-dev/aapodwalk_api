@@ -62,7 +62,7 @@ class PointOfInterestCrudController extends AbstractCrudController
             $imageAttr = EasyAdminHelper::getFileInputAttributes($entity, 'imageFile');
             yield VichImageField::new('imageFile')
                 ->setLabel(new TranslatableMessage('Image', [], 'admin'))
-                ->onlyOnForms()
+                ->setRequired(true)
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $imageAttr);
         } else {
