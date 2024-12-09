@@ -16,7 +16,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
     name: 'app:user:add',
     description: 'Add user for administrative access',
 )]
-class AddUserCreateCommand extends Command
+class UserAddCommand extends Command
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
