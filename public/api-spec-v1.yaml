@@ -198,8 +198,6 @@ components:
           type: string
         name:
           type: string
-        poiOrder:
-          type: integer
         image:
           description: 'Image Url set by serializer (cf. EntityNormalizer).'
           type:
@@ -270,8 +268,6 @@ components:
           type: string
         name:
           type: string
-        poiOrder:
-          type: integer
         image:
           description: 'Image Url set by serializer (cf. EntityNormalizer).'
           type:
@@ -325,16 +321,16 @@ components:
           type:
             - string
             - 'null'
-        pointsOfInterest:
-          type: array
-          items:
-            $ref: '#/components/schemas/PointOfInterest-read'
         tags:
           type: array
           items:
             $ref: '#/components/schemas/Tag-read'
         totalDuration:
           type: string
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/PointOfInterest-read'
     Route.jsonld-read:
       type: object
       description: ''
@@ -376,16 +372,16 @@ components:
           type:
             - string
             - 'null'
-        pointsOfInterest:
-          type: array
-          items:
-            $ref: '#/components/schemas/PointOfInterest.jsonld-read'
         tags:
           type: array
           items:
             $ref: '#/components/schemas/Tag.jsonld-read'
         totalDuration:
           type: string
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/PointOfInterest.jsonld-read'
     Tag-read:
       type: object
       description: ''

@@ -82,6 +82,7 @@ class Route implements BlameableInterface
      */
     #[ORM\OneToMany(mappedBy: 'route', targetEntity: PointOfInterest::class, cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['poiOrder' => Order::Ascending->value])]
+    #[Groups(['read'])]
     private Collection $points;
 
     public function __toString(): string
