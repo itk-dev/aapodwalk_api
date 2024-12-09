@@ -92,3 +92,13 @@ AssetMapper](https://symfony.com/doc/current/frontend/asset_mapper.html#can-i-li
 See [Serving Assets in dev vs
 prod](https://symfony.com/doc/current/frontend/asset_mapper.html#serving-assets-in-dev-vs-prod) for details on how to
 handle assets for the `prod` environment.
+
+## Commands
+
+We use [Console Commands](https://symfony.com/doc/current/console.html) for command in the console.
+
+List the app commands with
+
+``` shell
+task console -- list app
+```

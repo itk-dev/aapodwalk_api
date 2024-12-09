@@ -2,24 +2,24 @@
 
 namespace App\Command;
 
+use App\Entity\Role;
 use App\Repository\UserRepository;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsCommand(
-    name: 'app:user:set-password',
-    description: 'Set password for user',
+    name: 'app:user:roles',
+    description: 'Manage roles for user',
 )]
-class UserSetPasswordCommand extends Command
+class UserRolesCommand extends Command
 {
     public function __construct(
         private readonly UserRepository $userRepository,
-        private readonly UserPasswordHasherInterface $passwordHasher,
     ) {
         parent::__construct();
     }
@@ -27,7 +27,8 @@ class UserSetPasswordCommand extends Command
     protected function configure(): void
     {
         $this->addArgument('email', InputArgument::REQUIRED, 'Username')
-            ->addArgument('password', InputArgument::OPTIONAL, 'Password');
+            ->addOption('add', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Add role')
+            ->addOption('remove', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Add role');
     }
 
     /**
@@ -45,14 +46,28 @@ class UserSetPasswordCommand extends Command
             return Command::FAILURE;
         }
 
-        $password = $input->getArgument('password');
-        while (empty(trim($password ?? ''))) {
-            $password = $io->ask('Password?');
-        }
-        $hashedPassword = $this->passwordHasher->hashPassword($user, $password);
-        $user->setPassword($hashedPassword);
+        $roles = $user->getRoles();
+        $io->writeln(sprintf('Roles: %s', implode(', ', $roles)));
 
+        $rolesToAdd = [];
+        foreach ($input->getOption('add') as $role) {
+            $rolesToAdd[] = Role::from($role)->value;
+        }
+
+        $rolesToRemove = [];
+        foreach ($input->getOption('remove') as $role) {
+            $rolesToRemove[] = Role::from($role)->value;
+        }
+
+        $roles = array_diff(
+            array_merge($roles, $rolesToAdd),
+            $rolesToRemove
+        );
+
+        $user->setRoles($roles);
         $this->userRepository->save($user, true);
+
+        $io->writeln(sprintf('Roles: %s', implode(', ', $roles)));
 
         return Command::SUCCESS;
     }
