@@ -13,12 +13,12 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 - [PR-23](https://github.com/itk-dev/aapodwalk_api/pull/23)
   Tidy-up password recovery flow
-- [PR-21](https://github.com/itk-dev/aapodwalk_api/pull/21)
-  Updated API
 - [PR-22](https://github.com/itk-dev/aapodwalk_api/pull/22)
   - Added Media URL to points.
   - Added admin styling.
   - Normalized `composer.json`
+- [PR-21](https://github.com/itk-dev/aapodwalk_api/pull/21)
+  Updated API
 - [PR-20](https://github.com/itk-dev/aapodwalk_api/pull/20)
   Add location field on point.
 - [PR-16](https://github.com/itk-dev/aapodwalk_api/pull/16)
