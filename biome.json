@@ -1,0 +1,14 @@
+{
+	"files": {
+		"ignore": [
+			"assets/vendor/*",
+			"assets/controllers.json",
+			"composer.json",
+			"public/assets/*",
+			"public/bundles/*",
+			"public/api-spec-v1.*",
+			"var/cache/*",
+			"vendor/*"
+		]
+	}
+}

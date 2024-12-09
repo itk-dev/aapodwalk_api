@@ -81,3 +81,14 @@ open translations/admin.da.xlf
 To help the [translation
 extractor](https://symfony.com/doc/current/translation.html#extracting-translation-contents-and-updating-catalogs-automatically)
 find some translations, we have some translation expressions in `templates/admin/_messages.html.twig`.
+
+## Assets
+
+We use [Symfony's AssetMapper](https://symfony.com/doc/current/frontend/asset_mapper.html) for asset management.
+Furthermore, [as suggested by
+AssetMapper](https://symfony.com/doc/current/frontend/asset_mapper.html#can-i-lint-and-format-my-code), we use
+[BiomeJsBundle](https://github.com/Kocal/BiomeJsBundle) for linting assets.
+
+See [Serving Assets in dev vs
+prod](https://symfony.com/doc/current/frontend/asset_mapper.html#serving-assets-in-dev-vs-prod) for details on how to
+handle assets for the `prod` environment.

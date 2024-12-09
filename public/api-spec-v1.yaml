@@ -201,10 +201,7 @@ components:
         poiOrder:
           type: integer
         image:
-          type:
-            - string
-            - 'null'
-        podcast:
+          description: 'Image Url set by serializer (cf. EntityNormalizer).'
           type:
             - string
             - 'null'
@@ -216,6 +213,28 @@ components:
           type:
             - integer
             - 'null'
+        mediaUrl:
+          format: uri
+          externalDocs:
+            url: 'https://schema.org/url'
+          type: string
+        mediaIsAudio:
+          default: true
+          example: true
+          type:
+            - boolean
+            - 'null'
+        mediaEmbedCode:
+          description: 'Media embed code set by serializer (cf. EntityNormalizer).'
+          type:
+            - string
+            - 'null'
+      required:
+        - name
+        - latitude
+        - longitude
+        - proximityToUnlock
+        - mediaUrl
     PointOfInterest.jsonld-read:
       type: object
       description: ''
@@ -254,10 +273,7 @@ components:
         poiOrder:
           type: integer
         image:
-          type:
-            - string
-            - 'null'
-        podcast:
+          description: 'Image Url set by serializer (cf. EntityNormalizer).'
           type:
             - string
             - 'null'
@@ -269,6 +285,28 @@ components:
           type:
             - integer
             - 'null'
+        mediaUrl:
+          format: uri
+          externalDocs:
+            url: 'https://schema.org/url'
+          type: string
+        mediaIsAudio:
+          default: true
+          example: true
+          type:
+            - boolean
+            - 'null'
+        mediaEmbedCode:
+          description: 'Media embed code set by serializer (cf. EntityNormalizer).'
+          type:
+            - string
+            - 'null'
+      required:
+        - name
+        - latitude
+        - longitude
+        - proximityToUnlock
+        - mediaUrl
     Route-read:
       type: object
       description: ''

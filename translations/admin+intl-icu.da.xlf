@@ -177,10 +177,6 @@
         <source>Proximity to unlock</source>
         <target state="translated">Nærhed for at kunne afspille</target>
       </trans-unit>
-      <trans-unit id="X08JJwR" resname="Podcast">
-        <source>Podcast</source>
-        <target state="translated">Podcast</target>
-      </trans-unit>
       <trans-unit id="CpWwtOT" resname="Routes">
         <source>Routes</source>
         <target state="translated">Ruter</target>
@@ -240,6 +236,30 @@
       <trans-unit id="c43bAM8" resname="{value} is not a valid number">
         <source>{value} is not a valid number</source>
         <target state="translated">{value} er ikke et gyldigt tal</target>
+      </trans-unit>
+      <trans-unit id="MjwU7iy" resname="Media URL">
+        <source>Media URL</source>
+        <target state="translated">Medie-url</target>
+      </trans-unit>
+      <trans-unit id="E.HTA7V" resname="Is audio?">
+        <source>Is audio?</source>
+        <target state="translated">Er lyd?</target>
+      </trans-unit>
+      <trans-unit id="ptuJUXQ" resname="Media preview">
+        <source>Media preview</source>
+        <target state="translated">Forhåndsvisning</target>
+      </trans-unit>
+      <trans-unit id="sxxnmbY" resname="Cannot generate media embed code">
+        <source>Cannot generate media embed code</source>
+        <target state="translated">Indlejringskode kan ikke genereres</target>
+      </trans-unit>
+      <trans-unit id="UNl3J6g" resname="Information on media URLs">
+        <source>Information on media URLs</source>
+        <target state="translated">Information om medie-url’er</target>
+      </trans-unit>
+      <trans-unit id="CPIQaaz" resname="Check if &quot;{media_url}&quot; points to an audio file.">
+        <source>Check if "{media_url}" points to an audio file.</source>
+        <target state="translated">Marker hvis "{media_url}" peger på en lydfil.</target>
       </trans-unit>
     </body>
   </file>

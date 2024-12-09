@@ -36,8 +36,20 @@ jobs:
           set -a && source .env && set +a
           APP_ENV=prod composer install --no-dev -o
 
+  composer-normalize:
+    name: composer-normalize
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          docker network create frontend
+          docker compose run --user root --rm phpfpm composer install
+          docker compose run --user root --rm phpfpm composer normalize
+
   php-cs-fixer:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -72,7 +84,7 @@ jobs:
         run: phpdbg -qrr ./vendor/bin/php-cs-fixer fix --dry-run
 
   twig-cs-fixer:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -251,12 +263,10 @@ jobs:
         run: APP_ENV=prod php bin/console doctrine:schema:validate
 
   translations:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        php: [ '8.3' ]
-    name: Check translations are up to date (${{ matrix.php}})
+    name: Check translations are up to date
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -268,3 +278,15 @@ jobs:
       - name: Check for changes in translation files
         run: |
           git diff --diff-filter=ACMRT --exit-code translations
+
+  assets:
+    runs-on: ubuntu-latest
+    name: Lint assets
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run Biome
+        run: |
+          docker network create frontend
+          docker compose run --rm --user root phpfpm composer install --no-scripts
+          docker compose run --rm --user root phpfpm bin/console biomejs:ci .

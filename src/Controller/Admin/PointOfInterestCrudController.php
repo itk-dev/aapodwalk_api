@@ -5,15 +5,16 @@ namespace App\Controller\Admin;
 use App\Admin\Field\LocationField;
 use App\Entity\PointOfInterest;
 use App\Entity\Role;
-use App\Field\VichFileField;
 use App\Field\VichImageField;
 use App\Service\EasyAdminHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use Symfony\Component\Translation\TranslatableMessage;
 
 class PointOfInterestCrudController extends AbstractCrudController
@@ -34,6 +35,15 @@ class PointOfInterestCrudController extends AbstractCrudController
     {
         yield IdField::new('id', new TranslatableMessage('ID', [], 'admin'))->hideOnForm();
         yield TextField::new('name', new TranslatableMessage('Name', [], 'admin'));
+
+        $mediaUrlLabel = new TranslatableMessage('Media URL', [], 'admin');
+        yield UrlField::new('mediaUrl', $mediaUrlLabel);
+        yield BooleanField::new('mediaIsAudio', new TranslatableMessage('Is audio?', [], 'admin'))
+            ->setHelp(new TranslatableMessage('Check if "{media_url}" points to an audio file.', [
+                'media_url' => $mediaUrlLabel,
+            ], 'admin'))
+            ->renderAsSwitch(false);
+
         yield TextField::new('subtitles', new TranslatableMessage('Subtitles', [], 'admin'))->setRequired(true)
         ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin'));
         yield NumberField::new('poiOrder', new TranslatableMessage('Order', [], 'admin'))->setRequired(false)
@@ -55,18 +65,9 @@ class PointOfInterestCrudController extends AbstractCrudController
                 ->onlyOnForms()
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $imageAttr);
-
-            $podcastAttr = EasyAdminHelper::getFileInputAttributes($entity, 'podcastFile');
-            yield VichFileField::new('podcastFile')
-                ->setLabel(new TranslatableMessage('Podcast', [], 'admin'))
-                ->onlyOnForms()
-                ->setFormTypeOption('allow_delete', false)
-                ->setFormTypeOption('attr', $podcastAttr);
         } else {
             yield VichImageField::new('image')
                 ->setLabel(new TranslatableMessage('Image', [], 'admin'));
-            yield VichFileField::new('podcast')
-                ->setLabel(new TranslatableMessage('Podcast', [], 'admin'));
         }
 
         yield DateField::new('createdAt', new TranslatableMessage('Created at', [], 'admin'))->hideOnForm();

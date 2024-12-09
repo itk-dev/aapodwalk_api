@@ -75,6 +75,7 @@ tasks:
     cmds:
       - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md' --fix
       - task composer -- coding-standards-apply
+      - task console -- biomejs:check . --write
 
   coding-standards:check:
     desc: "Apply coding standards"
@@ -83,6 +84,7 @@ tasks:
       - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md'
       - task composer -- coding-standards-check
       - docker run --volume "$PWD:/code" --rm pipelinecomponents/yamllint yamllint fixtures/
+      - task console -- biomejs:check .
 
   # prettier:
   #   desc: "Run Prettier on tests source"
@@ -96,3 +98,7 @@ tasks:
     cmds:
       - task: site:update
       - task console -- hautelook:fixtures:load --no-interaction
+
+  update-translations:
+    cmds:
+      - task composer -- update-translations
