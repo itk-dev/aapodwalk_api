@@ -4,6 +4,7 @@
 {% block title %}{{ 'Password Reset Email Sent'|trans }}{% endblock %}
 
 {% block content %}
+    <h1>{{ 'Password Reset Email Sent'|trans }}</h1>
     <p>
         {{ 'If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.'|trans }}
         {{ 'This link will expire in {expire_info}.'|trans({expire_info: resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle')}) }}
