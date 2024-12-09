@@ -68,11 +68,6 @@ class Route implements BlameableInterface
     #[SerializedName('image')]
     public ?string $imageUrl = null;
 
-    #[ORM\ManyToMany(targetEntity: PointOfInterest::class, inversedBy: 'routes')]
-    #[ORM\OrderBy(['poiOrder' => 'ASC'])]
-    #[Groups(['read'])]
-    private Collection $pointsOfInterest;
-
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'routes')]
     #[Groups(['read'])]
     private Collection $tags;
@@ -81,6 +76,12 @@ class Route implements BlameableInterface
     #[Groups(['read'])]
     private ?string $totalDuration = null;
 
+    /**
+     * @var Collection<int, PointOfInterest>
+     */
+    #[ORM\OneToMany(mappedBy: 'route', targetEntity: PointOfInterest::class)]
+    private Collection $points;
+
     public function __toString(): string
     {
         return $this->name ?? '';
@@ -88,8 +89,8 @@ class Route implements BlameableInterface
 
     public function __construct()
     {
-        $this->pointsOfInterest = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->points = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -141,30 +142,6 @@ class Route implements BlameableInterface
     public function setImage(?string $image): static
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, PointOfInterest>
-     */
-    public function getPointsOfInterest(): Collection
-    {
-        return $this->pointsOfInterest;
-    }
-
-    public function addPointsOfInterest(PointOfInterest $pointsOfInterest): static
-    {
-        if (!$this->pointsOfInterest->contains($pointsOfInterest)) {
-            $this->pointsOfInterest->add($pointsOfInterest);
-        }
-
-        return $this;
-    }
-
-    public function removePointsOfInterest(PointOfInterest $pointsOfInterest): static
-    {
-        $this->pointsOfInterest->removeElement($pointsOfInterest);
 
         return $this;
     }
@@ -229,6 +206,36 @@ class Route implements BlameableInterface
     public function setTotalDuration(string $totalDuration): static
     {
         $this->totalDuration = $totalDuration;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PointOfInterest>
+     */
+    public function getPoints(): Collection
+    {
+        return $this->points;
+    }
+
+    public function addPoint(PointOfInterest $point): static
+    {
+        if (!$this->points->contains($point)) {
+            $this->points->add($point);
+            $point->setRoute($this);
+        }
+
+        return $this;
+    }
+
+    public function removePoint(PointOfInterest $point): static
+    {
+        if ($this->points->removeElement($point)) {
+            // set the owning side to null (unless already changed)
+            if ($point->getRoute() === $this) {
+                $point->setRoute(null);
+            }
+        }
 
         return $this;
     }
