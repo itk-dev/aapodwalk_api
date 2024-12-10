@@ -29,6 +29,12 @@ task composer-install
 task console -- dbal:run-sql "SELECT NOW(), DATABASE()"
 ```
 
+and that you can send email (used to unforget passwords):
+
+``` shell
+task console -- mailer:test
+```
+
 If successful, install and update site:
 
 ``` shell
