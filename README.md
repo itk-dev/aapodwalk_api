@@ -1,5 +1,7 @@
 # Aapodwalk api
 
+See [Production](docs/Production.md) for information on how to deploy for production.
+
 ## Development
 
 Getting started:
