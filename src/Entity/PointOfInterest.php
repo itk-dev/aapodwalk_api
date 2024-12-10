@@ -6,10 +6,10 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\PointOfInterestRepository;
 use App\Serializer\EntityNormalizer;
 use App\Trait\BlameableEntity;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Validator\MediaUrl;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -45,7 +45,7 @@ class PointOfInterest implements BlameableInterface, \JsonSerializable
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: false)]
-    #[Groups(['read'])]
+    #[Gedmo\SortablePosition]
     private ?int $poiOrder = null;
 
     #[ORM\Column(length: 255)]
@@ -81,9 +81,6 @@ class PointOfInterest implements BlameableInterface, \JsonSerializable
     #[Groups(['read'])]
     private ?string $longitude = null;
 
-    #[ORM\ManyToMany(targetEntity: Route::class, mappedBy: 'pointsOfInterest')]
-    private Collection $routes;
-
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank]
     #[Groups(['read'])]
@@ -92,6 +89,7 @@ class PointOfInterest implements BlameableInterface, \JsonSerializable
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Url()]
+    #[MediaUrl]
     #[Groups(['read'])]
     private ?string $mediaUrl = null;
 
@@ -107,10 +105,10 @@ class PointOfInterest implements BlameableInterface, \JsonSerializable
     #[Groups(['read'])]
     public ?string $mediaEmbedCode = null;
 
-    public function __construct()
-    {
-        $this->routes = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'points')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Gedmo\SortableGroup]
+    private ?Route $route = null;
 
     public function __toString(): string
     {
@@ -195,33 +193,6 @@ class PointOfInterest implements BlameableInterface, \JsonSerializable
     }
 
     /**
-     * @return Collection<int, Route>
-     */
-    public function getRoutes(): Collection
-    {
-        return $this->routes;
-    }
-
-    public function addRoute(Route $route): static
-    {
-        if (!$this->routes->contains($route)) {
-            $this->routes->add($route);
-            $route->addPointsOfInterest($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRoute(Route $route): static
-    {
-        if ($this->routes->removeElement($route)) {
-            $route->removePointsOfInterest($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
      * of 'UploadedFile' is injected into this setter to trigger the update. If this
      * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
@@ -299,5 +270,17 @@ class PointOfInterest implements BlameableInterface, \JsonSerializable
         return [
             'title' => $this->getName(),
         ];
+    }
+
+    public function getRoute(): ?Route
+    {
+        return $this->route;
+    }
+
+    public function setRoute(?Route $route): static
+    {
+        $this->route = $route;
+
+        return $this;
     }
 }

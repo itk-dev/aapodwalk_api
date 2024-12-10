@@ -13,10 +13,6 @@
         <source>Tags are used in the frontend to organize the routes.</source>
         <target>Tags are used in the frontend to organize the routes.</target>
       </trans-unit>
-      <trans-unit id="RBV8Ue5" resname="Connect points of interest to this podwalk.">
-        <source>Connect points of interest to this podwalk.</source>
-        <target>Connect points of interest to this podwalk.</target>
-      </trans-unit>
       <trans-unit id="P9_Y7yU" resname="Created by">
         <source>Created by</source>
         <target>Created by</target>
@@ -28,10 +24,6 @@
       <trans-unit id="mbGC2Vh" resname="A text version of the podcast, for people with hearing disabilities.">
         <source>A text version of the podcast, for people with hearing disabilities.</source>
         <target>A text version of the podcast, for people with hearing disabilities.</target>
-      </trans-unit>
-      <trans-unit id="gM4BSh." resname="The order of the interest point.">
-        <source>The order of the interest point.</source>
-        <target>The order of the interest point.</target>
       </trans-unit>
       <trans-unit id="bbzr4x2" resname="The proximity that allows unlocking this point of interest (in m).">
         <source>The proximity that allows unlocking this point of interest (in m).</source>
@@ -264,6 +256,10 @@
       <trans-unit id="CPIQaaz" resname="Check if &quot;{media_url}&quot; points to an audio file.">
         <source>Check if "{media_url}" points to an audio file.</source>
         <target>Check if "{media_url}" points to an audio file.</target>
+      </trans-unit>
+      <trans-unit id="bg45Vuq" resname="Add new route">
+        <source>Add new route</source>
+        <target>Add new route</target>
       </trans-unit>
     </body>
   </file>

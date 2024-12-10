@@ -15,4 +15,9 @@ interface MediaProcessorInterface
      * Get all templates.
      */
     public function getTemplates(): array;
+
+    /**
+     * Get template by URL.
+     */
+    public function getTemplateByUrl(string $url): ?array;
 }

@@ -1,68 +1,170 @@
 {# https://symfony.com/bundles/EasyAdminBundle/current/design.html#form-field-templates #}
+{% extends '@!EasyAdmin/crud/form_theme.html.twig' %}
+
 {% trans_default_domain 'admin' %}
 
-{% block _PointOfInterest_mediaUrl_widget %}
-    {{ block('form_widget') }}
+{% block form_widget_simple %}
+    {{ parent() }}
 
-    {# Help and info sections to render #}
-    {% set sections = [] %}
+    {% if name == 'mediaUrl' and form.parent.vars.value.mediaUrl is defined %}
+        {% set instance = form.parent.vars.value %}
 
-    {# Build sections #}
-    {% if value %}
-        {% set body %}
-            {% set code = get_media_embed_code(ea.entity.instance) %}
-            {% if code %}
-                {{ code|raw }}
-            {% else %}
-                <div class="alert alert-warning">{{ 'Cannot generate media embed code'|trans }}</div>
-            {% endif %}
-        {% endset %}
+        {# Help and info sections to render #}
+        {% set sections = [] %}
 
-        {% set sections = sections|merge([{
-            header: 'Media preview'|trans,
-            body: body,
-        }]) %}
-    {% endif %}
+        {# Build sections #}
+        {% if value %}
+            {% set body %}
+                {% set code = get_media_embed_code(instance) %}
+                {% if code %}
+                    {{ code|raw }}
+                {% else %}
+                    <div class="alert alert-warning">{{ 'Cannot generate media embed code'|trans }}</div>
+                {% endif %}
+            {% endset %}
 
-    {% set templates = get_media_templates() %}
-    {% if templates %}
-        {% set body %}
-            <dl>
-                {% for template in templates %}
-                    <dt>{{ template.name }}</dt>
-                    <dd>{{ template.help|raw }}</dd>
-                {% endfor %}
-            </dl>
-        {% endset %}
-        {% set sections = sections|merge([{
-            header: 'Information on media URLs'|trans,
-            body: body,
-        }]) %}
-    {% endif %}
+            {% set sections = sections|merge([{
+                header: 'Media preview'|trans,
+                body: body,
+            }]) %}
+        {% endif %}
 
-    {# Render sections #}
-    {% if sections %}
-        {% set parent_id = id ~ '-sections' %}
-        <div class="media-information {{ parent_id }}">
-            {# @see https://getbootstrap.com/docs/5.3/components/accordion/ #}
-            <div class="accordion" id="{{ parent_id }}">
-                {% for section in sections %}
-                    {% set item_id = parent_id ~ '-section-' ~ loop.index %}
-                    {% set show = false and loop.first and loop.last %}
-                    <div class="accordion-item">
-                        <div class="accordion-header">
-                            <button class="accordion-button {{ not show ? 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ item_id }}" aria-expanded="{{ show ? 'true' : 'false' }}" aria-controls="{{ item_id }}">
-                                {{ section.header }}
-                            </button>
-                        </div>
-                        <div id="{{ item_id }}" class="accordion-collapse collapse {{ show ? 'show' }}" data-bs-parent="#{{ parent_id }}">
-                            <div class="accordion-body">
-                                {{ section.body }}
+        {% set templates = get_media_templates() %}
+        {% if templates %}
+            {% set body %}
+                <dl>
+                    {% for template in templates %}
+                        <dt>{{ template.name }}</dt>
+                        <dd>{{ template.help|raw }}</dd>
+                    {% endfor %}
+                </dl>
+            {% endset %}
+            {% set sections = sections|merge([{
+                header: 'Information on media URLs'|trans,
+                body: body,
+            }]) %}
+        {% endif %}
+
+        {# Render sections #}
+        {% if sections %}
+            {% set parent_id = id ~ '-sections' %}
+            <div class="media-information {{ parent_id }}">
+                {# @see https://getbootstrap.com/docs/5.3/components/accordion/ #}
+                <div class="accordion" id="{{ parent_id }}">
+                    {% for section in sections %}
+                        {% set item_id = parent_id ~ '-section-' ~ loop.index %}
+                        {% set show = false and loop.first and loop.last %}
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <button class="accordion-button {{ not show ? 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ item_id }}" aria-expanded="{{ show ? 'true' : 'false' }}" aria-controls="{{ item_id }}">
+                                    {{ section.header }}
+                                </button>
+                            </div>
+                            <div id="{{ item_id }}" class="accordion-collapse collapse {{ show ? 'show' }}" data-bs-parent="#{{ parent_id }}">
+                                <div class="accordion-body">
+                                    {{ section.body }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
-        </div>
+        {% endif %}
     {% endif %}
+{% endblock %}
+
+{% block _Route_points_widget %}
+    {# Copied from collection_widget #}
+    {# Get add_new_item_label from `attr` and unset it to prevent it from ending up in the final rendered output #}
+    {% set add_new_item_label = attr.add_new_item_label|default('action.add_new_item'|trans({}, 'EasyAdminBundle')) %}
+    {% set attr = attr|filter((v, k) => k != 'add_new_item_label') %}
+
+    {# the "is iterable" check is needed because if an object implements __toString() and
+        returns an empty string, "is empty" returns true even if it's not a collection #}
+    {% set isEmptyCollection = value is null or (value is iterable and value is empty) %}
+    {% set is_array_field = 'EasyCorp\\Bundle\\EasyAdminBundle\\Field\\ArrayField' == form.vars.ea_vars.field.fieldFqcn|default(false) %}
+
+    <div class="ea-form-collection-items">
+        {% if isEmptyCollection %}
+            {{ block('empty_collection') }}
+        {% elseif is_array_field %}
+            {{ block('form_widget') }}
+        {% else %}
+            <div class="accordion">
+                {{ block('form_widget') }}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if isEmptyCollection or form.vars.prototype is defined %}
+        {% set attr = attr|merge({'data-empty-collection': block('empty_collection')}) %}
+    {% endif %}
+
+    {% if allow_add|default(false) and not disabled %}
+        <button type="button" class="btn btn-link field-collection-add-button">
+            <twig:ea:Icon name="internal:plus" class="pr-1" />
+            {{ add_new_item_label }}
+        </button>
+    {% endif %}
+{% endblock %}
+
+{% block _Route_points_entry_row %}
+    {# Copied from collection_entry_row #}
+    {% set is_array_field = 'EasyCorp\\Bundle\\EasyAdminBundle\\Field\\ArrayField' == form_parent(form).vars.ea_vars.field.fieldFqcn|default(false) %}
+    {% set is_complex = form_parent(form).vars.ea_vars.field.customOptions.get('entryIsComplex') ?? false %}
+    {% set to_string_method = form_parent(form).vars.ea_vars.field.customOptions.get('entryToStringMethod') ?? null %}
+    {% set allows_deleting_items = form_parent(form).vars.allow_delete|default(false) %}
+    {% set render_expanded = not form.vars.valid or form_parent(form).vars.ea_vars.field.customOptions.get('renderExpanded')|default(false) %}
+    {% set delete_item_button %}
+        <button type="button" class="btn btn-link btn-link-danger field-collection-delete-button"
+                title="{{ 'action.remove_item'|trans({}, 'EasyAdminBundle') }}">
+            <twig:ea:Icon name="internal:delete" />
+        </button>
+    {% endset %}
+    {% set move_item_up_button %}
+        <button type="button" class="btn btn-link field-collection-move-up"
+                title="{{ 'action.move_up'|trans({}, 'EasyAdminBundle') }}">
+            <twig:ea:Icon name="internal:sort-arrow-up" />
+        </button>
+    {% endset %}
+    {% set move_item_down_button %}
+        <button type="button" class="btn btn-link field-collection-move-down"
+                title="{{ 'action.move_down'|trans({}, 'EasyAdminBundle') }}">
+            <twig:ea:Icon name="internal:sort-arrow-down" />
+        </button>
+    {% endset %}
+
+    <div class="field-collection-item {{ is_complex ? 'field-collection-item-complex' }} {{ not form.vars.valid ? 'is-invalid' }}" data-sortable="true">
+        {% if is_array_field|default(false) %}
+            {{ form_label(form) }}
+            {{ form_widget(form) }}
+            {% if allows_deleting_items and not disabled %}
+                {{ delete_item_button }}
+            {% endif %}
+        {% else %}
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button {{ render_expanded ? '' : 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ id }}-contents">
+                        <twig:ea:Icon name="internal:chevron-right" class="form-collection-item-collapse-marker" />
+                        {{ value|ea_as_string(to_string_method) }}
+                    </button>
+
+                    <div class="accordion-actions">
+                        {{ move_item_up_button }}
+                        {{ move_item_down_button }}
+                        {% if allows_deleting_items and not disabled %}
+                            {{ delete_item_button }}
+                        {% endif %}
+                    </div>
+                </h2>
+                <div id="{{ id }}-contents" class="accordion-collapse collapse {{ render_expanded ? 'show' }}">
+                    <div class="accordion-body">
+                        <div class="row">
+                            {{ form_widget(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

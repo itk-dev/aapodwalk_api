@@ -17,6 +17,7 @@ App\Entity\PointOfInterest:
     mediaIsAudio: true
     latitude: 56.1692189111948
     longitude: 10.21696426741526
+    route: '@route_pizza'
     poiOrder: 1
     createdBy: '@user'
     proximityToUnlock: 10
@@ -38,6 +39,7 @@ App\Entity\PointOfInterest:
     mediaIsAudio: false
     latitude: 56.15820599988522
     longitude: 10.212120454729606
+    route: '@route_havnen'
     poiOrder: 2
     createdBy: '@another-user'
     proximityToUnlock: 10
@@ -59,6 +61,7 @@ App\Entity\PointOfInterest:
     mediaIsAudio: true
     latitude: 56.1646496903666
     longitude: 10.222745588704443
+    route: '@route_pizza'
     poiOrder: 3
     createdBy: '@user'
     proximityToUnlock: 10
@@ -80,6 +83,7 @@ App\Entity\PointOfInterest:
     mediaIsAudio: true
     latitude: 56.15374103214133
     longitude: 10.214433061656008
+    route: '@route_havnen'
     poiOrder: 4
     createdBy: '@another-user'
     proximityToUnlock: 10
@@ -101,6 +105,7 @@ App\Entity\PointOfInterest:
     mediaIsAudio: true
     latitude: 56.159568048896006
     longitude: 10.21654905528191
+    route: '@route_havnen'
     poiOrder: 5
     createdBy: '@user'
     proximityToUnlock: 10
@@ -122,6 +127,7 @@ App\Entity\PointOfInterest:
     mediaIsAudio: true
     latitude: 56.15826675157271
     longitude: 10.21855490960478
+    route: '@route_havnen'
     poiOrder: 6
     createdBy: '@another-user'
     proximityToUnlock: 10

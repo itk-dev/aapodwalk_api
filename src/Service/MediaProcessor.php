@@ -32,19 +32,17 @@ final class MediaProcessor implements MediaProcessorInterface
                 && $this->propertyAccessor->getValue($entity, $isAudioProperty)) {
                 $processedUrl .= (str_contains($url, '?') ? '&' : '?').http_build_query(['is_audio' => true]);
             }
-            foreach ($this->getTemplates() as $template) {
+            if ($template = $this->getTemplateByUrl($processedUrl)) {
                 try {
-                    if (preg_match($template['pattern'], $processedUrl, $matches)) {
-                        $twig = $this->twig->createTemplate($template['template']);
-                        $context = $matches + [
-                            'url' => $url,
-                        ];
-                        if ($entity instanceof \JsonSerializable) {
-                            $context += $entity->jsonSerialize();
-                        }
-
-                        return $twig->render($context);
+                    $twig = $this->twig->createTemplate($template['template']);
+                    $context = ($template['matches'] ?? []) + [
+                        'url' => $url,
+                    ];
+                    if ($entity instanceof \JsonSerializable) {
+                        $context += $entity->jsonSerialize();
                     }
+
+                    return $twig->render($context);
                 } catch (\Throwable $exception) {
                     throw $exception;
                 }
@@ -57,6 +55,20 @@ final class MediaProcessor implements MediaProcessorInterface
     public function getTemplates(): array
     {
         return $this->options['templates'];
+    }
+
+    public function getTemplateByUrl(string $url): ?array
+    {
+        foreach ($this->getTemplates() as $template) {
+            try {
+                if (preg_match($template['pattern'], $url, $matches)) {
+                    return $template + ['matches' => $matches];
+                }
+            } catch (\Throwable $exception) {
+            }
+        }
+
+        return null;
     }
 
     private function processOptions(array $options): array

@@ -25,9 +25,9 @@ class LocationType extends AbstractType
         ;
     }
 
-    public function implodeCoordinates(array $coordinates): string
+    public function implodeCoordinates(?array $coordinates): string
     {
-        return implode(', ', $coordinates);
+        return implode(', ', $coordinates ?? []);
     }
 
     public function explodeCoordinates(string $coordinates): array
@@ -38,7 +38,7 @@ class LocationType extends AbstractType
         }
 
         foreach ($values as $value) {
-            if (!preg_match('/^-?\d+\.\d+$/', $value)) {
+            if (!preg_match('/^-?\d+(\.\d+)?$/', $value)) {
                 throw new TransformationFailedException(invalidMessage: '{value} is not a valid number', invalidMessageParameters: ['value' => $value, 'translation_domain' => 'admin']);
             }
         }

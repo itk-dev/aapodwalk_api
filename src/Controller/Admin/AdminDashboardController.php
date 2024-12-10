@@ -45,7 +45,8 @@ class AdminDashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToCrud(new TranslatableMessage('Routes', [], 'admin'), 'fa-solid fa-spaghetti-monster-flying', RouteWithPOI::class);
         yield MenuItem::linkToCrud(new TranslatableMessage('Tags', [], 'admin'), 'fa-solid fa-cloud-meatball', Tag::class);
-        yield MenuItem::linkToCrud(new TranslatableMessage('Points of interest', [], 'admin'), 'fas fa-ghost', PointOfInterest::class);
+        yield MenuItem::linkToCrud(new TranslatableMessage('Points of interest', [], 'admin'), 'fas fa-ghost', PointOfInterest::class)
+            ->setPermission(Role::ADMIN->value);
         yield MenuItem::linkToCrud(new TranslatableMessage('Users', [], 'admin'), 'fas fa-user', User::class)
             ->setPermission(Role::USER_ADMIN->value);
 

@@ -428,9 +428,6 @@
                     "name": {
                         "type": "string"
                     },
-                    "poiOrder": {
-                        "type": "integer"
-                    },
                     "image": {
                         "description": "Image Url set by serializer (cf. EntityNormalizer).",
                         "type": [
@@ -531,9 +528,6 @@
                     "name": {
                         "type": "string"
                     },
-                    "poiOrder": {
-                        "type": "integer"
-                    },
                     "image": {
                         "description": "Image Url set by serializer (cf. EntityNormalizer).",
                         "type": [
@@ -608,12 +602,6 @@
                             "null"
                         ]
                     },
-                    "pointsOfInterest": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/PointOfInterest-read"
-                        }
-                    },
                     "tags": {
                         "type": "array",
                         "items": {
@@ -622,6 +610,12 @@
                     },
                     "totalDuration": {
                         "type": "string"
+                    },
+                    "points": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PointOfInterest-read"
+                        }
                     }
                 }
             },
@@ -684,12 +678,6 @@
                             "null"
                         ]
                     },
-                    "pointsOfInterest": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/PointOfInterest.jsonld-read"
-                        }
-                    },
                     "tags": {
                         "type": "array",
                         "items": {
@@ -698,6 +686,12 @@
                     },
                     "totalDuration": {
                         "type": "string"
+                    },
+                    "points": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PointOfInterest.jsonld-read"
+                        }
                     }
                 }
             },

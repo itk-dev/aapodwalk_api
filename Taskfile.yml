@@ -43,7 +43,13 @@ tasks:
   console:
     desc: "Run Symfony console command"
     cmds:
-      - task compose -- run --rm phpfpm bin/console {{.CLI_ARGS}}
+      # See https://serverfault.com/a/935674 for details on the if statement.
+      - |
+        if [ -z `docker compose ps -q phpfpm` ] || [ -z `docker ps -q --no-trunc | grep $(docker compose ps -q phpfpm)` ]; then
+          task compose -- run --rm phpfpm bin/console {{.CLI_ARGS}}
+        else
+          task compose-exec -- phpfpm bin/console {{.CLI_ARGS}}
+        fi
     silent: true
 
   site:url:

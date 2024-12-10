@@ -13,10 +13,6 @@
         <source>Tags are used in the frontend to organize the routes.</source>
         <target state="translated">Tags bruges til at organisere ruter i app’en.</target>
       </trans-unit>
-      <trans-unit id="RBV8Ue5" resname="Connect points of interest to this podwalk.">
-        <source>Connect points of interest to this podwalk.</source>
-        <target state="translated">Forbind seværdigheder med denne podcast.</target>
-      </trans-unit>
       <trans-unit id="P9_Y7yU" resname="Created by">
         <source>Created by</source>
         <target state="translated">Oprettet af</target>
@@ -28,10 +24,6 @@
       <trans-unit id="mbGC2Vh" resname="A text version of the podcast, for people with hearing disabilities.">
         <source>A text version of the podcast, for people with hearing disabilities.</source>
         <target state="translated">En tekstuel udgave af podcasten til mennesker med hørenedsættelse.</target>
-      </trans-unit>
-      <trans-unit id="gM4BSh." resname="The order of the interest point.">
-        <source>The order of the interest point.</source>
-        <target state="translated">Placering af seværdigheden på ruten.</target>
       </trans-unit>
       <trans-unit id="bbzr4x2" resname="The proximity that allows unlocking this point of interest (in m).">
         <source>The proximity that allows unlocking this point of interest (in m).</source>
@@ -155,7 +147,7 @@
       </trans-unit>
       <trans-unit id="La164xH" resname="Points">
         <source>Points</source>
-        <target state="translated">Punkt</target>
+        <target state="translated">Punkter</target>
       </trans-unit>
       <trans-unit id="LVVWz4T" resname="Created at">
         <source>Created at</source>
@@ -264,6 +256,10 @@
       <trans-unit id="CPIQaaz" resname="Check if &quot;{media_url}&quot; points to an audio file.">
         <source>Check if "{media_url}" points to an audio file.</source>
         <target state="translated">Marker hvis "{media_url}" peger på en lydfil.</target>
+      </trans-unit>
+      <trans-unit id="bg45Vuq" resname="Add new route">
+        <source>Add new route</source>
+        <target state="needs-l10n">__Add new route</target>
       </trans-unit>
     </body>
   </file>
