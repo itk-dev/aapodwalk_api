@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="da" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="ecFC4Sv" resname="action.add_new_item">
+        <source>action.add_new_item</source>
+        <target>Tilføj nyt emne</target>
+      </trans-unit>
+      <trans-unit id="b5M9sxm" resname="action.remove_item">
+        <source>action.remove_item</source>
+        <target>Slet emnet</target>
+      </trans-unit>
+      <trans-unit id="ild8jkd" resname="action.move_up">
+        <source>action.move_up</source>
+        <target state="translated">Flyt op</target>
+      </trans-unit>
+      <trans-unit id="gC0USqE" resname="action.move_down">
+        <source>action.move_down</source>
+        <target state="translated">Flyt ned</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
