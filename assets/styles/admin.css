@@ -38,8 +38,4 @@
 
 .form-group.field-collection .accordion-button, .form-group.field-collection .accordion-button {
 	padding: 8px 7px;
-	
-	& :hover {
-		border: 0;
-	}
 }
