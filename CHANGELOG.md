@@ -11,6 +11,8 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+- [PR-26](https://github.com/itk-dev/aapodwalk_api/pull/26)
+  Add better scroll for content table in narrow view
 - [PR-24](https://github.com/itk-dev/aapodwalk_api/pull/24)
   Route admin
 - [PR-23](https://github.com/itk-dev/aapodwalk_api/pull/23)
