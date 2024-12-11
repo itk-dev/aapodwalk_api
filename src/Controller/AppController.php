@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\AppManager;
 use App\Service\AppManager\App;
+use Detection\MobileDetect;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -35,6 +36,10 @@ class AppController extends AbstractController
         $url = App::buildUrl($app, $path ?? '');
 
         // @todo Detect mobile device
+        $detect = new MobileDetect();
+        if ($detect->isMobile()) {
+            return $this->redirect($url);
+        }
 
         return $this->render('app/show.html.twig', [
             'the_app' => $app,
