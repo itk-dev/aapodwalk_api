@@ -11,6 +11,8 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+- [PR-28](https://github.com/itk-dev/aapodwalk_api/pull/28)
+  Route edit UX. Sticky content header fix.
 - [PR-25](https://github.com/itk-dev/aapodwalk_api/pull/25)
   Production deployment documentation
 - [PR-26](https://github.com/itk-dev/aapodwalk_api/pull/26)

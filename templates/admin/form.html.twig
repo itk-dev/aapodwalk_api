@@ -50,14 +50,14 @@
             {% set parent_id = id ~ '-sections' %}
             <div class="media-information {{ parent_id }}">
                 {# @see https://getbootstrap.com/docs/5.3/components/accordion/ #}
-                <div class="accordion" id="{{ parent_id }}">
+                <div class="accordion mt-1" id="{{ parent_id }}">
                     {% for section in sections %}
                         {% set item_id = parent_id ~ '-section-' ~ loop.index %}
                         {% set show = false and loop.first and loop.last %}
                         <div class="accordion-item">
                             <div class="accordion-header">
                                 <button class="accordion-button {{ not show ? 'collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#{{ item_id }}" aria-expanded="{{ show ? 'true' : 'false' }}" aria-controls="{{ item_id }}">
-                                    {{ section.header }}
+                                    <i class="fa-solid fa-angle-right mx-2"></i> {{ section.header }}
                                 </button>
                             </div>
                             <div id="{{ item_id }}" class="accordion-collapse collapse {{ show ? 'show' }}" data-bs-parent="#{{ parent_id }}">

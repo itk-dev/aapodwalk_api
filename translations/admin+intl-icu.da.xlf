@@ -257,9 +257,9 @@
         <source>Check if "{media_url}" points to an audio file.</source>
         <target state="translated">Marker hvis "{media_url}" peger på en lydfil.</target>
       </trans-unit>
-      <trans-unit id="bg45Vuq" resname="Add new route">
-        <source>Add new route</source>
-        <target state="needs-l10n">__Add new route</target>
+      <trans-unit id="s3PJeIL" resname="Add new point">
+        <source>Add new point</source>
+        <target state="needs-l10n">__Add new point</target>
       </trans-unit>
     </body>
   </file>

@@ -14,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use Symfony\Component\Translation\TranslatableMessage;
@@ -51,29 +52,7 @@ class PointOfInterestCrudController extends AbstractCrudController
         yield $position;
 
         yield IdField::new('id', new TranslatableMessage('ID', [], 'admin'))->hideOnForm();
-        yield TextField::new('name', new TranslatableMessage('Name', [], 'admin'));
-
-        $mediaUrlLabel = new TranslatableMessage('Media URL', [], 'admin');
-        yield UrlField::new('mediaUrl', $mediaUrlLabel)
-            ->setFormTypeOptions([
-                'block_name' => 'mediaUrl',
-            ]);
-        yield BooleanField::new('mediaIsAudio', new TranslatableMessage('Is audio?', [], 'admin'))
-            ->setHelp(new TranslatableMessage('Check if "{media_url}" points to an audio file.', [
-                'media_url' => $mediaUrlLabel,
-            ], 'admin'))
-            ->renderAsSwitch(false);
-
-        yield TextField::new('subtitles', new TranslatableMessage('Subtitles', [], 'admin'))
-            ->setRequired(true)
-            ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin'));
-
-        yield LocationField::new('location', new TranslatableMessage('Location', [], 'admin'))
-            ->setRequired(true)
-            ->setVirtual(true);
-
-        yield NumberField::new('proximityToUnlock', new TranslatableMessage('Proximity to unlock', [], 'admin'))
-            ->setHelp(new TranslatableMessage('The proximity that allows unlocking this point of interest (in m).', [], 'admin'));
+        yield TextField::new('name', new TranslatableMessage('Name', [], 'admin'))->setColumns(12);
 
         $context = $this->getContext();
         if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && null !== $context) {
@@ -84,16 +63,38 @@ class PointOfInterestCrudController extends AbstractCrudController
             yield VichImageField::new('imageFile')
                 ->setLabel(new TranslatableMessage('Image', [], 'admin'))
                 ->setFormTypeOption('allow_delete', false)
-                ->setFormTypeOption('attr', $imageAttr);
+                ->setFormTypeOption('attr', $imageAttr)->setColumns(12);
         } else {
             yield VichImageField::new('image')
-                ->setLabel(new TranslatableMessage('Image', [], 'admin'));
+                ->setLabel(new TranslatableMessage('Image', [], 'admin'))->setColumns(12);
         }
+
+        $mediaUrlLabel = new TranslatableMessage('Media URL', [], 'admin');
+        yield UrlField::new('mediaUrl', $mediaUrlLabel)
+            ->setFormTypeOptions([
+                'block_name' => 'mediaUrl',
+            ])->setColumns(12);
+        yield BooleanField::new('mediaIsAudio', new TranslatableMessage('Is audio?', [], 'admin'))
+            ->setHelp(new TranslatableMessage('Check if "{media_url}" points to an audio file.', [
+                'media_url' => $mediaUrlLabel,
+            ], 'admin'))
+            ->renderAsSwitch(false)->setColumns(12);
+
+        yield TextareaField::new('subtitles', new TranslatableMessage('Subtitles', [], 'admin'))
+            ->setRequired(true)
+            ->setHelp(new TranslatableMessage('A text version of the podcast, for people with hearing disabilities.', [], 'admin'))->setColumns(12);
+
+        yield LocationField::new('location', new TranslatableMessage('Location', [], 'admin'))
+            ->setRequired(true)
+            ->setVirtual(true)->setColumns(12);
+
+        yield NumberField::new('proximityToUnlock', new TranslatableMessage('Proximity to unlock', [], 'admin'))
+            ->setHelp(new TranslatableMessage('The proximity that allows unlocking this point of interest (in m).', [], 'admin'))->setColumns(12);
 
         yield DateField::new('createdAt', new TranslatableMessage('Created at', [], 'admin'))->hideOnForm();
         yield DateField::new('updatedAt', new TranslatableMessage('Updated at', [], 'admin'))->hideOnForm();
         $createdBy = AssociationField::new('createdBy', new TranslatableMessage('Created by', [], 'admin'))
-            ->setPermission(Role::USER_ADMIN->value);
+            ->setPermission(Role::USER_ADMIN->value)->setColumns(12);
         if (!$this->isGranted(Role::ADMIN->value)) {
             $createdBy->hideOnForm();
         }
