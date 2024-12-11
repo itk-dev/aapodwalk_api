@@ -261,6 +261,22 @@
         <source>Add new point</source>
         <target state="needs-l10n">__Add new point</target>
       </trans-unit>
+      <trans-unit id="YfguZ0H" resname="Apps">
+        <source>Apps</source>
+        <target state="translated">Apps</target>
+      </trans-unit>
+      <trans-unit id="U.EJF7y" resname="Preview app {name}">
+        <source>Preview app {name}</source>
+        <target state="translated">Vis i {name}</target>
+      </trans-unit>
+      <trans-unit id=".MDNyIR" resname="App preview">
+        <source>App preview</source>
+        <target state="translated">App-visning</target>
+      </trans-unit>
+      <trans-unit id="e9cnuAC" resname="Reset">
+        <source>Reset</source>
+        <target state="translated">Nulstil</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

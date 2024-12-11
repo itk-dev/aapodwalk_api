@@ -5,7 +5,10 @@ namespace App\Controller\Admin;
 use App\Entity\Role;
 use App\Entity\Route;
 use App\Field\VichImageField;
+use App\Service\AppManager;
 use App\Service\EasyAdminHelper;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -17,6 +20,11 @@ use Symfony\Component\Translation\TranslatableMessage;
 
 class RouteCrudController extends AbstractCrudController
 {
+    public function __construct(
+        private readonly AppManager $appManager,
+    ) {
+    }
+
     public static function getEntityFqcn(): string
     {
         return Route::class;
@@ -27,6 +35,24 @@ class RouteCrudController extends AbstractCrudController
         return parent::configureCrud($crud)
             ->setEntityLabelInSingular(new TranslatableMessage('Route', [], 'admin'))
             ->setEntityLabelInPlural(new TranslatableMessage('Routes', [], 'admin'));
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        $actions = parent::configureActions($actions);
+
+        $apps = $this->appManager->getApps();
+        foreach ($apps as $app) {
+            $actions
+                ->add(Crud::PAGE_INDEX, Action::new('show_in_app_'.$app->getId())
+                    ->setLabel(new TranslatableMessage('Preview app {name}', ['name' => $app->getName()], 'admin'))
+                    ->linkToUrl(fn (Route $route) => $this->generateUrl('app_show', [
+                        'id' => $app->getId(),
+                        'path' => $app->getPath('route', ['id' => $route->getId()], absolute: false),
+                    ])));
+        }
+
+        return $actions;
     }
 
     public function configureFields(string $pageName): iterable

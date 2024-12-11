@@ -261,6 +261,22 @@
         <source>Add new point</source>
         <target>Add new point</target>
       </trans-unit>
+      <trans-unit id="YfguZ0H" resname="Apps">
+        <source>Apps</source>
+        <target>Apps</target>
+      </trans-unit>
+      <trans-unit id="U.EJF7y" resname="Preview app {name}">
+        <source>Preview app {name}</source>
+        <target>Preview app {name}</target>
+      </trans-unit>
+      <trans-unit id=".MDNyIR" resname="App preview">
+        <source>App preview</source>
+        <target>App preview</target>
+      </trans-unit>
+      <trans-unit id="e9cnuAC" resname="Reset">
+        <source>Reset</source>
+        <target>Reset</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

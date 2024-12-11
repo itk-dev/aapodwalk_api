@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'admin' %}
+
+{% block title %}{{ 'Apps'|trans }}{% endblock %}
+
+{% block content %}
+    <ol>
+    {% for app in apps %}
+        <li><a href="{{ path('app_show', {id: app.id}) }}">{{ app.name }}</a></li>
+    {% endfor %}
+    </ol>
+{% endblock %}

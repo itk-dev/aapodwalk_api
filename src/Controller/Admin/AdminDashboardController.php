@@ -7,6 +7,7 @@ use App\Entity\Role;
 use App\Entity\Route as RouteWithPOI;
 use App\Entity\Tag;
 use App\Entity\User;
+use App\Service\AppManager;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -20,6 +21,7 @@ class AdminDashboardController extends AbstractDashboardController
 {
     public function __construct(
         private readonly AdminUrlGenerator $adminUrlGenerator,
+        private readonly AppManager $appManager,
     ) {
     }
 
@@ -52,5 +54,13 @@ class AdminDashboardController extends AbstractDashboardController
 
         yield MenuItem::section();
         yield MenuItem::linkToUrl(new TranslatableMessage('API documentation', [], 'admin'), 'fas fa-book', $this->generateUrl('api_doc'));
+
+        if ($apps = $this->appManager->getApps()) {
+            yield MenuItem::section(new TranslatableMessage('Apps', [], 'admin'));
+
+            foreach ($apps as $app) {
+                yield MenuItem::linkToUrl($app->getName(), 'fas fa-vihara', $app->getUrl());
+            }
+        }
     }
 }
