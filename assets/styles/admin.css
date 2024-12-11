@@ -7,6 +7,7 @@
 	}
 }
 
+/* Add background color and rotate icon on accordion header when open */
 .accordion-header {
 	&:has(.accordion-button[aria-expanded="true"]) {
 		background: var(--form-type-collection-item-collapsed-hover-bg);
@@ -26,16 +27,40 @@
 	}
 }
 
-.form-group.field-collection .accordion-item .form-group {
-	display: block;
+/* Show label and inputs above eachother instead for inline when in collection */
+.form-group.field-collection.accordion {
+	.accordion-item { 
+		.form-group {
+			display: block;
 
-	> label {
-		margin: 0;
-  		padding: 0 0 8px;
-		inline-size: initial;
+			> label {
+				margin: 0;
+				padding: 0 0 8px;
+				inline-size: initial;
+			}
+		}
+	}
+	.accordion-button {
+		padding: 8px 7px;
 	}
 }
 
-.form-group.field-collection .accordion-button, .form-group.field-collection .accordion-button {
-	padding: 8px 7px;
+/* Avoid content so wide it pushes the add entry button above datatable out of the viewport. */
+.wrapper {
+	grid-template-columns: var(--sidebar-max-width) calc(100% - var(--sidebar-max-width));		
+}
+.content-wrapper {
+	display: block;
+}
+.content-body {
+	overflow-x: auto; 
+}
+#content-resizer-handler {
+	display: none !important; /* Hide the resizer handle */
+}
+
+/* Add a border below the content header to visually separate the content from the header(sticky) when scrolling */
+.content-header {
+	border-bottom: 1px solid var(--border-color);
+	margin-block-end: 16px;
 }
