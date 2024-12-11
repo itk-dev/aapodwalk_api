@@ -11,7 +11,7 @@
 .accordion-header {
 	&:has(.accordion-button[aria-expanded="true"]) {
 		background: var(--form-type-collection-item-collapsed-hover-bg);
-  		box-shadow: inset 0 0 0 1px var(--form-input-border-color);
+		box-shadow: inset 0 0 0 1px var(--form-input-border-color);
 	}
 }
 
@@ -29,7 +29,7 @@
 
 /* Show label and inputs above eachother instead for inline when in collection */
 .form-group.field-collection.accordion {
-	.accordion-item { 
+	.accordion-item {
 		.form-group {
 			display: block;
 
@@ -47,13 +47,16 @@
 
 /* Avoid content so wide it pushes the add entry button above datatable out of the viewport. */
 .wrapper {
-	grid-template-columns: var(--sidebar-max-width) calc(100% - var(--sidebar-max-width));		
+	grid-template-columns: var(--sidebar-max-width) calc(
+			100% -
+			var(--sidebar-max-width)
+		);
 }
 .content-wrapper {
 	display: block;
 }
 .content-body {
-	overflow-x: auto; 
+	overflow-x: auto;
 }
 #content-resizer-handler {
 	display: none !important; /* Hide the resizer handle */
