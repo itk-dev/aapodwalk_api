@@ -7,6 +7,12 @@
 	}
 }
 
+.actions {
+	.action-label {
+		white-space: nowrap;
+	}
+}
+
 /* Add background color and rotate icon on accordion header when open */
 .accordion-header {
 	&:has(.accordion-button[aria-expanded="true"]) {
