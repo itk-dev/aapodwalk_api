@@ -11,8 +11,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Translation\TranslatableMessage;
 
 class RouteCrudController extends AbstractCrudController
@@ -34,7 +34,7 @@ class RouteCrudController extends AbstractCrudController
         yield IdField::new('id', new TranslatableMessage('ID', [], 'admin'))->hideOnForm();
         yield TextField::new('name', new TranslatableMessage('Name', [], 'admin'))->setColumns(12);
         yield TextareaField::new('description', new TranslatableMessage('Description', [], 'admin'))->setColumns(6);
-        
+
         $context = $this->getContext();
         if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && null !== $context) {
             $entity = $context->getEntity()->getInstance();
