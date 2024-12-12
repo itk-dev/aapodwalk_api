@@ -8,7 +8,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "api-platform/core": "^3.1",
-        "cweagans/composer-patches": "^1.7",
         "doctrine/annotations": "^2.0",
         "doctrine/doctrine-bundle": "^2.10",
         "doctrine/doctrine-migrations-bundle": "^3.2",
@@ -86,7 +85,6 @@
     },
     "config": {
         "allow-plugins": {
-            "cweagans/composer-patches": true,
             "ergebnis/composer-normalize": true,
             "php-http/discovery": true,
             "symfony/flex": true,
@@ -95,11 +93,6 @@
         "sort-packages": true
     },
     "extra": {
-        "patches": {
-            "symfony/twig-bridge": {
-                "https://github.com/EasyCorp/EasyAdminBundle/issues/6609 > https://github.com/symfony/symfony/pull/59059": "patches/symfony-symfony-pull-59059.patch"
-            }
-        },
         "symfony": {
             "allow-contrib": true,
             "require": "7.2.*"
