@@ -57,10 +57,13 @@ class PointOfInterestCrudController extends AbstractCrudController
         $context = $this->getContext();
         if (in_array($pageName, [Crud::PAGE_NEW, Crud::PAGE_EDIT], true) && null !== $context) {
             $entity = $context->getEntity()->getInstance();
+            // @todo This assertion is not true since entity is a Route (cf. https://github.com/EasyCorp/EasyAdminBundle/issues/3424).
             assert($entity instanceof PointOfInterest);
 
             $imageAttr = EasyAdminHelper::getFileInputAttributes($entity, 'imageFile');
             yield VichImageField::new('imageFile')
+                // @todo Replace the hack assets/admin.js.
+                // ->setRequired(null === $entity->getImage())
                 ->setLabel(new TranslatableMessage('Image', [], 'admin'))
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $imageAttr)->setColumns(12);

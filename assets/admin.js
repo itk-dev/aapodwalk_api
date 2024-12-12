@@ -65,4 +65,20 @@ window.addEventListener("load", () => {
 			});
 		}
 	}
+
+	// Hack/workaround to make file element required (cf. https://github.com/EasyCorp/EasyAdminBundle/issues/3424). See also PointOfInterestCrudController::configureFields().
+	document.addEventListener("ea.collection.item-added", (event) => {
+		const el = event.detail.newElement ?? null;
+		if (el) {
+			const file = el.querySelector('[type="file"]');
+			if (file) {
+				const group = file?.closest(".form-group");
+				if (group) {
+					const label = group?.querySelector("legend");
+					label.classList.add("required");
+					file.required = true;
+				}
+			}
+		}
+	});
 });

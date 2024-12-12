@@ -42,6 +42,7 @@ class RouteCrudController extends AbstractCrudController
             $attr = EasyAdminHelper::getFileInputAttributes($entity, 'imageFile');
 
             yield VichImageField::new('imageFile')
+                ->setRequired(null === $entity->getImage())
                 ->setLabel(new TranslatableMessage('Image', [], 'admin'))
                 ->setFormTypeOption('allow_delete', false)
                 ->setFormTypeOption('attr', $attr)

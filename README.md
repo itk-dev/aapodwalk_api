@@ -95,14 +95,11 @@ See [Serving Assets in dev vs
 prod](https://symfony.com/doc/current/frontend/asset_mapper.html#serving-assets-in-dev-vs-prod) for details on how to
 handle assets for the `prod` environment.
 
-Check the assets
+Apply and check coding standards for assets:
 
-`docker compose exec phpfpm bin/console biomejs:check .`
-
-Apply coding style to the assets
-
-`docker compose exec phpfpm bin/console biomejs:check . --write`
-
+``` shell
+task coding-standards:assets:check
+```
 
 ## Commands
 
