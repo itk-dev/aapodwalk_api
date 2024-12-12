@@ -259,7 +259,7 @@
       </trans-unit>
       <trans-unit id="s3PJeIL" resname="Add new point">
         <source>Add new point</source>
-        <target state="needs-l10n">__Add new point</target>
+        <target state="translated">Tilføj nyt punkt</target>
       </trans-unit>
       <trans-unit id="YfguZ0H" resname="Apps">
         <source>Apps</source>
@@ -284,6 +284,30 @@
       <trans-unit id="_TTt0v9" resname="Open app as website">
         <source>Open app as website</source>
         <target state="translated">Åben som webside</target>
+      </trans-unit>
+      <trans-unit id="7VWHcE0" resname="Please enter your email">
+        <source>Please enter your email</source>
+        <target state="translated">Indtast venligst din e-mailadresse</target>
+      </trans-unit>
+      <trans-unit id="B7yoMOR" resname="Please enter a password">
+        <source>Please enter a password</source>
+        <target state="translated">Indtast venligst en adgangskode</target>
+      </trans-unit>
+      <trans-unit id="_OmnKuR" resname="Your password should be at least {{ limit }} characters">
+        <source>Your password should be at least {{ limit }} characters</source>
+        <target state="translated">Din adgangskode skal indeholde mindst {{ limit }} tegn</target>
+      </trans-unit>
+      <trans-unit id="0GpRD.b" resname="Repeat password">
+        <source>Repeat password</source>
+        <target state="translated">Gentag adgangskode</target>
+      </trans-unit>
+      <trans-unit id="_z4el3Z" resname="The password fields must match.">
+        <source>The password fields must match.</source>
+        <target state="translated">Adgangskoderne er ikke ens</target>
+      </trans-unit>
+      <trans-unit id="Zm.jZiK" resname="New password">
+        <source>New password</source>
+        <target state="translated">Ny adgangskode</target>
       </trans-unit>
     </body>
   </file>

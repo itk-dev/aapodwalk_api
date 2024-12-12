@@ -9,18 +9,6 @@
         <source>Error</source>
         <target>Fejl</target>
       </trans-unit>
-      <trans-unit id="7VWHcE0" resname="Please enter your email">
-        <source>Please enter your email</source>
-        <target state="needs-l10n">__Please enter your email</target>
-      </trans-unit>
-      <trans-unit id="B7yoMOR" resname="Please enter a password">
-        <source>Please enter a password</source>
-        <target state="needs-l10n">__Please enter a password</target>
-      </trans-unit>
-      <trans-unit id="_OmnKuR" resname="Your password should be at least {{ limit }} characters">
-        <source>Your password should be at least {{ limit }} characters</source>
-        <target state="needs-l10n">__Your password should be at least {{ limit }} characters</target>
-      </trans-unit>
     </body>
   </file>
 </xliff>
