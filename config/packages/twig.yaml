@@ -1,6 +1,9 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
 
+    globals:
+        admin_site_message: '%env(ADMIN_SITE_MESSAGE)%'
+
 when@test:
     twig:
         strict_variables: true

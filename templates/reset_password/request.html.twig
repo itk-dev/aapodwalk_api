@@ -7,7 +7,7 @@
     {% for flash_error in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-    <h1>Reset your password</h1>
+    <h1>{{ 'Reset your password'|trans }}</h1>
 
     {% form_theme requestForm with 'bootstrap_5_layout.html.twig' %}
 
