@@ -2,14 +2,37 @@
 
 {% trans_default_domain 'admin' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/devices.min.css') }}">
+    {{ parent() }}
+{% endblock %}
+
 {% block title %}{{ 'App preview'|trans }}{% endblock %}
 
 {% block content %}
-    <h1>{{ the_app.name }}</h1>
+    <div class="container">
+        <h1 class="my-3">{{ the_app.name }}</h1>
+        
+        <div class="alert alert-primary" role="alert">
+            {{ 'This is a desktop browser preview of the app. Not everything looks similar to viewing it on a mobile device.'|trans }}
+        </div>
 
-    <p><a href="{{ the_app.url }}">{{ the_app.url }}</a></p>
+        <div class="flex gap-3 my-4">
+            <a class="btn btn-secondary btn-sm" href="{{ the_app.url }}">{{ 'Open app as website'|trans }}</a>
+            <a class="btn btn-secondary btn-sm" href="{{ app.request.requesturi }}">{{ 'Reset'|trans }}</a>
+        </div>
 
-    <iframe style="width: 300px; height: 500px" src="{{ app_start_url }}"></iframe>
-
-    <p><a href="{{ app.request.requesturi }}">{{ 'Reset'|trans }}</a></p>
+        <div class="device device-iphone-14">
+            <div class="device-frame">
+                <iframe style="width: 390px; height: 828px;" src="{{ app_start_url }}"></iframe>
+            </div>
+            <div class="device-stripe"></div>
+            <div class="device-header"></div>
+            <div class="device-sensors"></div>
+            <div class="device-btns"></div>
+            <div class="device-power"></div>
+        </div>
+    </div>
+    
 {% endblock %}
