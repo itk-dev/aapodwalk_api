@@ -11,6 +11,8 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+- [PR-32](https://github.com/itk-dev/aapodwalk_api/pull/32)
+  Adds admin site message
 - [PR-30](https://github.com/itk-dev/aapodwalk_api/pull/30)
   App preview design
 - [PR-29](https://github.com/itk-dev/aapodwalk_api/pull/29)

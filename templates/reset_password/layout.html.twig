@@ -1,0 +1,37 @@
+{% extends 'admin/page/login.html.twig' %}
+
+{% block page_title 'Aapodwalk' %}
+{% block _body_class '' %}
+
+{% block wrapper_wrapper %}
+    {{ include('admin/_site_message.html.twig', {attr: {style: 'position: absolute; top: 0; left: 0; right: 0'}}) }}
+
+    {# Lifted from @EasyAdmin/page/login.html.twig #}
+    {% set page_title = block('page_title') %}
+    {{ include('@EasyAdmin/flash_messages.html.twig') }}
+
+    <div class="login-wrapper">
+        <header class="main-header">
+            <div id="header-logo">
+                {% block header_logo %}
+                    {% if page_title %}
+                        {% if ea.hasContext %}
+                            <a class="logo {{ page_title|length > 14 ? 'logo-long' }}" title="{{ page_title|striptags }}" href="{{ path(ea.dashboardRouteName) }}">
+                                {{ page_title|raw }}
+                            </a>
+                        {% else %}
+                            <div class="logo {{ page_title|length > 14 ? 'logo-long' }}">
+                                {{ page_title|raw }}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endblock header_logo %}
+            </div>
+        </header>
+
+        <section class="content">
+            {% block content %}
+            {% endblock %}
+        </section>
+    </div>
+{% endblock %}

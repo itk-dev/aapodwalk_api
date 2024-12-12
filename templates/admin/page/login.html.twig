@@ -1,0 +1,10 @@
+{% extends '@EasyAdmin/page/login.html.twig' %}
+
+{% block page_title 'Aapodwalk' %}
+{% block body_class 'page-login' %}
+
+{% block wrapper_wrapper %}
+    {{ include('admin/_site_message.html.twig', {attr: {style: 'position: absolute; top: 0; left: 0; right: 0'}}) }}
+
+    {{ parent() }}
+{% endblock %}

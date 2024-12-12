@@ -1,0 +1,6 @@
+{% if admin_site_message is defined %}
+    {% set class_names = ['admin-message', attr.class ?? ''] %}
+    <div class="{{ class_names|join(' ') }}" style="{{ attr.style ?? '' }}">
+        {{ admin_site_message|raw }}
+    </div>
+{% endif %}
