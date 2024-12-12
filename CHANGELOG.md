@@ -11,6 +11,8 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+- [PR-29](https://github.com/itk-dev/aapodwalk_api/pull/29)
+  App preview
 - [PR-31](https://github.com/itk-dev/aapodwalk_api/pull/31)
   Admin improvements
 - [PR-28](https://github.com/itk-dev/aapodwalk_api/pull/28)

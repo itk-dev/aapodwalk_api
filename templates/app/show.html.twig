@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% trans_default_domain 'admin' %}
+
+{% block title %}{{ 'App preview'|trans }}{% endblock %}
+
+{% block content %}
+    <h1>{{ the_app.name }}</h1>
+
+    <p><a href="{{ the_app.url }}">{{ the_app.url }}</a></p>
+
+    <iframe style="width: 300px; height: 500px" src="{{ app_start_url }}"></iframe>
+
+    <p><a href="{{ app.request.requesturi }}">{{ 'Reset'|trans }}</a></p>
+{% endblock %}

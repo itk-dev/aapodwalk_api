@@ -69,3 +69,10 @@
 	border-bottom: 1px solid var(--border-color);
 	margin-block-end: 16px;
 }
+
+/* Make sure that action label don't wrap */
+.actions {
+	.action-label {
+		white-space: nowrap;
+	}
+}
