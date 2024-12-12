@@ -1,11 +1,10 @@
-
 .device {
-    .device-frame {
-        iframe {
-            cursor: grab;
-            border-radius: 48px;
-            overflow: hidden;
-            overflow-y: scroll;
-        }
-    }
+	.device-frame {
+		iframe {
+			cursor: grab;
+			border-radius: 48px;
+			overflow: hidden;
+			overflow-y: scroll;
+		}
+	}
 }
