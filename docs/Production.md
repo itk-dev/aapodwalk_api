@@ -15,7 +15,13 @@ MAILER_DSN=smtp://localhost:25
 # Variables for tasks
 TASK_SITE_DOMAIN=aapodwalk_api.example.com
 TASK_COMPOSER_INSTALL_ARGUMENTS='--no-dev --classmap-authoritative'
-TASK_DOCKER_COMPOSE='docker compose --env-file .env.docker.local --file docker-compose.server.yml --file docker-compose.server.override.yml'
+TASK_DOCKER_COMPOSE='docker compose --file docker-compose.server.yml --file docker-compose.server.override.yml'
+
+# Optional (default defined in .env)
+COMPOSE_PROJECT_NAME=backspace-podwalk-api
+# Used in docker-compose.server.yml
+COMPOSE_SERVER_DOMAIN=admin.backspace.srvitkstgweb01.itkdev.dk
+
 # Or, alternatively
 TASK_DOCKER_COMPOSE=itkdev-docker-compose-server
 ```
@@ -38,6 +44,17 @@ task console -- mailer:test
 If successful, install and update site:
 
 ``` shell
+task console -- asset-map:compile
+# https://symfony.com/doc/current/frontend/asset_mapper.html#serving-assets-in-dev-vs-prod
 task site:update
 task site:url
+```
+
+## Upgrading
+
+To upgrade an already installed site, run
+
+``` shell
+task console -- asset-map:compile
+task site:update
 ```

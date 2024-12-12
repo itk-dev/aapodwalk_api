@@ -1,25 +1,7 @@
-{% extends '@EasyAdmin/page/login_minimal.html.twig' %}
-
-{% block page_title 'Aapodwalk' %}
-{% block body_class 'page-login' %}
+{% extends '@EasyAdmin/layout.html.twig' %}
 
 {% block wrapper_wrapper %}
-    <div class="login-wrapper">
-        <header class="main-header">
-            <div id="header-logo">
-                {% block header_logo %}
-                    {% if page_title|default(false) %}
-                        <div class="logo {{ page_title|length > 14 ? 'logo-long' }}">
-                            {{ page_title|raw }}
-                        </div>
-                    {% endif %}
-                {% endblock header_logo %}
-            </div>
-        </header>
+    {{ include('admin/_site_message.html.twig') }}
 
-        <section class="content">
-            {% block content %}
-            {% endblock %}
-        </section>
-    </div>
+    {{ parent() }}
 {% endblock %}

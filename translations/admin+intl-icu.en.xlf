@@ -285,6 +285,30 @@
         <source>Open app as website</source>
         <target>Open app as website</target>
       </trans-unit>
+      <trans-unit id="7VWHcE0" resname="Please enter your email">
+        <source>Please enter your email</source>
+        <target>Please enter your email</target>
+      </trans-unit>
+      <trans-unit id="B7yoMOR" resname="Please enter a password">
+        <source>Please enter a password</source>
+        <target>Please enter a password</target>
+      </trans-unit>
+      <trans-unit id="_OmnKuR" resname="Your password should be at least {{ limit }} characters">
+        <source>Your password should be at least {{ limit }} characters</source>
+        <target>Your password should be at least {{ limit }} characters</target>
+      </trans-unit>
+      <trans-unit id="0GpRD.b" resname="Repeat password">
+        <source>Repeat password</source>
+        <target>Repeat password</target>
+      </trans-unit>
+      <trans-unit id="_z4el3Z" resname="The password fields must match.">
+        <source>The password fields must match.</source>
+        <target>The password fields must match.</target>
+      </trans-unit>
+      <trans-unit id="Zm.jZiK" resname="New password">
+        <source>New password</source>
+        <target>New password</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
