@@ -277,6 +277,14 @@
         <source>Reset</source>
         <target>Reset</target>
       </trans-unit>
+      <trans-unit id="l4F0Cnj" resname="This is a desktop browser preview of the app. Not everything looks similar to viewing it on a mobile device.">
+        <source>This is a desktop browser preview of the app. Not everything looks similar to viewing it on a mobile device.</source>
+        <target>This is a desktop browser preview of the app. Not everything looks similar to viewing it on a mobile device.</target>
+      </trans-unit>
+      <trans-unit id="_TTt0v9" resname="Open app as website">
+        <source>Open app as website</source>
+        <target>Open app as website</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
