@@ -85,7 +85,6 @@ window.addEventListener("load", () => {
 	// Open accordions with errors on submit.
 	document.addEventListener("ea.form.error", (event) => {
 		const { page, form } = event.detail;
-		// alert(`The ${page} form contains errors. Please resolve these before submitting again.`)
 		const elements = form.querySelectorAll(".accordion-item .has-error");
 		for (const el of elements) {
 			const item = el.closest(".accordion-item");
