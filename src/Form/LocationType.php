@@ -27,7 +27,8 @@ class LocationType extends AbstractType
 
     public function implodeCoordinates(?array $coordinates): string
     {
-        return implode(', ', $coordinates ?? []);
+        // Separate non-empty values with comma.
+        return implode(', ', array_filter($coordinates ?? []));
     }
 
     public function explodeCoordinates(string $coordinates): array
