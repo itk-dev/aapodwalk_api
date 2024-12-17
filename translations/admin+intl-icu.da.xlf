@@ -115,7 +115,7 @@
       </trans-unit>
       <trans-unit id="Q4p_Gmi" resname="API documentation">
         <source>API documentation</source>
-        <target state="translated">API-documentation</target>
+        <target state="translated">API-dokumentation</target>
       </trans-unit>
       <trans-unit id="mpHDX6N" resname="Administration">
         <source>Administration</source>
@@ -211,7 +211,7 @@
       </trans-unit>
       <trans-unit id="XkthfIE" resname="Enter a location on the form &lt;code&gt;lat, lng&lt;/code&gt;, e.g. &lt;code&gt;56.153244272970866, 10.213798100000005&lt;/code&gt;. &lt;strong&gt;Notice&lt;/strong&gt;: the two numbers must always be separated by a comma and use dot as decimal separator.&lt;br&gt;Hint: Open &lt;a href=&quot;https://www.google.com/maps&quot; target=&quot;_blank&quot;&gt;Google Maps&lt;/a&gt; and “right” click on the map to get the coordinates.">
         <source>Enter a location on the form &lt;code&gt;lat, lng&lt;/code&gt;, e.g. &lt;code&gt;56.153244272970866, 10.213798100000005&lt;/code&gt;. &lt;strong&gt;Notice&lt;/strong&gt;: the two numbers must always be separated by a comma and use dot as decimal separator.&lt;br&gt;Hint: Open &lt;a href="https://www.google.com/maps" target="_blank"&gt;Google Maps&lt;/a&gt; and “right” click on the map to get the coordinates.</source>
-        <target state="translated"><![CDATA[Indtast en lokation på formen <code>breddegrad, længdegrad</code>, fx. <code>56.153244272970866, 10.213798100000005</code>. <strong>Bemærk</strong>: de to tal skal altid adskilles af et komma og skal bruge punktum som decimalseparator.<br>Tip: Åbn <a href="https://www.google.com/maps" target="_blank">Google Maps</a> and højreklik på kortet for at få koordinaterne.]]></target>
+        <target state="translated"><![CDATA[Indtast en lokation på formen <code>breddegrad, længdegrad</code>, fx. <code>56.153244272970866, 10.213798100000005</code>. <strong>Bemærk</strong>: de to tal skal altid adskilles af et komma og skal bruge punktum som decimalseparator.<br>Tip: Åbn <a href="https://www.google.com/maps" target="_blank">Google Maps</a> og højreklik på kortet for at få koordinaterne.]]></target>
       </trans-unit>
       <trans-unit id="p.sAfxC" resname="The total duration of the route, i.e. the total duration of audio tracks in the route plus the time needed for moving along the route.">
         <source>The total duration of the route, i.e. the total duration of audio tracks in the route plus the time needed for moving along the route.</source>
@@ -303,7 +303,7 @@
       </trans-unit>
       <trans-unit id="_z4el3Z" resname="The password fields must match.">
         <source>The password fields must match.</source>
-        <target state="translated">Adgangskoderne er ikke ens</target>
+        <target state="translated">Adgangskoderne er ikke ens.</target>
       </trans-unit>
       <trans-unit id="Zm.jZiK" resname="New password">
         <source>New password</source>
