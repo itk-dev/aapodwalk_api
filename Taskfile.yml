@@ -148,3 +148,9 @@ tasks:
     cmds:
       - task composer -- update-api-spec
     silent: true
+
+  test:
+    desc: "Run tests"
+    cmds:
+      - task compose -- exec phpfpm bin/phpunit {{.CLI_ARGS}}
+    silent: true

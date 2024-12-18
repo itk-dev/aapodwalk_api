@@ -19,7 +19,6 @@ final class ValueWithUnitHelper
 
     public const string FIELD_VALUE = 'value';
     public const string FIELD_UNIT = 'unit';
-    public const string FIELD_LOCALIZED_UNIT = self::OPTION_UNIT_LOCALIZED_UNIT;
 
     private \NumberFormatter $numberFormatter;
     private array $options;
@@ -71,10 +70,9 @@ final class ValueWithUnitHelper
         foreach ($units as $unit => $info) {
             $scale = $info[self::OPTION_SCALE];
             if ($value >= $scale || array_key_last($units) === $unit) {
-                return [
+                return $info + [
                     self::FIELD_VALUE => null === $value ? null : ($scale > 1 ? $value / $scale : $value),
                     self::FIELD_UNIT => $unit,
-                    self::FIELD_LOCALIZED_UNIT => $info[self::OPTION_UNIT_LOCALIZED_UNIT],
                 ];
             }
         }
@@ -86,9 +84,13 @@ final class ValueWithUnitHelper
     {
         $unit = $this->getMatchingUnit($value);
 
+        $localizedUnit = $unit[self::OPTION_UNIT_LOCALIZED_UNIT] ?? $unit[self::FIELD_UNIT];
+        if ($localizedUnit instanceof TranslatableMessage) {
+            $localizedUnit = $localizedUnit->trans($this->translator);
+        }
+
         // @todo There must be a better way to do this!
-        return sprintf('%s %s', $this->numberFormatter->format($unit['value']),
-            $unit[self::OPTION_UNIT_LOCALIZED_UNIT]->trans($this->translator));
+        return sprintf('%s %s', $this->numberFormatter->format($unit['value']), $localizedUnit);
     }
 
     private function resolveOptions(array $options): array
@@ -106,7 +108,8 @@ final class ValueWithUnitHelper
                     ))
                     ->setRequired(self::OPTION_UNIT_LABEL)
                     ->setAllowedTypes(self::OPTION_UNIT_LABEL, ['string', TranslatableMessage::class])
-                    ->setRequired(self::OPTION_UNIT_LOCALIZED_UNIT);
+                    ->setDefault(self::OPTION_UNIT_LOCALIZED_UNIT, null)
+                    ->setAllowedTypes(self::OPTION_UNIT_LOCALIZED_UNIT, ['null', 'string', TranslatableMessage::class]);
             })
             // Make units required.
             ->setAllowedValues(self::OPTION_UNITS, static fn (array $value) => !empty($value))

@@ -290,3 +290,17 @@ jobs:
           docker network create frontend
           docker compose run --rm --user root phpfpm composer install --no-scripts
           docker compose run --rm --user root phpfpm bin/console biomejs:ci .
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    name: Run tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: |
+          docker network create frontend
+          docker compose run --rm --user root phpfpm composer install --no-scripts
+          docker compose run --rm --user root phpfpm bin/phpunit
