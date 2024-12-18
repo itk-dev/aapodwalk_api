@@ -6,6 +6,7 @@ use App\Admin\Field\ValueWithUnitField;
 use App\Entity\PointOfInterest;
 use App\Form\ValueWithUnitType;
 use App\Service\MediaProcessorInterface;
+use App\Service\ValueWithUnitHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto;
 use Twig\Extension\RuntimeExtensionInterface;
 
@@ -13,7 +14,7 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
         private readonly MediaProcessorInterface $mediaProcessor,
-        private readonly ValueWithUnitType $valueWithUnitType,
+        private readonly ValueWithUnitHelper $valueWithUnitHelper,
     ) {
     }
 
@@ -44,6 +45,6 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
             throw new \InvalidArgumentException(sprintf("Field's form type must be %s. Found %s.", ValueWithUnitType::class, $field->getFormType() ?? ''));
         }
 
-        return $this->valueWithUnitType->getFormattedValue($field->getValue(), $field->getFormTypeOptions());
+        return $this->valueWithUnitHelper->withOptions($field->getFormTypeOptions())->getFormattedValue($field->getValue());
     }
 }
