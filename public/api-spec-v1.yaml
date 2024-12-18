@@ -316,7 +316,8 @@ components:
         description:
           type: string
         distance:
-          type: string
+          description: 'Distance in meters.'
+          type: integer
         image:
           type:
             - string
@@ -326,7 +327,8 @@ components:
           items:
             $ref: '#/components/schemas/Tag-read'
         totalDuration:
-          type: string
+          description: 'Total duration in seconds.'
+          type: integer
         points:
           type: array
           items:
@@ -367,7 +369,8 @@ components:
         description:
           type: string
         distance:
-          type: string
+          description: 'Distance in meters.'
+          type: integer
         image:
           type:
             - string
@@ -377,7 +380,8 @@ components:
           items:
             $ref: '#/components/schemas/Tag.jsonld-read'
         totalDuration:
-          type: string
+          description: 'Total duration in seconds.'
+          type: integer
         points:
           type: array
           items:

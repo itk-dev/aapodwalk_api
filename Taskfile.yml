@@ -143,3 +143,8 @@ tasks:
           RESET='\033[0m'
           echo && echo -e "${BOLD}Note: You may have to run this command again to make some markup in translations fall into place.${RESET}" && echo
         silent: true
+
+  update-api-spec:
+    cmds:
+      - task composer -- update-api-spec
+    silent: true

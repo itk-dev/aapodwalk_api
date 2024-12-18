@@ -594,7 +594,8 @@
                         "type": "string"
                     },
                     "distance": {
-                        "type": "string"
+                        "description": "Distance in meters.",
+                        "type": "integer"
                     },
                     "image": {
                         "type": [
@@ -609,7 +610,8 @@
                         }
                     },
                     "totalDuration": {
-                        "type": "string"
+                        "description": "Total duration in seconds.",
+                        "type": "integer"
                     },
                     "points": {
                         "type": "array",
@@ -670,7 +672,8 @@
                         "type": "string"
                     },
                     "distance": {
-                        "type": "string"
+                        "description": "Distance in meters.",
+                        "type": "integer"
                     },
                     "image": {
                         "type": [
@@ -685,7 +688,8 @@
                         }
                     },
                     "totalDuration": {
-                        "type": "string"
+                        "description": "Total duration in seconds.",
+                        "type": "integer"
                     },
                     "points": {
                         "type": "array",
