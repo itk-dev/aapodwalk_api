@@ -5,10 +5,6 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="9AG3Fb7" resname="The distance should be how far the route is with all points of interests included, e.g. &quot;840m&quot;">
-        <source>The distance should be how far the route is with all points of interests included, e.g. "840m"</source>
-        <target state="translated">Distancen skal angive hvor lang hele ruten inkl. seværdigheder er, fx "840m”</target>
-      </trans-unit>
       <trans-unit id="leQUq0a" resname="Tags are used in the frontend to organize the routes.">
         <source>Tags are used in the frontend to organize the routes.</source>
         <target state="translated">Tags bruges til at organisere ruter i app’en.</target>
@@ -93,7 +89,7 @@
         <source>This link will expire in {expire_info}.</source>
         <target state="translated">Linket udløber om {expire_info}.</target>
       </trans-unit>
-      <trans-unit id="zyE0yOM" resname="If you don't receive an email please check your spam folder or &lt;a href=&quot;{forgot_password_url}&quot;>try again&lt;/a>.">
+      <trans-unit id="zyE0yOM" resname="If you don't receive an email please check your spam folder or &lt;a href=&quot;{forgot_password_url}&quot;&gt;try again&lt;/a&gt;.">
         <source>If you don't receive an email please check your spam folder or &lt;a href="{forgot_password_url}"&gt;try again&lt;/a&gt;.</source>
         <target state="translated"><![CDATA[Hvis du ikke modtager en e-mail, så tjek din “Uønsket mail”-mappe eller <a href="{forgot_password_url}">prøv igen</a>.]]></target>
       </trans-unit>
@@ -209,7 +205,7 @@
         <source>Email</source>
         <target state="translated">E-mail</target>
       </trans-unit>
-      <trans-unit id="XkthfIE" resname="Enter a location on the form &lt;code>lat, lng&lt;/code>, e.g. &lt;code>56.153244272970866, 10.213798100000005&lt;/code>. &lt;strong>Notice&lt;/strong>: the two numbers must always be separated by a comma and use dot as decimal separator.&lt;br>Hint: Open &lt;a href=&quot;https://www.google.com/maps&quot; target=&quot;_blank&quot;>Google Maps&lt;/a> and “right” click on the map to get the coordinates.">
+      <trans-unit id="XkthfIE" resname="Enter a location on the form &lt;code&gt;lat, lng&lt;/code&gt;, e.g. &lt;code&gt;56.153244272970866, 10.213798100000005&lt;/code&gt;. &lt;strong&gt;Notice&lt;/strong&gt;: the two numbers must always be separated by a comma and use dot as decimal separator.&lt;br&gt;Hint: Open &lt;a href=&quot;https://www.google.com/maps&quot; target=&quot;_blank&quot;&gt;Google Maps&lt;/a&gt; and “right” click on the map to get the coordinates.">
         <source>Enter a location on the form &lt;code&gt;lat, lng&lt;/code&gt;, e.g. &lt;code&gt;56.153244272970866, 10.213798100000005&lt;/code&gt;. &lt;strong&gt;Notice&lt;/strong&gt;: the two numbers must always be separated by a comma and use dot as decimal separator.&lt;br&gt;Hint: Open &lt;a href="https://www.google.com/maps" target="_blank"&gt;Google Maps&lt;/a&gt; and “right” click on the map to get the coordinates.</source>
         <target state="translated"><![CDATA[Indtast en lokation på formen <code>breddegrad, længdegrad</code>, fx. <code>56.153244272970866, 10.213798100000005</code>. <strong>Bemærk</strong>: de to tal skal altid adskilles af et komma og skal bruge punktum som decimalseparator.<br>Tip: Åbn <a href="https://www.google.com/maps" target="_blank">Google Maps</a> og højreklik på kortet for at få koordinaterne.]]></target>
       </trans-unit>
@@ -309,37 +305,41 @@
         <source>New password</source>
         <target state="translated">Ny adgangskode</target>
       </trans-unit>
-      <trans-unit id="Z6ldreI" resname="Kilometer">
-        <source>Kilometer</source>
-        <target state="translated">Kilometer</target>
-      </trans-unit>
       <trans-unit id="iFNKSr7" resname="unit.km">
         <source>unit.km</source>
         <target state="translated">km</target>
-      </trans-unit>
-      <trans-unit id="NHysa1c" resname="Meter">
-        <source>Meter</source>
-        <target state="translated">Meter</target>
       </trans-unit>
       <trans-unit id="Wz6Xg78" resname="unit.m">
         <source>unit.m</source>
         <target state="translated">m</target>
       </trans-unit>
-      <trans-unit id="kqtdLyp" resname="Hours">
-        <source>Hours</source>
-        <target state="translated">Timer</target>
-      </trans-unit>
       <trans-unit id="8C4J7Bg" resname="unit.hour">
         <source>unit.hour</source>
         <target state="translated">time</target>
       </trans-unit>
-      <trans-unit id="Bi0SThY" resname="Minutes">
-        <source>Minutes</source>
-        <target state="translated">Minutes</target>
-      </trans-unit>
       <trans-unit id="pIfv8jd" resname="unit.minute">
         <source>unit.minute</source>
         <target state="translated">minut</target>
+      </trans-unit>
+      <trans-unit id=".oNaqNZ" resname="kilometer">
+        <source>kilometer</source>
+        <target state="translated">kilometer</target>
+      </trans-unit>
+      <trans-unit id="oy3WrtK" resname="meter">
+        <source>meter</source>
+        <target state="translated">meter</target>
+      </trans-unit>
+      <trans-unit id="vzk4YQV" resname="The total distance of the route with all points of interests included.">
+        <source>The total distance of the route with all points of interests included.</source>
+        <target state="translated">Den samlede længde af ruten inklusive alle punkter.</target>
+      </trans-unit>
+      <trans-unit id="_tuKggf" resname="hours">
+        <source>hours</source>
+        <target state="translated">timer</target>
+      </trans-unit>
+      <trans-unit id="3tshQgN" resname="minutes">
+        <source>minutes</source>
+        <target state="translated">minutter</target>
       </trans-unit>
     </body>
   </file>

@@ -82,28 +82,28 @@ class RouteCrudController extends AbstractCrudController
         yield ValueWithUnitField::new('distance', new TranslatableMessage('Distance', [], 'admin'))
             ->setFormTypeOption('units', [
                 'km' => [
-                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('Kilometer', [], 'admin'),
+                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('kilometer', [], 'admin'),
                     ValueWithUnitType::OPTION_SCALE => 1000,
                     ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.km', [], 'admin'),
                 ],
                 'm' => [
-                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('Meter', [], 'admin'),
+                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('meter', [], 'admin'),
                     ValueWithUnitType::OPTION_SCALE => 1,
                     ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.m', [], 'admin'),
                 ],
             ])
             ->setColumns(6)
-            ->setHelp(new TranslatableMessage('The distance should be how far the route is with all points of interests included, e.g. "840m"', [], 'admin'));
+            ->setHelp(new TranslatableMessage('The total distance of the route with all points of interests included.', [], 'admin'));
 
         yield ValueWithUnitField::new('totalDuration', new TranslatableMessage('Total duration', [], 'admin'))
             ->setFormTypeOption('units', [
                 'hour' => [
-                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('Hours', [], 'admin'),
+                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('hours', [], 'admin'),
                     ValueWithUnitType::OPTION_SCALE => 60 * 60,
                     ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.hour', [], 'admin'),
                 ],
                 'minute' => [
-                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('Minutes', [], 'admin'),
+                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('minutes', [], 'admin'),
                     ValueWithUnitType::OPTION_SCALE => 60,
                     ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.minute', [], 'admin'),
                 ],

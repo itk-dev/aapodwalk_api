@@ -38,10 +38,10 @@ class AppExtensionRuntime implements RuntimeExtensionInterface
     public function formatValueWithUnit(FieldDto $field): string
     {
         if (ValueWithUnitField::class !== $field->getFieldFqcn()) {
-            throw new \InvalidArgumentException(sprintf("Field's FQCN must be %s (or a subclass). Found %s.", ValueWithUnitField::class, $field->getFieldFqcn()));
+            throw new \InvalidArgumentException(sprintf("Field's FQCN must be %s (or a subclass). Found %s.", ValueWithUnitField::class, $field->getFieldFqcn() ?? ''));
         }
         if (ValueWithUnitType::class !== $field->getFormType()) {
-            throw new \InvalidArgumentException(sprintf("Field's form type must be %s. Found %s.", ValueWithUnitType::class, $field->getFormType()));
+            throw new \InvalidArgumentException(sprintf("Field's form type must be %s. Found %s.", ValueWithUnitType::class, $field->getFormType() ?? ''));
         }
 
         return $this->valueWithUnitType->getFormattedValue($field->getValue(), $field->getFormTypeOptions());

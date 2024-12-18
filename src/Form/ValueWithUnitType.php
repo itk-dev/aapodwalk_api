@@ -100,7 +100,10 @@ final class ValueWithUnitType extends AbstractType
                     ->setRequired(self::OPTION_LABEL)
                     ->setAllowedTypes(self::OPTION_LABEL, ['string', TranslatableMessage::class])
                     ->setRequired(self::OPTION_LOCALIZED_UNIT);
-            });
+            })
+            // Make units required.
+            ->setAllowedValues('units', static fn (array $value) => !empty($value))
+        ;
     }
 
     /**
@@ -128,6 +131,8 @@ final class ValueWithUnitType extends AbstractType
                 ];
             }
         }
+
+        throw new \RuntimeException('This should never be called.');
     }
 
     public function getFormattedValue(int $value, array $options): string
