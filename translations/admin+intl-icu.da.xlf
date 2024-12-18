@@ -21,10 +21,6 @@
         <source>A text version of the podcast, for people with hearing disabilities.</source>
         <target state="translated">En tekstuel udgave af podcasten til mennesker med hørenedsættelse.</target>
       </trans-unit>
-      <trans-unit id="bbzr4x2" resname="The proximity that allows unlocking this point of interest (in m).">
-        <source>The proximity that allows unlocking this point of interest (in m).</source>
-        <target state="translated">Nærheden for at afspille seværdigheden (i meter).</target>
-      </trans-unit>
       <trans-unit id="IquzO6S" resname="Users mail address, which is also used as login name">
         <source>Users mail address, which is also used as login name</source>
         <target state="translated">E-mailadresse som også bruges som brugernavn</target>
@@ -340,6 +336,10 @@
       <trans-unit id="3tshQgN" resname="minutes">
         <source>minutes</source>
         <target state="translated">minutter</target>
+      </trans-unit>
+      <trans-unit id="BOdcynp" resname="The proximity that allows unlocking this point of interest.">
+        <source>The proximity that allows unlocking this point of interest.</source>
+        <target state="translated">Nærheden for at afspille seværdigheden.</target>
       </trans-unit>
     </body>
   </file>

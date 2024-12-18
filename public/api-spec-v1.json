@@ -442,6 +442,7 @@
                         "type": "string"
                     },
                     "proximityToUnlock": {
+                        "description": "Proximity to unlock in meters.",
                         "type": [
                             "integer",
                             "null"
@@ -542,6 +543,7 @@
                         "type": "string"
                     },
                     "proximityToUnlock": {
+                        "description": "Proximity to unlock in meters.",
                         "type": [
                             "integer",
                             "null"

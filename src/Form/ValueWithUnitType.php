@@ -62,7 +62,7 @@ final class ValueWithUnitType extends AbstractType
         ;
     }
 
-    public function transform(int $value, array $options): array
+    public function transform(?int $value, array $options): array
     {
         try {
             return $this->getMatchingUnit($value, $options);
@@ -118,14 +118,14 @@ final class ValueWithUnitType extends AbstractType
         return $units;
     }
 
-    public function getMatchingUnit(int $value, array $options): array
+    public function getMatchingUnit(?int $value, array $options): array
     {
         $units = $this->getUnits($options);
         foreach ($units as $unit => $info) {
             $scale = $info[self::OPTION_SCALE];
             if ($value >= $scale || array_key_last($units) === $unit) {
                 return [
-                    self::FIELD_VALUE => $scale > 1 ? $value / $scale : $value,
+                    self::FIELD_VALUE => null === $value ? null : ($scale > 1 ? $value / $scale : $value),
                     self::FIELD_UNIT => $unit,
                     self::OPTION_LOCALIZED_UNIT => $info[self::OPTION_LOCALIZED_UNIT],
                 ];
