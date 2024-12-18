@@ -10,7 +10,9 @@ APP_ENV=prod
 # See https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url
 DATABASE_URL="mysql://db:db@mariadb:3306/db?serverVersion=10.11.10-MariaDB&charset=utf8mb4"
 CORS_ALLOW_ORIGIN='^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?$'
-MAILER_DSN=smtp://localhost:25
+
+MAILER_DSN="smtp://host.docker.internal:25?verify_peer=false"
+MAILER_FROM="Aapodwalk <no-reply@example.com>"
 
 # Variables for tasks
 TASK_SITE_DOMAIN=aapodwalk_api.example.com
@@ -38,8 +40,17 @@ task console -- dbal:run-sql "SELECT NOW(), DATABASE()"
 and that you can send email (used to unforget passwords):
 
 ``` shell
-task console -- mailer:test
+task console -- mailer:test --from=«the value of MAILER_FROM set in .env.local»
 ```
+
+> [!TIP]
+> Run
+>
+> ``` shell
+> task console -- debug:container --env-var=MAILER_FROM
+> ```
+>
+> to see the current value of `MAILER_FROM`.
 
 If successful, install and update site:
 

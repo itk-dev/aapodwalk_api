@@ -1,3 +1,7 @@
 framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
+
+        # https://symfony.com/doc/current/mailer.html#configuring-emails-globally
+        headers:
+            From: '%env(MAILER_FROM)%'
