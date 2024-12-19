@@ -82,7 +82,7 @@
         ]
     },
     "hautelook/alice-bundle": {
-        "version": "2.12",
+        "version": "2.13",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -111,7 +111,7 @@
         ]
     },
     "nelmio/alice": {
-        "version": "3.12",
+        "version": "3.13",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -261,6 +261,21 @@
             "config/packages/monolog.yaml"
         ]
     },
+    "symfony/phpunit-bridge": {
+        "version": "7.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "6.3",
+            "ref": "a411a0480041243d97382cac7984f7dce7813c08"
+        },
+        "files": [
+            ".env.test",
+            "bin/phpunit",
+            "phpunit.xml.dist",
+            "tests/bootstrap.php"
+        ]
+    },
     "symfony/routing": {
         "version": "6.3",
         "recipe": {
@@ -374,7 +389,7 @@
         ]
     },
     "theofidry/alice-data-fixtures": {
-        "version": "1.6",
+        "version": "1.8",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",

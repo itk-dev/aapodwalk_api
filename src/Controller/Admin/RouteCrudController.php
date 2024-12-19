@@ -6,9 +6,9 @@ use App\Admin\Field\ValueWithUnitField;
 use App\Entity\Role;
 use App\Entity\Route;
 use App\Field\VichImageField;
-use App\Form\ValueWithUnitType;
 use App\Service\AppManager;
 use App\Service\EasyAdminHelper;
+use App\Service\ValueWithUnitHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -80,32 +80,33 @@ class RouteCrudController extends AbstractCrudController
         }
 
         yield ValueWithUnitField::new('distance', new TranslatableMessage('Distance', [], 'admin'))
-            ->setFormTypeOption('units', [
+            ->setScale(1)
+            ->setUnits([
                 'km' => [
-                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('kilometer', [], 'admin'),
-                    ValueWithUnitType::OPTION_SCALE => 1000,
-                    ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.km', [], 'admin'),
+                    ValueWithUnitHelper::OPTION_UNIT_LABEL => new TranslatableMessage('kilometer', [], 'admin'),
+                    ValueWithUnitHelper::OPTION_UNIT_FACTOR => 1000,
+                    ValueWithUnitHelper::OPTION_UNIT_LOCALIZED_UNIT => new TranslatableMessage('unit.km', [], 'admin'),
                 ],
                 'm' => [
-                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('meter', [], 'admin'),
-                    ValueWithUnitType::OPTION_SCALE => 1,
-                    ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.m', [], 'admin'),
+                    ValueWithUnitHelper::OPTION_UNIT_LABEL => new TranslatableMessage('meter', [], 'admin'),
+                    ValueWithUnitHelper::OPTION_UNIT_FACTOR => 1,
+                    ValueWithUnitHelper::OPTION_UNIT_LOCALIZED_UNIT => new TranslatableMessage('unit.m', [], 'admin'),
                 ],
             ])
             ->setColumns(6)
             ->setHelp(new TranslatableMessage('The total distance of the route with all points of interests included.', [], 'admin'));
 
         yield ValueWithUnitField::new('totalDuration', new TranslatableMessage('Total duration', [], 'admin'))
-            ->setFormTypeOption('units', [
+            ->setUnits([
                 'hour' => [
-                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('hours', [], 'admin'),
-                    ValueWithUnitType::OPTION_SCALE => 60 * 60,
-                    ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.hour', [], 'admin'),
+                    ValueWithUnitHelper::OPTION_UNIT_LABEL => new TranslatableMessage('hours', [], 'admin'),
+                    ValueWithUnitHelper::OPTION_UNIT_FACTOR => 60 * 60,
+                    ValueWithUnitHelper::OPTION_UNIT_LOCALIZED_UNIT => new TranslatableMessage('unit.hour', [], 'admin'),
                 ],
                 'minute' => [
-                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('minutes', [], 'admin'),
-                    ValueWithUnitType::OPTION_SCALE => 60,
-                    ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.minute', [], 'admin'),
+                    ValueWithUnitHelper::OPTION_UNIT_LABEL => new TranslatableMessage('minutes', [], 'admin'),
+                    ValueWithUnitHelper::OPTION_UNIT_FACTOR => 60,
+                    ValueWithUnitHelper::OPTION_UNIT_LOCALIZED_UNIT => new TranslatableMessage('unit.minute', [], 'admin'),
                 ],
             ])
             ->setColumns(6)

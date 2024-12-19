@@ -8,8 +8,8 @@ use App\Entity\PointOfInterest;
 use App\Entity\Role;
 use App\Entity\Route;
 use App\Field\VichImageField;
-use App\Form\ValueWithUnitType;
 use App\Service\EasyAdminHelper;
+use App\Service\ValueWithUnitHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -94,11 +94,11 @@ class PointOfInterestCrudController extends AbstractCrudController
             ->setVirtual(true)->setColumns(12);
 
         yield ValueWithUnitField::new('proximityToUnlock', new TranslatableMessage('Proximity to unlock', [], 'admin'))
-            ->setFormTypeOption('units', [
+            ->setUnits([
                 'm' => [
-                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('meter', [], 'admin'),
-                    ValueWithUnitType::OPTION_SCALE => 1,
-                    ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.m', [], 'admin'),
+                    ValueWithUnitHelper::OPTION_UNIT_LABEL => new TranslatableMessage('meter', [], 'admin'),
+                    ValueWithUnitHelper::OPTION_UNIT_FACTOR => 1,
+                    ValueWithUnitHelper::OPTION_UNIT_LOCALIZED_UNIT => new TranslatableMessage('unit.m', [], 'admin'),
                 ],
             ])
             ->setHelp(new TranslatableMessage('The proximity that allows unlocking this point of interest.', [], 'admin'))->setColumns(12);
