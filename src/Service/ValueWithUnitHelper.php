@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Translation\LocaleSwitcher;
 use Symfony\Component\Translation\TranslatableMessage;
 use Symfony\Component\Validator\Constraints\Positive;
 use Symfony\Component\Validator\Validation;
@@ -14,20 +13,18 @@ final class ValueWithUnitHelper
     public const string OPTION_UNITS = 'units';
     public const string OPTION_SCALE = 'scale';
     public const string OPTION_UNIT_LABEL = 'label';
-    public const string OPTION_UNIT_SCALE = 'scale';
+    public const string OPTION_UNIT_FACTOR = 'factor';
     public const string OPTION_UNIT_LOCALIZED_UNIT = 'localized_unit';
 
     public const string FIELD_VALUE = 'value';
     public const string FIELD_UNIT = 'unit';
 
-    private \NumberFormatter $numberFormatter;
     private array $options;
+    private \NumberFormatter $numberFormatter;
 
     public function __construct(
         private readonly TranslatorInterface $translator,
-        LocaleSwitcher $localeSwitcher,
     ) {
-        $this->numberFormatter = new \NumberFormatter($localeSwitcher->getLocale(), \NumberFormatter::DECIMAL);
     }
 
     private static array $clones = [];
@@ -40,7 +37,9 @@ final class ValueWithUnitHelper
         if (!isset(self::$clones[$key])) {
             $clone = clone $this;
             $clone->options = $this->resolveOptions($options);
+            $clone->numberFormatter = new \NumberFormatter($this->translator->getLocale(), \NumberFormatter::DECIMAL);
             $clone->numberFormatter->setAttribute(\NumberFormatter::FRACTION_DIGITS, $clone->options[self::OPTION_SCALE]);
+            $clone->numberFormatter->setSymbol(\NumberFormatter::GROUPING_SEPARATOR_SYMBOL, '');
             self::$clones[$key] = $clone;
         }
 
@@ -53,13 +52,13 @@ final class ValueWithUnitHelper
     }
 
     /**
-     * Get units sorted descending by scale.
+     * Get units sorted descending by factor.
      */
     public function getUnits(): array
     {
         $units = $this->options['units'];
 
-        uasort($units, static fn ($a, $b) => -($a[self::OPTION_SCALE] <=> $b[self::OPTION_SCALE]));
+        uasort($units, static fn ($a, $b) => -($a[self::OPTION_UNIT_FACTOR] <=> $b[self::OPTION_UNIT_FACTOR]));
 
         return $units;
     }
@@ -68,10 +67,16 @@ final class ValueWithUnitHelper
     {
         $units = $this->getUnits();
         foreach ($units as $unit => $info) {
-            $scale = $info[self::OPTION_SCALE];
-            if ($value >= $scale || array_key_last($units) === $unit) {
+            // Make sure that factor is positive.
+            $factor = max(1, $info[self::OPTION_UNIT_FACTOR]);
+
+            //            $isMatch = 0 === $value % $factor;
+            $truncatedValue = (float) number_format($value / $factor, $this->getScale(), '.', '');
+            $isMatch = (float) ($value / $factor) === $truncatedValue;
+
+            if (($value >= $factor && $isMatch) || array_key_last($units) === $unit) {
                 return $info + [
-                    self::FIELD_VALUE => null === $value ? null : ($scale > 1 ? $value / $scale : $value),
+                    self::FIELD_VALUE => null === $value ? null : $truncatedValue,
                     self::FIELD_UNIT => $unit,
                 ];
             }
@@ -101,9 +106,9 @@ final class ValueWithUnitHelper
             ->setDefault(self::OPTION_UNITS, function (OptionsResolver $resolver): void {
                 $resolver
                     ->setPrototype(true)
-                    ->setDefault(self::OPTION_UNIT_SCALE, 1)
-                    ->setAllowedTypes(self::OPTION_UNIT_SCALE, 'int')
-                    ->setAllowedValues(self::OPTION_UNIT_SCALE, Validation::createIsValidCallable(
+                    ->setDefault(self::OPTION_UNIT_FACTOR, 1)
+                    ->setAllowedTypes(self::OPTION_UNIT_FACTOR, 'int')
+                    ->setAllowedValues(self::OPTION_UNIT_FACTOR, Validation::createIsValidCallable(
                         new Positive(),
                     ))
                     ->setRequired(self::OPTION_UNIT_LABEL)
@@ -115,7 +120,7 @@ final class ValueWithUnitHelper
             ->setAllowedValues(self::OPTION_UNITS, static fn (array $value) => !empty($value))
             ->setRequired(self::OPTION_SCALE)
             ->setAllowedTypes(self::OPTION_SCALE, 'int')
-            ->setDefault(self::OPTION_SCALE, 1)
+            ->setDefault(self::OPTION_SCALE, 0)
             ->resolve($options);
     }
 }

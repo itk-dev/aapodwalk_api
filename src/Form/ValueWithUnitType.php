@@ -27,49 +27,49 @@ final class ValueWithUnitType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $this->helper = $this->helper->withOptions($options);
+        $helper = $this->helper->withOptions($options);
 
-        $units = array_keys($options['units']);
-        $unitChoices = array_combine($units, $units);
+        $units = $helper->getUnits();
+        $unitKeys = array_keys($units);
+        $unitChoices = array_combine($unitKeys, $unitKeys);
         $builder
             ->add(self::FIELD_VALUE, NumberType::class, [
-                'scale' => $this->helper->getScale(),
+                'scale' => $helper->getScale(),
             ])
             ->add(self::FIELD_UNIT, ChoiceType::class, [
                 'choices' => $unitChoices,
-                'choice_label' => function ($choice, string $key, mixed $value) use ($options
-                ): TranslatableMessage|string {
-                    return $options['units'][$key]['label'] ?? $key;
+                'choice_label' => function ($choice, string $key, mixed $value) use ($units): TranslatableMessage|string {
+                    return $units[$key][ValueWithUnitHelper::OPTION_UNIT_LABEL] ?? $key;
                 },
             ]);
 
         $builder
             ->addModelTransformer(new CallbackTransformer(
-                $this->transform(...),
-                $this->reverseTransform(...),
+                fn (mixed $value) => $this->transform($value, $helper),
+                fn (mixed $value) => $this->reverseTransform($value, $helper),
             ));
     }
 
-    public function transform(?int $value): array
+    public function transform(?int $value, ValueWithUnitHelper $helper): array
     {
         try {
-            return $this->helper->getMatchingUnit($value);
+            return $helper->getMatchingUnit($value);
         } catch (\Exception) {
             throw new TransformationFailedException(invalidMessage: 'Error transforming value: {value}.', invalidMessageParameters: ['value' => $value, /* @todo Make this work! */ 'translation_domain' => 'admin']);
         }
     }
 
-    public function reverseTransform(array $values): int
+    public function reverseTransform(array $values, ValueWithUnitHelper $helper): int
     {
         [self::FIELD_VALUE => $value, self::FIELD_UNIT => $unit] = $values;
-        $units = $this->helper->getUnits();
+        $units = $helper->getUnits();
         $info = $units[$unit] ?? null;
 
         if (null === $info) {
             throw new TransformationFailedException(invalidMessage: 'Invalid unit: {unit}.', invalidMessageParameters: ['unit' => $unit, /* @todo Make this work! */ 'translation_domain' => 'admin']);
         }
 
-        return $value * $this->helper->getScale();
+        return $value * $info[ValueWithUnitHelper::OPTION_UNIT_FACTOR];
     }
 
     public function configureOptions(OptionsResolver $resolver): void

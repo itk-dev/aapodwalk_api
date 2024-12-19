@@ -84,12 +84,12 @@ class RouteCrudController extends AbstractCrudController
             ->setUnits([
                 'km' => [
                     ValueWithUnitHelper::OPTION_UNIT_LABEL => new TranslatableMessage('kilometer', [], 'admin'),
-                    ValueWithUnitHelper::OPTION_SCALE => 1000,
+                    ValueWithUnitHelper::OPTION_UNIT_FACTOR => 1000,
                     ValueWithUnitHelper::OPTION_UNIT_LOCALIZED_UNIT => new TranslatableMessage('unit.km', [], 'admin'),
                 ],
                 'm' => [
                     ValueWithUnitHelper::OPTION_UNIT_LABEL => new TranslatableMessage('meter', [], 'admin'),
-                    ValueWithUnitHelper::OPTION_SCALE => 1,
+                    ValueWithUnitHelper::OPTION_UNIT_FACTOR => 1,
                     ValueWithUnitHelper::OPTION_UNIT_LOCALIZED_UNIT => new TranslatableMessage('unit.m', [], 'admin'),
                 ],
             ])
@@ -97,16 +97,15 @@ class RouteCrudController extends AbstractCrudController
             ->setHelp(new TranslatableMessage('The total distance of the route with all points of interests included.', [], 'admin'));
 
         yield ValueWithUnitField::new('totalDuration', new TranslatableMessage('Total duration', [], 'admin'))
-            ->setScale(1)
             ->setUnits([
                 'hour' => [
                     ValueWithUnitHelper::OPTION_UNIT_LABEL => new TranslatableMessage('hours', [], 'admin'),
-                    ValueWithUnitHelper::OPTION_SCALE => 60 * 60,
+                    ValueWithUnitHelper::OPTION_UNIT_FACTOR => 60 * 60,
                     ValueWithUnitHelper::OPTION_UNIT_LOCALIZED_UNIT => new TranslatableMessage('unit.hour', [], 'admin'),
                 ],
                 'minute' => [
                     ValueWithUnitHelper::OPTION_UNIT_LABEL => new TranslatableMessage('minutes', [], 'admin'),
-                    ValueWithUnitHelper::OPTION_SCALE => 60,
+                    ValueWithUnitHelper::OPTION_UNIT_FACTOR => 60,
                     ValueWithUnitHelper::OPTION_UNIT_LOCALIZED_UNIT => new TranslatableMessage('unit.minute', [], 'admin'),
                 ],
             ])

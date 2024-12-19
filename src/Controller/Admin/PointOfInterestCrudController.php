@@ -97,7 +97,7 @@ class PointOfInterestCrudController extends AbstractCrudController
             ->setUnits([
                 'm' => [
                     ValueWithUnitHelper::OPTION_UNIT_LABEL => new TranslatableMessage('meter', [], 'admin'),
-                    ValueWithUnitHelper::OPTION_SCALE => 1,
+                    ValueWithUnitHelper::OPTION_UNIT_FACTOR => 1,
                     ValueWithUnitHelper::OPTION_UNIT_LOCALIZED_UNIT => new TranslatableMessage('unit.m', [], 'admin'),
                 ],
             ])
