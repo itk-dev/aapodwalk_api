@@ -11,6 +11,8 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+## [1.0.0] - 2025-28-01
+
 - [PR-38](https://github.com/itk-dev/aapodwalk_api/pull/38)
   Added mailer config
 - [PR-34](https://github.com/itk-dev/aapodwalk_api/pull/34)
