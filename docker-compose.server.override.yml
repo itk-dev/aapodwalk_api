@@ -11,4 +11,4 @@ services:
   nginx:
     environment:
       # match PHP_POST_MAX_SIZE above
-      NGINX_MAX_BODY_SIZE: 48M
+      NGINX_MAX_BODY_SIZE: 50M
