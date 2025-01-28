@@ -3,17 +3,26 @@ App\Entity\Route:
   route_pizza:
     name: 'Pizzaruten'
     description: 'Denne rute er overordentligt fokuseret på pizza'
-    distance: '3 meter'
+    distance: 3
     imageFile: <uploadFile(files/pizza-1.jpg)>
-    total_duration: '16'
+    total_duration: 960  # 16 minutes (16 * 60)
     tags: ['@pizza', '@mad']
     createdBy: '@user'
 
   route_havnen:
     name: 'Havneruten'
     description: 'Denne rute er overordentligt fokuseret på havnen'
-    distance: '103 meter'
+    distance: 103
     imageFile: <uploadFile(files/pizza-1.jpg)>
-    total_duration: '25'
+    total_duration: 1500  # 25 minutes (25 * 60)
+    tags: ['@mad', '@arkitektur']
+    createdBy: '@another-user'
+
+  route_long:
+    name: 'Den lange rute'
+    description: 'Denne rute meget lang'
+    distance: 12345
+    imageFile: <uploadFile(files/pizza-1.jpg)>
+    total_duration: 9000  # 2.5 hours (2.5 * 60 * 60)
     tags: ['@mad', '@arkitektur']
     createdBy: '@another-user'

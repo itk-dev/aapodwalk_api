@@ -3,10 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Admin\Field\LocationField;
+use App\Admin\Field\ValueWithUnitField;
 use App\Entity\PointOfInterest;
 use App\Entity\Role;
 use App\Entity\Route;
 use App\Field\VichImageField;
+use App\Form\ValueWithUnitType;
 use App\Service\EasyAdminHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -91,8 +93,15 @@ class PointOfInterestCrudController extends AbstractCrudController
             ->setRequired(true)
             ->setVirtual(true)->setColumns(12);
 
-        yield NumberField::new('proximityToUnlock', new TranslatableMessage('Proximity to unlock', [], 'admin'))
-            ->setHelp(new TranslatableMessage('The proximity that allows unlocking this point of interest (in m).', [], 'admin'))->setColumns(12);
+        yield ValueWithUnitField::new('proximityToUnlock', new TranslatableMessage('Proximity to unlock', [], 'admin'))
+            ->setFormTypeOption('units', [
+                'm' => [
+                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('meter', [], 'admin'),
+                    ValueWithUnitType::OPTION_SCALE => 1,
+                    ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.m', [], 'admin'),
+                ],
+            ])
+            ->setHelp(new TranslatableMessage('The proximity that allows unlocking this point of interest.', [], 'admin'))->setColumns(12);
 
         yield DateField::new('createdAt', new TranslatableMessage('Created at', [], 'admin'))->hideOnForm();
         yield DateField::new('updatedAt', new TranslatableMessage('Updated at', [], 'admin'))->hideOnForm();

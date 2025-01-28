@@ -81,6 +81,9 @@ class PointOfInterest implements BlameableInterface, \JsonSerializable
     #[Groups(['read'])]
     private ?string $longitude = null;
 
+    /**
+     * Proximity to unlock in meters.
+     */
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank]
     #[Groups(['read'])]

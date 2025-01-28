@@ -48,9 +48,12 @@ class Route implements BlameableInterface
     #[Groups(['read'])]
     private ?string $description = null;
 
+    /**
+     * Distance in meters.
+     */
     #[ORM\Column(length: 255)]
     #[Groups(['read'])]
-    private ?string $distance = null;
+    private ?int $distance = null;
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
@@ -73,9 +76,12 @@ class Route implements BlameableInterface
     #[Groups(['read'])]
     private Collection $tags;
 
+    /**
+     * Total duration in seconds.
+     */
     #[ORM\Column(length: 255)]
     #[Groups(['read'])]
-    private ?string $totalDuration = null;
+    private ?int $totalDuration = null;
 
     /**
      * @var Collection<int, PointOfInterest>
@@ -125,12 +131,12 @@ class Route implements BlameableInterface
         return $this;
     }
 
-    public function getDistance(): ?string
+    public function getDistance(): ?int
     {
         return $this->distance;
     }
 
-    public function setDistance(string $distance): static
+    public function setDistance(int $distance): static
     {
         $this->distance = $distance;
 
@@ -201,12 +207,12 @@ class Route implements BlameableInterface
         return $this->imageFile;
     }
 
-    public function getTotalDuration(): ?string
+    public function getTotalDuration(): ?int
     {
         return $this->totalDuration;
     }
 
-    public function setTotalDuration(string $totalDuration): static
+    public function setTotalDuration(int $totalDuration): static
     {
         $this->totalDuration = $totalDuration;
 

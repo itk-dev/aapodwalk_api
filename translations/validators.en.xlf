@@ -9,6 +9,10 @@
         <source>Error</source>
         <target>Error</target>
       </trans-unit>
+      <trans-unit id="c5ToMGG" resname="Please enter a number.">
+        <source>Please enter a number.</source>
+        <target>Please enter a number.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

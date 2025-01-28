@@ -2,9 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Admin\Field\ValueWithUnitField;
 use App\Entity\Role;
 use App\Entity\Route;
 use App\Field\VichImageField;
+use App\Form\ValueWithUnitType;
 use App\Service\AppManager;
 use App\Service\EasyAdminHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -77,10 +79,37 @@ class RouteCrudController extends AbstractCrudController
             yield VichImageField::new('image')->setColumns(6);
         }
 
-        yield TextField::new('distance', new TranslatableMessage('Distance', [], 'admin'))->setColumns(6)
-        ->setHelp(new TranslatableMessage('The distance should be how far the route is with all points of interests included, e.g. "840m"', [], 'admin'));
-        yield TextField::new('totalDuration', new TranslatableMessage('Total duration', [], 'admin'))->setColumns(6)
-        ->setHelp(new TranslatableMessage('The total duration of the route, i.e. the total duration of audio tracks in the route plus the time needed for moving along the route.', [], 'admin'));
+        yield ValueWithUnitField::new('distance', new TranslatableMessage('Distance', [], 'admin'))
+            ->setFormTypeOption('units', [
+                'km' => [
+                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('kilometer', [], 'admin'),
+                    ValueWithUnitType::OPTION_SCALE => 1000,
+                    ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.km', [], 'admin'),
+                ],
+                'm' => [
+                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('meter', [], 'admin'),
+                    ValueWithUnitType::OPTION_SCALE => 1,
+                    ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.m', [], 'admin'),
+                ],
+            ])
+            ->setColumns(6)
+            ->setHelp(new TranslatableMessage('The total distance of the route with all points of interests included.', [], 'admin'));
+
+        yield ValueWithUnitField::new('totalDuration', new TranslatableMessage('Total duration', [], 'admin'))
+            ->setFormTypeOption('units', [
+                'hour' => [
+                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('hours', [], 'admin'),
+                    ValueWithUnitType::OPTION_SCALE => 60 * 60,
+                    ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.hour', [], 'admin'),
+                ],
+                'minute' => [
+                    ValueWithUnitType::OPTION_LABEL => new TranslatableMessage('minutes', [], 'admin'),
+                    ValueWithUnitType::OPTION_SCALE => 60,
+                    ValueWithUnitType::OPTION_LOCALIZED_UNIT => new TranslatableMessage('unit.minute', [], 'admin'),
+                ],
+            ])
+            ->setColumns(6)
+            ->setHelp(new TranslatableMessage('The total duration of the route, i.e. the total duration of audio tracks in the route plus the time needed for moving along the route.', [], 'admin'));
 
         yield CollectionField::new('points', new TranslatableMessage('Points', [], 'admin'))->addCssClass('field-collection')
             ->setEntryIsComplex()

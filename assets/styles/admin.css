@@ -82,3 +82,8 @@
 		white-space: nowrap;
 	}
 }
+
+/* Make the unit take up a little less space than the numeric value. */
+.field-value-with-unit.form-group input.form-control {
+	width: 70%;
+}

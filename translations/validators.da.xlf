@@ -9,6 +9,10 @@
         <source>Error</source>
         <target>Fejl</target>
       </trans-unit>
+      <trans-unit id="c5ToMGG" resname="Please enter a number.">
+        <source>Please enter a number.</source>
+        <target state="translated">Indtast venligst et tal.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -5,10 +5,6 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="9AG3Fb7" resname="The distance should be how far the route is with all points of interests included, e.g. &quot;840m&quot;">
-        <source>The distance should be how far the route is with all points of interests included, e.g. "840m"</source>
-        <target>The distance should be how far the route is with all points of interests included, e.g. "840m"</target>
-      </trans-unit>
       <trans-unit id="leQUq0a" resname="Tags are used in the frontend to organize the routes.">
         <source>Tags are used in the frontend to organize the routes.</source>
         <target>Tags are used in the frontend to organize the routes.</target>
@@ -24,10 +20,6 @@
       <trans-unit id="mbGC2Vh" resname="A text version of the podcast, for people with hearing disabilities.">
         <source>A text version of the podcast, for people with hearing disabilities.</source>
         <target>A text version of the podcast, for people with hearing disabilities.</target>
-      </trans-unit>
-      <trans-unit id="bbzr4x2" resname="The proximity that allows unlocking this point of interest (in m).">
-        <source>The proximity that allows unlocking this point of interest (in m).</source>
-        <target>The proximity that allows unlocking this point of interest (in m).</target>
       </trans-unit>
       <trans-unit id="IquzO6S" resname="Users mail address, which is also used as login name">
         <source>Users mail address, which is also used as login name</source>
@@ -308,6 +300,46 @@
       <trans-unit id="Zm.jZiK" resname="New password">
         <source>New password</source>
         <target>New password</target>
+      </trans-unit>
+      <trans-unit id="iFNKSr7" resname="unit.km">
+        <source>unit.km</source>
+        <target state="translated">km</target>
+      </trans-unit>
+      <trans-unit id="Wz6Xg78" resname="unit.m">
+        <source>unit.m</source>
+        <target state="translated">m</target>
+      </trans-unit>
+      <trans-unit id="8C4J7Bg" resname="unit.hour">
+        <source>unit.hour</source>
+        <target state="translated">hour</target>
+      </trans-unit>
+      <trans-unit id="pIfv8jd" resname="unit.minute">
+        <source>unit.minute</source>
+        <target state="translated">minute</target>
+      </trans-unit>
+      <trans-unit id=".oNaqNZ" resname="kilometer">
+        <source>kilometer</source>
+        <target>kilometer</target>
+      </trans-unit>
+      <trans-unit id="oy3WrtK" resname="meter">
+        <source>meter</source>
+        <target>meter</target>
+      </trans-unit>
+      <trans-unit id="vzk4YQV" resname="The total distance of the route with all points of interests included.">
+        <source>The total distance of the route with all points of interests included.</source>
+        <target>The total distance of the route with all points of interests included.</target>
+      </trans-unit>
+      <trans-unit id="_tuKggf" resname="hours">
+        <source>hours</source>
+        <target>hours</target>
+      </trans-unit>
+      <trans-unit id="3tshQgN" resname="minutes">
+        <source>minutes</source>
+        <target>minutes</target>
+      </trans-unit>
+      <trans-unit id="BOdcynp" resname="The proximity that allows unlocking this point of interest.">
+        <source>The proximity that allows unlocking this point of interest.</source>
+        <target>The proximity that allows unlocking this point of interest.</target>
       </trans-unit>
     </body>
   </file>
