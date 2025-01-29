@@ -113,13 +113,13 @@ tasks:
   coding-standards:markdown:apply:
     desc: "Apply coding standards for Markdown"
     cmds:
-      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md' --fix
+      - docker run --rm --volume "$PWD:/md" itkdev/markdownlint '**/*.md' --fix
 
   coding-standards:markdown:check:
     desc: "Apply and check coding standards for Markdown"
     cmds:
       - task: coding-standards:markdown:apply
-      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md'
+      - docker run --rm --volume "$PWD:/md" itkdev/markdownlint '**/*.md'
 
   # prettier:
   #   desc: "Run Prettier on tests source"
