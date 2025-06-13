@@ -11,6 +11,9 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+- [PR-41](https://github.com/itk-dev/aapodwalk_api/pull/41)
+  Security Updates
+
 ## [1.0.0] - 2025-28-01
 
 - [PR-38](https://github.com/itk-dev/aapodwalk_api/pull/38)
