@@ -7,8 +7,14 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController as BaseAbstractCrudController;
 
+/**
+ * @template T of object
+ *
+ * @extends BaseAbstractCrudController<T>
+ */
 abstract class AbstractCrudController extends BaseAbstractCrudController
 {
+    #[\Override]
     public function configureCrud(Crud $crud): Crud
     {
         return parent::configureCrud($crud)
@@ -20,6 +26,7 @@ abstract class AbstractCrudController extends BaseAbstractCrudController
             ->overrideTemplate('layout', 'admin/layout.html.twig');
     }
 
+    #[\Override]
     public function configureActions(Actions $actions): Actions
     {
         return parent::configureActions($actions)

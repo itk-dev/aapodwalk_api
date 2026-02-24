@@ -22,12 +22,13 @@ final class MediaProcessor implements MediaProcessorInterface
         $this->options = $this->processOptions($options);
     }
 
+    #[\Override]
     public function getEmbedCode(PointOfInterest $entity, string $property = 'mediaUrl'): string
     {
         $url = $this->propertyAccessor->getValue($entity, $property);
         if ($url) {
             $processedUrl = $url;
-            $isAudioProperty = preg_replace('/Url$/', 'IsAudio', $property);
+            $isAudioProperty = (string) preg_replace('/Url$/', 'IsAudio', $property);
             if ($this->propertyAccessor->isReadable($entity, $isAudioProperty)
                 && $this->propertyAccessor->getValue($entity, $isAudioProperty)) {
                 $processedUrl .= (str_contains($url, '?') ? '&' : '?').http_build_query(['is_audio' => true]);
@@ -52,11 +53,13 @@ final class MediaProcessor implements MediaProcessorInterface
         throw new \RuntimeException(sprintf('Could not process media url %s', $url ?? 'null'));
     }
 
+    #[\Override]
     public function getTemplates(): array
     {
         return $this->options['templates'];
     }
 
+    #[\Override]
     public function getTemplateByUrl(string $url): ?array
     {
         foreach ($this->getTemplates() as $template) {

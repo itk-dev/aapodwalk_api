@@ -25,6 +25,7 @@ class UserAddCommand extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function configure(): void
     {
         $this->addArgument('email', InputArgument::REQUIRED, 'E-mail-address for username')
@@ -34,6 +35,7 @@ class UserAddCommand extends Command
     /**
      * @todo: needs way better input validation.
      */
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $user = new User();
@@ -45,9 +47,8 @@ class UserAddCommand extends Command
             $io->error('Email not valid');
 
             return Command::FAILURE;
-        } else {
-            $user->setEmail($email);
         }
+        $user->setEmail($email);
 
         $plainPassword = $input->getArgument('password');
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);

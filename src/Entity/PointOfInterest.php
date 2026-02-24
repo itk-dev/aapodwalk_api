@@ -265,6 +265,7 @@ class PointOfInterest implements BlameableInterface, \JsonSerializable
         return $this;
     }
 
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [

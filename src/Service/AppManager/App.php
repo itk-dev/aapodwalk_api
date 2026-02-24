@@ -33,7 +33,7 @@ final class App
         }
 
         // Replace `{key}` with `$params[key]` in path.
-        $path = preg_replace_callback(
+        $path = (string) preg_replace_callback(
             '#\{(?P<key>[^}]+)\}#',
             fn (array $matches) => $params[$matches['key']] ?? $matches[0],
             $path

@@ -64,6 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Blameab
      *
      * @see UserInterface
      */
+    #[\Override]
     public function getUserIdentifier(): string
     {
         assert(!empty($this->email));
@@ -74,6 +75,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Blameab
     /**
      * @see UserInterface
      */
+    #[\Override]
     public function getRoles(): array
     {
         return $this->roles;
@@ -89,6 +91,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Blameab
     /**
      * @see PasswordAuthenticatedUserInterface
      */
+    #[\Override]
     public function getPassword(): string
     {
         return $this->password;
@@ -101,6 +104,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Blameab
         return $this;
     }
 
+    #[\Override]
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here

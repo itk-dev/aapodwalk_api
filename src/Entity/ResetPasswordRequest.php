@@ -32,6 +32,7 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
         return $this->id;
     }
 
+    #[\Override]
     public function getUser(): User
     {
         assert(null !== $this->user);

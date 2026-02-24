@@ -14,7 +14,7 @@ jobs:
         php: [ '8.3' ]
     name: Validate composer (${{ matrix.php}})
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
@@ -24,7 +24,7 @@ jobs:
 
       - name: Get composer cache directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         uses: actions/cache@v4
@@ -62,7 +62,7 @@ jobs:
     name: PHP Coding Standards Fixer (PHP ${{ matrix.php }})
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
@@ -73,7 +73,7 @@ jobs:
 
       - name: Get composer cache directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer dependencies
         uses: actions/cache@v4
@@ -83,10 +83,10 @@ jobs:
           restore-keys: ${{ matrix.php }}-composer-
 
       - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: php-cs-fixer
-        run: phpdbg -qrr ./vendor/bin/php-cs-fixer fix --dry-run
+        run: PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix --dry-run
 
   twig-cs-fixer:
     runs-on: ubuntu-latest
@@ -97,7 +97,7 @@ jobs:
     name: Twig Coding Standards Fixer (PHP ${{ matrix.php }})
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
@@ -108,7 +108,7 @@ jobs:
 
       - name: Get composer cache directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer dependencies
         uses: actions/cache@v4
@@ -118,10 +118,10 @@ jobs:
           restore-keys: ${{ matrix.php }}-composer-
 
       - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: twig-cs-fixer
-        run: phpdbg -qrr ./vendor/bin/twig-cs-fixer lint templates
+        run: ./vendor/bin/twig-cs-fixer lint templates
 
   psalm:
     runs-on: ubuntu-latest
@@ -131,7 +131,7 @@ jobs:
         php: ['8.3']
     name: Psalm static analysis (${{ matrix.php}})
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
@@ -142,7 +142,7 @@ jobs:
 
       - name: Get composer cache directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         uses: actions/cache@v4
@@ -153,7 +153,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
           bin/console cache:clear
       - name: Psalm
         run: ./vendor/bin/psalm --no-cache
@@ -167,7 +167,7 @@ jobs:
         php: [ '8.3' ]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
@@ -180,7 +180,7 @@ jobs:
 
       - name: Get composer cache directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache dependencies
         uses: actions/cache@v4
@@ -190,7 +190,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-${{ matrix.dependency-version }}-
 
       - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Export specifications
         run: bin/console api:openapi:export --yaml --output=public/api-spec-v1.yaml --no-interaction
@@ -205,7 +205,7 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
@@ -218,7 +218,7 @@ jobs:
   validate-doctrine-schema:
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: mysql://db:db@127.0.0.1:3306/db_test?serverVersion=mariadb-10.5.13
+      DATABASE_URL: mysql://db:db@127.0.0.1:3306/db_test?serverVersion=mariadb-10.11.10
     strategy:
       fail-fast: false
       matrix:
@@ -226,7 +226,7 @@ jobs:
     name: Validate Doctrine Schema (PHP ${{ matrix.php}})
     services:
       mariadb:
-        image: mariadb:10.5.13
+        image: mariadb:10.11
         env:
           MYSQL_USER: db
           MYSQL_PASSWORD: db
@@ -237,7 +237,7 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
@@ -248,7 +248,7 @@ jobs:
 
       - name: Get composer cache directory
         id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer dependencies
         uses: actions/cache@v4
@@ -274,7 +274,7 @@ jobs:
     name: Check translations are up to date
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Update translations
         run: |
           docker network create frontend
@@ -289,7 +289,7 @@ jobs:
     name: Lint assets
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Run Biome
         run: |
           docker network create frontend

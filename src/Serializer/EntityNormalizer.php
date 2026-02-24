@@ -18,12 +18,13 @@ final class EntityNormalizer implements NormalizerInterface
 {
     public function __construct(
         #[Autowire(service: 'api_platform.jsonld.normalizer.item')]
-        readonly private NormalizerInterface $normalizer,
-        readonly private StorageInterface $storage,
-        readonly private MediaProcessorInterface $mediaProcessor,
+        private readonly NormalizerInterface $normalizer,
+        private readonly StorageInterface $storage,
+        private readonly MediaProcessorInterface $mediaProcessor,
     ) {
     }
 
+    #[\Override]
     public function normalize(
         mixed $data,
         ?string $format = null,
@@ -39,6 +40,7 @@ final class EntityNormalizer implements NormalizerInterface
         return $this->normalizer->normalize($data, $format, $context);
     }
 
+    #[\Override]
     public function getSupportedTypes(?string $format): array
     {
         return [
@@ -47,6 +49,7 @@ final class EntityNormalizer implements NormalizerInterface
         ];
     }
 
+    #[\Override]
     public function supportsNormalization($data, ?string $format = null, array $context = []): bool
     {
         if ($this->isProcessed($data, $context)) {
@@ -58,7 +61,9 @@ final class EntityNormalizer implements NormalizerInterface
 
     private function isProcessed(mixed $data, array $context): bool
     {
-        return isset($context[$this->getIsProcessedKey($data)]);
+        $key = $this->getIsProcessedKey($data);
+
+        return null !== $key && isset($context[$key]);
     }
 
     private function setIsProcessed(mixed $data, array &$context): void
@@ -121,7 +126,7 @@ final class EntityNormalizer implements NormalizerInterface
 
             $reflectionProperty = new \ReflectionProperty($data, $mediaUrlName);
             if ($url = $reflectionProperty->getValue($data)) {
-                $embedCodeName = preg_replace('/Url$/', 'EmbedCode', $mediaUrlName);
+                $embedCodeName = (string) preg_replace('/Url$/', 'EmbedCode', $mediaUrlName);
                 if (property_exists($data, $embedCodeName)) {
                     try {
                         $data->{$embedCodeName} = $this->mediaProcessor->getEmbedCode($data, $mediaUrlName);

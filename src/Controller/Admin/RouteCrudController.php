@@ -18,6 +18,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Translation\TranslatableMessage;
 
+/**
+ * @extends AbstractCrudController<Route>
+ */
 class RouteCrudController extends AbstractCrudController
 {
     public function __construct(
@@ -25,11 +28,13 @@ class RouteCrudController extends AbstractCrudController
     ) {
     }
 
+    #[\Override]
     public static function getEntityFqcn(): string
     {
         return Route::class;
     }
 
+    #[\Override]
     public function configureCrud(Crud $crud): Crud
     {
         return parent::configureCrud($crud)
@@ -37,6 +42,7 @@ class RouteCrudController extends AbstractCrudController
             ->setEntityLabelInPlural(new TranslatableMessage('Routes', [], 'admin'));
     }
 
+    #[\Override]
     public function configureActions(Actions $actions): Actions
     {
         $actions = parent::configureActions($actions);
@@ -55,6 +61,7 @@ class RouteCrudController extends AbstractCrudController
         return $actions;
     }
 
+    #[\Override]
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id', new TranslatableMessage('ID', [], 'admin'))->hideOnForm();

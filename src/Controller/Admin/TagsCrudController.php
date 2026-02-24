@@ -12,6 +12,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Translation\TranslatableMessage;
 
+/**
+ * @extends AbstractCrudController<Tag>
+ */
 class TagsCrudController extends AbstractCrudController
 {
     public function __construct(
@@ -19,11 +22,13 @@ class TagsCrudController extends AbstractCrudController
     ) {
     }
 
+    #[\Override]
     public static function getEntityFqcn(): string
     {
         return Tag::class;
     }
 
+    #[\Override]
     public function configureCrud(Crud $crud): Crud
     {
         return parent::configureCrud($crud)
@@ -31,6 +36,7 @@ class TagsCrudController extends AbstractCrudController
             ->setEntityLabelInPlural(new TranslatableMessage('Tags', [], 'admin'));
     }
 
+    #[\Override]
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id', new TranslatableMessage('ID', [], 'admin'))->hideOnForm();

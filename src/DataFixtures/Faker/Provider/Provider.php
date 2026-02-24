@@ -14,10 +14,10 @@ class Provider extends Base
 {
     public function __construct(
         Generator $generator,
-        readonly private Filesystem $filesystem,
-        readonly private MimeTypeGuesserInterface $mimeTypeGuesser,
-        readonly private UserPasswordHasherInterface $passwordHasher,
-        readonly private array $config,
+        private readonly Filesystem $filesystem,
+        private readonly MimeTypeGuesserInterface $mimeTypeGuesser,
+        private readonly UserPasswordHasherInterface $passwordHasher,
+        private readonly array $config,
     ) {
         parent::__construct($generator);
     }
