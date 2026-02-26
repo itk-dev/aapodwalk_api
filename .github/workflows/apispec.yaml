@@ -1,0 +1,26 @@
+name: API Specification
+
+env:
+  COMPOSE_USER: runner
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  apispec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+      - name: Create docker network
+        run: docker network create frontend
+      - run: |
+          docker compose run --rm phpfpm composer install
+          docker compose run --rm phpfpm bin/console api:openapi:export --yaml --output=public/api-spec-v1.yaml --no-interaction
+      - name: Check for changes in specifications
+        run: git diff --diff-filter=ACMRT --exit-code public/api-spec-v1.yaml

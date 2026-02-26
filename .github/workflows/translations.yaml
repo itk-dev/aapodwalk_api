@@ -1,0 +1,24 @@
+name: Translations
+
+env:
+  COMPOSE_USER: runner
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  translations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Create docker network
+        run: docker network create frontend
+      - run: |
+          docker compose run --rm --user root phpfpm composer install --no-scripts
+          docker compose run --rm --user root phpfpm composer update-translations
+      - name: Check for changes in translation files
+        run: git diff --diff-filter=ACMRT --exit-code translations

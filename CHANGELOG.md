@@ -11,9 +11,6 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
-- Fixed CI workflow: replaced deprecated `set-output` with `$GITHUB_OUTPUT`,
-  upgraded `actions/checkout` to v4, removed `phpdbg` and `--no-suggest`,
-  updated MariaDB from 10.5 to 10.11
 - Upgraded Symfony from 7.2 to 7.4 LTS
 - [PR-41](https://github.com/itk-dev/aapodwalk_api/pull/41)
   Security Updates
