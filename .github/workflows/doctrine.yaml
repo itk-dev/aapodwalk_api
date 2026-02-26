@@ -1,34 +1,34 @@
 name: Doctrine
 
 env:
-  COMPOSE_USER: runner
+    COMPOSE_USER: runner
 
 on:
-  pull_request:
-  push:
-    branches:
-      - main
-      - develop
+    pull_request:
+    push:
+        branches:
+            - main
+            - develop
 
 jobs:
-  validate-doctrine-schema:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
+    validate-doctrine-schema:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
 
-      - name: Create docker network
-        run: docker network create frontend
+            - name: Create docker network
+              run: docker network create frontend
 
-      - name: Start MariaDB
-        run: docker compose up -d mariadb
+            - name: Start MariaDB
+              run: docker compose up -d mariadb
 
-      - name: Wait for MariaDB to be ready
-        run: |
-          until docker compose exec mariadb mysqladmin ping --silent 2>/dev/null; do
-            sleep 1
-          done
+            - name: Wait for MariaDB to be ready
+              run: |
+                  until docker compose exec mariadb mysqladmin ping --silent 2>/dev/null; do
+                    sleep 1
+                  done
 
-      - run: |
-          docker compose run --rm phpfpm composer install
-          docker compose run --rm phpfpm bin/console doctrine:migrations:migrate --no-interaction
-          docker compose run --rm phpfpm bin/console doctrine:schema:validate
+            - run: |
+                  docker compose run --rm phpfpm composer install
+                  docker compose run --rm phpfpm bin/console doctrine:migrations:migrate --no-interaction
+                  docker compose run --rm phpfpm bin/console doctrine:schema:validate

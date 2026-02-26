@@ -18,6 +18,6 @@ steps:
         from_secret: path
       user:
         from_secret: user
-      playbook: 'release'
+      playbook: "release"
       pre_up:
         - itkdev-docker-compose-server run --rm phpfpm bin/console cache:clear

@@ -2,7 +2,7 @@
 	.accordion-header {
 		.accordion-button {
 			font-size: var(--font-size-base);
-			padding: .5em;
+			padding: 0.5em;
 		}
 	}
 }
@@ -55,8 +55,7 @@
 	/* Avoid content so wide it pushes the add entry button above datatable out of the viewport. */
 	.wrapper {
 		grid-template-columns: var(--sidebar-max-width) calc(
-				100% -
-				var(--sidebar-max-width)
+				100% - var(--sidebar-max-width)
 			);
 	}
 	.content-wrapper {

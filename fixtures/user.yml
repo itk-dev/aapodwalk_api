@@ -1,27 +1,27 @@
 ---
 App\Entity\User:
   admin:
-    email: 'admin@example.com'
+    email: "admin@example.com"
     password: '<password(@self, "password")>'
     roles: [ROLE_ADMIN]
 
   user-admin:
-    email: 'user-admin@example.com'
+    email: "user-admin@example.com"
     password: '<password(@self, "password")>'
     roles: [ROLE_USER_ADMIN]
 
   user:
-    email: 'user@example.com'
+    email: "user@example.com"
     password: '<password(@self, "password")>'
     roles: [ROLE_USER]
 
   another-user:
-    email: 'another-user@example.com'
+    email: "another-user@example.com"
     password: '<password(@self, "password")>'
     roles: [ROLE_USER]
 
   api-user:
-    email: 'api-user@example.com'
+    email: "api-user@example.com"
     password: '<password(@self, "password")>'
     apiToken: this-is-not-a-very-secret-token
     roles: [ROLE_API]

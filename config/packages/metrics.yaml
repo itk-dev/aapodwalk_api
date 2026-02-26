@@ -1,9 +1,9 @@
 itkdev_metrics:
-  namespace: Aapodwalk
-  adapter:
-    type: apcu # One of "apcu"; "memory"; "redis"
+    namespace: Aapodwalk
+    adapter:
+        type: apcu # One of "apcu"; "memory"; "redis"
 
-  # Export metrics for these extensions
-  extensions:
-    opcache: false
-    apcu: true
+    # Export metrics for these extensions
+    extensions:
+        opcache: false
+        apcu: true
