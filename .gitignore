@@ -20,3 +20,6 @@
 ###> vincentlanglet/twig-cs-fixer ###
 /.twig-cs-fixer.cache
 ###< vincentlanglet/twig-cs-fixer ###
+
+/CLAUDE.md
+/config/reference.php
