@@ -25,12 +25,14 @@ class BlameableVoter extends Voter
     ) {
     }
 
+    #[\Override]
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [self::DETAIL, self::EDIT, self::DELETE])
             && $subject instanceof BlameableInterface;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         // Anybody can view anything.

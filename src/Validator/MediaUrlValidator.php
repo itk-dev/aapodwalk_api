@@ -13,6 +13,7 @@ class MediaUrlValidator extends ConstraintValidator
     ) {
     }
 
+    #[\Override]
     public function validate(mixed $value, Constraint $constraint): void
     {
         /* @var MediaUrl $constraint */

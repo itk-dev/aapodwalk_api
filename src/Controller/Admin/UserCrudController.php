@@ -22,6 +22,9 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Translation\TranslatableMessage;
 
+/**
+ * @extends AbstractCrudController<User>
+ */
 class UserCrudController extends AbstractCrudController
 {
     public function __construct(
@@ -29,11 +32,13 @@ class UserCrudController extends AbstractCrudController
     ) {
     }
 
+    #[\Override]
     public static function getEntityFqcn(): string
     {
         return User::class;
     }
 
+    #[\Override]
     public function configureCrud(Crud $crud): Crud
     {
         return parent::configureCrud($crud)
@@ -41,6 +46,7 @@ class UserCrudController extends AbstractCrudController
             ->setEntityLabelInPlural(new TranslatableMessage('Users', [], 'admin'));
     }
 
+    #[\Override]
     public function configureActions(Actions $actions): Actions
     {
         return parent::configureActions($actions)
@@ -50,6 +56,7 @@ class UserCrudController extends AbstractCrudController
             ->disable(Action::DELETE);
     }
 
+    #[\Override]
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id', new TranslatableMessage('ID', [], 'admin'))->hideOnForm();
@@ -95,6 +102,7 @@ class UserCrudController extends AbstractCrudController
             ->hideOnForm();
     }
 
+    #[\Override]
     public function createNewFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
     {
         $formBuilder = parent::createNewFormBuilder($entityDto, $formOptions, $context);

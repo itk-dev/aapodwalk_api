@@ -12,6 +12,7 @@ final class VichImageField implements FieldInterface
 {
     use FieldTrait;
 
+    #[\Override]
     public static function new(string $propertyName, ?string $label = null): self
     {
         return (new self())

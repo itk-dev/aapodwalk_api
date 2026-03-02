@@ -25,24 +25,28 @@ class AdminDashboardController extends AbstractDashboardController
     ) {
     }
 
+    #[\Override]
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
         return $this->redirect($this->adminUrlGenerator->setController(RouteCrudController::class)->generateUrl());
     }
 
+    #[\Override]
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
             ->setTitle('Aapodwalk');
     }
 
+    #[\Override]
     public function configureAssets(): Assets
     {
         return Assets::new()
             ->addAssetMapperEntry('admin');
     }
 
+    #[\Override]
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToCrud(new TranslatableMessage('Routes', [], 'admin'), 'fa-solid fa-spaghetti-monster-flying', RouteWithPOI::class);

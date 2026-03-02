@@ -24,6 +24,7 @@ class UserRolesCommand extends Command
         parent::__construct();
     }
 
+    #[\Override]
     protected function configure(): void
     {
         $this->addArgument('email', InputArgument::REQUIRED, 'Username')
@@ -34,6 +35,7 @@ class UserRolesCommand extends Command
     /**
      * @todo: needs way better input validation.
      */
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);

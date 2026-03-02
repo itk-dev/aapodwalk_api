@@ -15,6 +15,7 @@ use Symfony\Component\Translation\TranslatableMessage;
  */
 class LocationType extends AbstractType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -33,7 +34,11 @@ class LocationType extends AbstractType
 
     public function explodeCoordinates(string $coordinates): array
     {
-        $values = array_map('trim', preg_split('/\s*,\s*/', $coordinates));
+        $parts = preg_split('/\s*,\s*/', $coordinates);
+        if (false === $parts) {
+            throw new TransformationFailedException(invalidMessage: 'Invalid coordinates format.');
+        }
+        $values = array_map('trim', $parts);
         if (2 !== count($values)) {
             throw new TransformationFailedException(invalidMessage: 'The value must contain two numbers separated by comma.', invalidMessageParameters: [/* @todo Make this work! */ 'translation_domain' => 'admin']);
         }
@@ -47,6 +52,7 @@ class LocationType extends AbstractType
         return $values;
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -54,6 +60,7 @@ class LocationType extends AbstractType
         ]);
     }
 
+    #[\Override]
     public function getParent()
     {
         return TextType::class;

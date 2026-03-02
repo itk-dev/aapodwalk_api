@@ -19,13 +19,18 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use Symfony\Component\Translation\TranslatableMessage;
 
+/**
+ * @extends AbstractCrudController<PointOfInterest>
+ */
 class PointOfInterestCrudController extends AbstractCrudController
 {
+    #[\Override]
     public static function getEntityFqcn(): string
     {
         return PointOfInterest::class;
     }
 
+    #[\Override]
     public function configureCrud(Crud $crud): Crud
     {
         return parent::configureCrud($crud)
@@ -33,6 +38,7 @@ class PointOfInterestCrudController extends AbstractCrudController
             ->setEntityLabelInPlural(new TranslatableMessage('Points of interest', [], 'admin'));
     }
 
+    #[\Override]
     public function configureFields(string $pageName): iterable
     {
         $route = AssociationField::new('route', new TranslatableMessage('Route', [], 'admin'))

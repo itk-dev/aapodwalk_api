@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 dotenv: [".env", ".env.local"]
 
@@ -17,7 +17,7 @@ tasks:
   compose:
     desc: "Run `docker compose` command. Example: task compose -- up --detach"
     cmds:
-      - '{{ .DOCKER_COMPOSE }} {{ .CLI_ARGS }}'
+      - "{{ .DOCKER_COMPOSE }} {{ .CLI_ARGS }}"
 
   compose-exec:
     desc: "Run `docker compose exec` command handling content on stdin. Example: task compose-exec -- phpfpm php -v"

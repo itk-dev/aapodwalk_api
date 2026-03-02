@@ -17,6 +17,7 @@ class AccessTokenHandler implements AccessTokenHandlerInterface
     ) {
     }
 
+    #[\Override]
     public function getUserBadgeFrom(string $accessToken): UserBadge
     {
         $user = $this->repository->findOneBy(['apiToken' => $accessToken]);

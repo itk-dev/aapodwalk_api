@@ -1,4 +1,9 @@
 {
+	"css": {
+		"formatter": {
+			"enabled": false
+		}
+	},
 	"files": {
 		"ignore": [
 			"assets/vendor/*",

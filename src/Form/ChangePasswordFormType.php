@@ -19,6 +19,7 @@ use function Symfony\Component\Translation\t;
  */
 class ChangePasswordFormType extends AbstractType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -34,12 +35,11 @@ class ChangePasswordFormType extends AbstractType
                         new NotBlank([
                             'message' => t('Please enter a password', [], 'admin'),
                         ]),
-                        new Length([
-                            'min' => 12,
-                            'minMessage' => t('Your password should be at least {{ limit }} characters', [], 'admin'),
-                            // max length allowed by Symfony for security reasons
-                            'max' => 4096,
-                        ]),
+                        new Length(
+                            min: 12,
+                            max: 4096,
+                            minMessage: (string) t('Your password should be at least {{ limit }} characters', [], 'admin'),
+                        ),
                         new PasswordStrength(),
                         new NotCompromisedPassword(),
                     ],
@@ -56,6 +56,7 @@ class ChangePasswordFormType extends AbstractType
         ;
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([]);

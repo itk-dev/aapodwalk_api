@@ -18,6 +18,7 @@ final class EntityProcessor implements ProcessorInterface
     ) {
     }
 
+    #[\Override]
     public function preProcess(string $id, object $object): void
     {
         /** @var ConstraintViolationList $violations */
@@ -28,6 +29,7 @@ final class EntityProcessor implements ProcessorInterface
         }
     }
 
+    #[\Override]
     public function postProcess(string $id, object $object): void
     {
     }

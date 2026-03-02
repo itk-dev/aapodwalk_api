@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 final class EasyAdminVoter extends BlameableVoter
 {
+    #[\Override]
     protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [Permission::EA_EXECUTE_ACTION])
@@ -19,6 +20,7 @@ final class EasyAdminVoter extends BlameableVoter
         && $subject['entity']->getInstance() instanceof BlameableInterface;
     }
 
+    #[\Override]
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         $action = $subject['action'];
