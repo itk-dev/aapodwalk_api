@@ -11,6 +11,9 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+- [PR-53](https://github.com/itk-dev/aapodwalk_api/pull/53)
+  Update guidelines for attaching media to POIs
+
 ## [1.0.2] - 2026-05-21
 
 - [PR-54](https://github.com/itk-dev/aapodwalk_api/pull/54)
@@ -20,6 +23,8 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [1.0.1] - 2025-23-06
 
+- [PR-42](https://github.com/itk-dev/aapodwalk_api/pull/42)
+  Upgraded Symfony from 7.2 to 7.4 LTS
 - [PR-41](https://github.com/itk-dev/aapodwalk_api/pull/41)
   Security Updates
 
@@ -82,7 +87,3 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 - Added order param to PointOfInterest.
 - Added centerlatitude, centerlongitude, zoom, partcount and totalduration to route.
 - Add proximity to point of interest, that allows for setting an unlockable distance in meters.
-
-[Unreleased]: https://github.com/itk-dev/aapodwalk_api/compare/1.0.2...HEAD
-[1.0.2]: https://github.com/itk-dev/aapodwalk_api/compare/1.0.0...1.0.2
-[1.0.0]: https://github.com/itk-dev/aapodwalk_api/releases/tag/1.0.0
