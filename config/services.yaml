@@ -10,38 +10,19 @@ parameters:
     media_processor.options:
         # Template are processed in the defined order; the first one with a matching pattern will be used.
         templates:
-            - name: 'Videotool (audio)'
+            - name: 'MP3 audio'
               help:
                   en: |
-                      Insert "direkte link til playeren", e.g. <code>https://media.videotool.dk/?vn=467_2024120710215424183468967435</code>
+                      Use the "Kopier download link til lydfil i MP3" button from the Videotool admin (under "Del download links") to copy a direct MP3 download link, then paste it here.
+                      <img src="/images/videotool-mp3-download-link.png" alt="Videotool: Del download links — Kopier download link til lydfil i MP3" style="display: block; max-width: 600px; width: 100%%; height: auto; margin-top: .5rem; border: 1px solid var(--bs-border-color, #ccc); border-radius: 4px;">
                   da: |
-                      Indsæt "direkte link til playeren", fx https://media.videotool.dk/?vn=467_2024120710215424183468967435
-              pattern: "~^https://media.videotool.dk/?\\?vn=(?P<id>[^&#]+)&is_audio=1$~"
+                      Brug knappen "Kopier download link til lydfil i MP3" i Videotool-administrationen (under "Del download links") til at kopiere et direkte MP3-downloadlink, og indsæt det her.
+                      <img src="/images/videotool-mp3-download-link.png" alt="Videotool: Del download links — Kopier download link til lydfil i MP3" style="display: block; max-width: 600px; width: 100%%; height: auto; margin-top: .5rem; border: 1px solid var(--bs-border-color, #ccc); border-radius: 4px;">
+              pattern: "~^https?://~i"
               template: >-
-                  <div style="position: relative; padding-bottom: 26.25%%; height: 0;">
-                  <iframe aria-label="{{ title }}"
-                          type="text/html"
-                          style="position: absolute; top: 0; left: 0; width: 100%% !important; height: 100%% !important;"
-                          src="{{ url }}&ao=1"
-                          frameborder="0"
-                          allowfullscreen
-                          allow="autoplay; fullscreen"></iframe>
-                  </div>
-
-            - name: 'Videotool (video)'
-              help: |
-                  Indsæt "direkte link til playeren", fx https://media.videotool.dk/?vn=467_2024120710155950260322839288
-              pattern: "~^https://media.videotool.dk/?\\?vn=(?P<id>[^&#]+)$~"
-              template: >-
-                  <div style="position: relative; padding-bottom: 56.25%%; height: 0;">
-                  <iframe aria-label="{{ title }}"
-                          type="text/html"
-                          style="position: absolute; top: 0; left: 0; width: 100%% !important; height: 100%% !important;"
-                          src="{{ url }}"
-                          frameborder="0"
-                          allowfullscreen
-                          allow="autoplay; fullscreen"></iframe>
-                  </div>
+                  <audio controls preload="none" style="width: 100%%;" src="{{ url }}" aria-label="{{ title }}">
+                  {{ url }}
+                  </audio>
 
 services:
     # default configuration for services in *this* file

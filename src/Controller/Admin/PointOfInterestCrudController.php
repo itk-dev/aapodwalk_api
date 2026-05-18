@@ -10,7 +10,6 @@ use App\Field\VichImageField;
 use App\Service\EasyAdminHelper;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -42,11 +41,13 @@ class PointOfInterestCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         $route = AssociationField::new('route', new TranslatableMessage('Route', [], 'admin'))
-            ->setRequired(true);
+            ->setRequired(true)
+            ->setColumns(12);
 
         $position = NumberField::new('poiOrder', new TranslatableMessage('Order', [], 'admin'))
             ->addCssClass('route-point-position')
-            ->setRequired(false);
+            ->setRequired(false)
+            ->setColumns(12);
 
         // Check if this controller is being used in a collection.
         if ($this->getContext()?->getEntity()?->getInstance() instanceof Route) {
@@ -80,14 +81,10 @@ class PointOfInterestCrudController extends AbstractCrudController
 
         $mediaUrlLabel = new TranslatableMessage('Media URL', [], 'admin');
         yield UrlField::new('mediaUrl', $mediaUrlLabel)
+            ->setHelp(new TranslatableMessage('Insert a direct mp3 download link to the audio file (not a Videotool iframe/player link).', [], 'admin'))
             ->setFormTypeOptions([
                 'block_name' => 'mediaUrl',
             ])->setColumns(12);
-        yield BooleanField::new('mediaIsAudio', new TranslatableMessage('Is audio?', [], 'admin'))
-            ->setHelp(new TranslatableMessage('Check if "{media_url}" points to an audio file.', [
-                'media_url' => $mediaUrlLabel,
-            ], 'admin'))
-            ->renderAsSwitch(false)->setColumns(12);
 
         yield TextareaField::new('subtitles', new TranslatableMessage('Subtitles', [], 'admin'))
             ->setRequired(true)

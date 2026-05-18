@@ -257,6 +257,10 @@
         <source>Check if "{media_url}" points to an audio file.</source>
         <target state="translated">Marker hvis "{media_url}" peger på en lydfil.</target>
       </trans-unit>
+      <trans-unit id="mp3Lnk1" resname="Insert a direct mp3 download link to the audio file (not a Videotool iframe/player link).">
+        <source>Insert a direct mp3 download link to the audio file (not a Videotool iframe/player link).</source>
+        <target state="translated">Indsæt et direkte mp3-downloadlink til lydfilen (ikke et Videotool iframe/afspiller-link).</target>
+      </trans-unit>
       <trans-unit id="s3PJeIL" resname="Add new point">
         <source>Add new point</source>
         <target state="translated">Tilføj nyt punkt</target>

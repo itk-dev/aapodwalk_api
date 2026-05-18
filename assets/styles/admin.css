@@ -34,20 +34,42 @@
 }
 
 /* Show label and inputs above eachother instead for inline when in collection */
-.form-group.field-collection.accordion {
-	.accordion-item {
-		.form-group {
-			display: block;
+.form-group.field-collection {
+	.accordion-item .accordion-body .form-group {
+		display: block;
 
-			> label {
-				margin: 0;
-				padding: 0 0 8px;
-				inline-size: initial;
-			}
+		> label {
+			margin: 0;
+			padding: 0 0 8px;
+			inline-size: initial;
 		}
 	}
 	.accordion-button {
 		padding: 8px 7px;
+	}
+
+	/* Keep the move/delete buttons inline with the accordion headline */
+	.accordion-header {
+		display: flex;
+		align-items: center;
+		padding-inline-end: 0;
+
+		.accordion-button {
+			flex: 1 1 auto;
+			width: auto;
+		}
+
+		.accordion-actions {
+			display: flex;
+			align-items: center;
+			flex-shrink: 0;
+			gap: 4px;
+			padding-inline-end: 8px;
+		}
+
+		.field-collection-delete-button {
+			position: static;
+		}
 	}
 }
 
