@@ -237,10 +237,6 @@
         <source>Media URL</source>
         <target state="translated">Medie-url</target>
       </trans-unit>
-      <trans-unit id="E.HTA7V" resname="Is audio?">
-        <source>Is audio?</source>
-        <target state="translated">Er lyd?</target>
-      </trans-unit>
       <trans-unit id="ptuJUXQ" resname="Media preview">
         <source>Media preview</source>
         <target state="translated">Forhåndsvisning</target>
@@ -253,11 +249,7 @@
         <source>Information on media URLs</source>
         <target state="translated">Information om medie-url’er</target>
       </trans-unit>
-      <trans-unit id="CPIQaaz" resname="Check if &quot;{media_url}&quot; points to an audio file.">
-        <source>Check if "{media_url}" points to an audio file.</source>
-        <target state="translated">Marker hvis "{media_url}" peger på en lydfil.</target>
-      </trans-unit>
-      <trans-unit id="mp3Lnk1" resname="Insert a direct mp3 download link to the audio file (not a Videotool iframe/player link).">
+      <trans-unit id="RyyZOc." resname="Insert a direct mp3 download link to the audio file (not a Videotool iframe/player link).">
         <source>Insert a direct mp3 download link to the audio file (not a Videotool iframe/player link).</source>
         <target state="translated">Indsæt et direkte mp3-downloadlink til lydfilen (ikke et Videotool iframe/afspiller-link).</target>
       </trans-unit>

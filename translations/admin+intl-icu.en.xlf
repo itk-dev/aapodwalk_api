@@ -237,10 +237,6 @@
         <source>Media URL</source>
         <target>Media URL</target>
       </trans-unit>
-      <trans-unit id="E.HTA7V" resname="Is audio?">
-        <source>Is audio?</source>
-        <target>Is audio?</target>
-      </trans-unit>
       <trans-unit id="ptuJUXQ" resname="Media preview">
         <source>Media preview</source>
         <target>Media preview</target>
@@ -253,11 +249,7 @@
         <source>Information on media URLs</source>
         <target>Information on media URLs</target>
       </trans-unit>
-      <trans-unit id="CPIQaaz" resname="Check if &quot;{media_url}&quot; points to an audio file.">
-        <source>Check if "{media_url}" points to an audio file.</source>
-        <target>Check if "{media_url}" points to an audio file.</target>
-      </trans-unit>
-      <trans-unit id="mp3Lnk1" resname="Insert a direct mp3 download link to the audio file (not a Videotool iframe/player link).">
+      <trans-unit id="RyyZOc." resname="Insert a direct mp3 download link to the audio file (not a Videotool iframe/player link).">
         <source>Insert a direct mp3 download link to the audio file (not a Videotool iframe/player link).</source>
         <target>Insert a direct mp3 download link to the audio file (not a Videotool iframe/player link).</target>
       </trans-unit>
