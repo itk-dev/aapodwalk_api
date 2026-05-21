@@ -11,6 +11,8 @@ See [keep a changelog](https://keepachangelog.com/en/1.0.0/) for information abo
 
 ## [Unreleased]
 
+- [PR-54](https://github.com/itk-dev/aapodwalk_api/pull/54)
+  Security updates
 - Upgraded Symfony from 7.2 to 7.4 LTS
 - [PR-41](https://github.com/itk-dev/aapodwalk_api/pull/41)
   Security Updates
