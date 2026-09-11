@@ -1,3 +1,11 @@
+> [!Important]
+> ### This project is no longer actively maintained.
+> The source code in this repository is no longer maintained. No replacement is offered. 
+> 
+> **Final Release**: The final stable release is version [1.0.2](https://github.com/itk-dev/aapodwalk_api/releases/tag/1.0.2)
+> 
+<br>
+
 # Aapodwalk api
 
 See [Production](docs/Production.md) for information on how to deploy for production.
